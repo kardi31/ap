@@ -1,0 +1,85 @@
+<div class="colListWrapper1 page4">
+    <h2>Galeria</h2>
+	<div class="wrapper">
+	    <?php foreach($this->paginator as $gallery): ?>
+		<div class="cols colList">
+			<div class="wrapper pad_bot2">
+				<h3><span class="dropcap"></span><?php echo $gallery['Translation'][$this->language]['name']; ?></h3>
+				<figure>
+				    <img src="<?php echo MF_Text::getPhotoPath($gallery['Photos'][1],'270x110'); ?>" alt="<?php echo $gallery['Translation'][$this->language]['name']; ?>">
+				</figure>
+				<a href="<?php echo $this->url(array('slug' => $gallery['Translation'][$this->language]['slug']),'domain-gallery'); ?>" class="link1">Zobacz galerie</a>
+			</div>
+		</div>
+	    <?php endforeach; ?>
+	</div>
+
+</div>
+<div class="colListWrapper2 page4">
+    <h2>Filmy</h2>
+    <div class="wrapper">
+	    <?php foreach($this->video_paginator as $video): ?>
+		<div class="cols colList">
+			<div class="wrapper pad_bot2">
+				<h3><span class="dropcap"></span><?php echo $video['Translation'][$this->language]['name']; ?></h3>
+				<figure>
+                                    <?php if(strpos($video['VideoRoot']['url'],'youtube')!==0){ 
+                                        $url = $video['VideoRoot']['url'];
+                                        $lastSlash = strrpos($url,'/');
+                                        
+                                        $videoId = substr($url,$lastSlash+1);
+                                        ?>
+                                    <span class="videoImage" style="background-image:url('http://img.youtube.com/vi/<?php echo $videoId; ?>/mqdefault.jpg')">
+                                        <!--<img src="" alt="<?php echo $video['Translation'][$this->language]['name']; ?>">-->
+                                    </span>
+             <?php                  }
+                                    else{?>
+                                        
+                                    <img src="/assets/images/page4_img1.jpg" alt="">
+                                        <?php
+                                        
+                                    }
+                                    ?>
+                                </figure>
+				<a href="<?php echo $this->url(array('slug' => $video['Translation'][$this->language]['slug']),'domain-gallery-video'); ?>" class="link1">Zobacz film</a>
+			</div>
+		</div>
+	    <?php endforeach; ?>
+	</div>
+</div>
+<div class="clearfix"></div>
+<?php /*
+<article class="grid_8">
+<h1><?php echo $this->gallery['Translation'][$this->language]['name'] ?></h1>
+<?php echo $this->gallery['Translation'][$this->language]['description'] ?>
+<?php if($this->gallery->get('PhotoRoot')){ ?>
+    <div class="gallery-container gallery-list">
+
+                <div class="gallery-box">
+                        <ul>
+                            <?php foreach($this->gallery->get('PhotoRoot')->getNode()->getChildren() as $photo): ?>
+                                <li>
+                                    <a href="/media/photos/<?php echo $photo['offset'] ?>/<?php echo $photo['filename'] ?>" alt="<?php echo $photo['title'] ?>"
+                                       data-lightview-group='<?php echo $this->gallery['Translation'][$this->language]['slug'] ?>'
+                                       data-lightview-title="<?php echo $photo['title'] ?>"
+                                       class='lightview' 
+                                       data-lightview-options="
+                                           width: 800,
+                                           height: 460,
+                                           viewport: 'false',
+                                         "
+                                       >
+                                        <img src="/media/photos/<?php echo $photo['offset'] ?>/<?php echo $this->photoDimension; ?>/<?php echo $photo['filename'] ?>" alt="<?php echo $photo['title'] ?>" />
+                                    </a>
+                                </li>
+                                <?php endforeach; ?>
+                        </ul>	
+
+
+                </div>
+
+            </div>
+<?php
+}
+?>
+</article>

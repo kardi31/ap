@@ -1,0 +1,82 @@
+            <?php foreach($this->products as $product): ?>
+                    <?php foreach($this->items as $id=>$item): ?>
+                        <?php if($product->getId() == $id): ?>
+                            <tr>
+                                <td class="remove2">
+                                    <a class="remove delete" rel="<?php echo $product->getId(); ?>" title="<?php echo $this->translate('Remove this product') ?>" href="<?php echo $this->url(array('action' => 'remove-product-from-cart'), 'domain-cart-ajax') ?>"></a>
+                                </td>
+                                <td>
+                                    <?php if($product['PhotoRoot']['offset']): ?>
+                                        <img width="65" src="/media/photos/<?php echo $product['PhotoRoot']['offset'] ?>/130x130/<?php echo $product['PhotoRoot']['filename'] ?>" alt="<?php echo $product['PhotoRoot']['alternate_text'] ?>">
+                                    <?php endif; ?>
+                                </td>
+                                <td><a href="<?php echo $this->url(array('category' => $product['Categories'][0]['Translation'][$this->language]['slug'], 'product' => $product['Translation'][$this->language]['slug']), 'domain-i18n:product') ?>"><?php echo $product->Translation[$this->language]->name ?></a></td>
+                                <td>
+                                    <?php 
+                                    $arrayDiscounts = array($product['Discount'], $product['Producer']['Discount'], $this->userDiscount);
+                                    foreach($this->userGroupDiscounts as $userGroupDiscount):
+                                        $arrayDiscounts[] = $userGroupDiscount;
+                                    endforeach;
+                                    $flag = MF_Discount::getPriceWithDiscount($product['promotion_price'], $arrayDiscounts);
+                                    $flag = $flag['flag'];
+                                    ?>
+                                    <?php if($flag || $product['promotion']): ?>
+                                    <?php if($product['promotion']): ?>
+                                        <?php if($flag): ?>
+                                            <span class="price" style="color: red;">
+                                                <?php 
+                                                $price = MF_Discount::getPriceWithDiscount($product['promotion_price'], $arrayDiscounts); 
+                                                $price = $price['price'];
+                                                echo $this->currency($price); ?>
+                                             </span>
+                                            <?php else: ?>
+                                                <span class="price" style="color: red;">
+                                                    <?php echo $this->currency($product['promotion_price']); ?>
+                                                </span>
+                                            <?php endif; ?>
+                                        <?php elseif($flag): ?> 
+                                            <span class="price" style="color: red;">
+                                                <?php 
+                                                $price = MF_Discount::getPriceWithDiscount($product['price'], $arrayDiscounts); 
+                                                $price = $price['price'];
+                                                echo $this->currency($price); ?>
+                                            </span>
+                                        <?php endif; ?>
+                                    <?php else: ?>
+                                        <span class="price">
+                                            <?php echo $this->currency($product['price']); ?>
+                                        </span>
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <input id="spinner<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo $item[""]['count'] ?>">
+                                </td>
+                                <td class="total-item<?php echo $product['id']; ?>">
+                                    <?php if($flag || $product['promotion']): ?>
+                                    <?php if($product['promotion']): ?>
+                                        <?php if($flag): ?>
+                                                <?php 
+                                                $price = MF_Discount::getPriceWithDiscount($product['promotion_price'], $arrayDiscounts); 
+                                                $price = $price['price'];
+                                                $price = $price*$item[""]['count'];
+                                                echo $this->currency($price); ?>
+                                            <?php else: ?>
+                                                <?php $price = $item[""]['count']*$product['promotion_price']; ?>
+                                                <?php echo $this->currency($price); ?>
+                                            <?php endif; ?>
+                                        <?php elseif($flag): ?> 
+                                                <?php 
+                                                $price = MF_Discount::getPriceWithDiscount($product['price'], $arrayDiscounts); 
+                                                $price = $price['price'];
+                                                $price = $item[""]['count']*$price;
+                                                echo $this->currency($price); ?>
+                                        <?php endif; ?>
+                                    <?php else: ?>
+                                            <?php $price = $item[""]['count']*$product['price']; ?>
+                                            <?php echo $this->currency($price); ?>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+            <?php endforeach; ?>

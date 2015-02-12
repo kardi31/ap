@@ -1,0 +1,73 @@
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Edytuj drużyne').$this->team['name'].' do ligi '.$this->league['name']; ?></span>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+                <style>
+                    
+                    table tr td{
+                        text-align:center;
+                    }
+                    </style>
+                <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post" enctype="multipart/form-data">
+                    <h3>Dotychczasowi zawodnicy</h3>
+                    <table>
+                        <tr>
+                            <th>Nazwisko</th>
+                            <th>Imię</th>
+                            <th></th>
+                        </tr>
+                    <?php foreach($this->team['Players'] as $player): ?>
+                        <tr>
+                            <td>
+                                <?php echo $player['last_name']; ?>
+                            </td>
+                            <td>
+                                <?php echo $player['first_name']; ?>
+                            </td>
+                            <td style="width:100px;">
+                                <a class="remove" href="/admin/league/remove-player/id/<?php echo $player['id']; ?>"><span class="icon16 icomoon-icon-remove"></span></a>
+                            </td>
+                        </tr>
+		    <?php endforeach; ?>
+                    </table>
+		    <br /><br />
+                    
+                    <?php echo $this->form->id ?>
+                    
+                    <?php echo $this->form->name ?>
+		    <br />
+		    <?php for($i=0;$i<15;$i++): ?>
+		    
+		    <div class="row-fluid">
+                        <label class="span4">Nazwisko i imie zawodnika</label>
+                   
+                        <input class="span8" name="new_player1[]" type="text" /><br />
+                    
+                    </div>
+		    <?php endfor; ?>
+                    <div class="form-actions">
+                        <?php echo $this->form->submit ?>
+                        <a href="<?php echo $this->adminUrl('list-team', 'league') ?>/league_id/<?php echo $this->league_id; ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                    </div>
+                    
+                </form>
+            
+            </div>
+            
+        </div>
+        
+    </div>
+
+
+</div>

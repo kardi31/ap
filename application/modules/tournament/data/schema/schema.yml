@@ -1,0 +1,132 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+Team:
+  tableName: tournament_team
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255) 
+    slug:
+      type: string(255)
+    tournament_id:
+      type: integer(4)
+    group_id:
+      type: integer(4)
+Tournament:
+  tableName: tournament_tournament
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255) 
+    slug:
+      type: string(255)
+    active:
+      type: boolean
+      default: 1
+    date_from:
+      type: timestamp
+    date_to:
+      type: timestamp
+  relations:
+    Team:
+      local: id
+      foreign: tournament_id
+      foreignType: one
+      type: many
+      alias: Team
+      foreignAlias: Tournament
+Match:
+  tableName: tournament_match
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    team1:
+      type: integer(4)
+    team2:
+      type: integer(4)
+    goal1:
+      type: integer(11)
+    goal2:
+      type: integer(11)
+    tournament_id:
+      type: integer(4)
+    match_date:
+      type: datetime
+    played:
+      type: boolean
+      default: 0
+    group_round:
+      type: boolean
+      default: 1
+  relations:
+    Team:
+      local: team1
+      foreign: id
+      foreignType: many
+      type: one
+      alias: Team1
+      foreignAlias: Matches
+    Tournament:
+      local: tournament_id
+      foreign: id
+      foreignType: one
+      type: many
+      alias: Tournament
+      foreignAlias: Matches
+Player:
+  tableName: tournament_player
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    first_name:
+      type: string(255) 
+    last_name:
+      type: string(255)
+    team_id:
+      type: integer(4)
+  relations:
+    Team:
+      local: team_id
+      foreign: id
+      foreignType: many
+      type: one
+      alias: Team
+      foreignAlias: Players
+Shooter:
+  tableName: tournament_shooter
+  columns:
+    match_id:
+      primary: true
+      type: integer(4)
+    player_id:
+      type: integer(4) 
+      primary: true
+    goal:
+      type: integer(11)
+  relations:
+    Player:
+      local: player_id
+      foreign: id
+      foreignType: many
+      type: one
+      alias: Player
+      foreignAlias: Shooters
+    Match:
+      local: match_id
+      foreign: id
+      foreignType: one
+      type: many
+      alias: Match
+      foreignAlias: Shooters

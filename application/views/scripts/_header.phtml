@@ -1,0 +1,10 @@
+
+<div class="wrapper">
+    <h1><a href="/" id="logo">
+	    <img src="/images/layout/swit_krzeszowice_logo.jpg" alt="Świt krzeszowice logo" /></a></h1>
+    <nav>
+        <?php echo $this->partial('menu_main_tree.phtml', 'menu', array('tree' => $this->tree, 'parent' => $this->menuItem, 'language' => $this->language)) ?>
+	    
+    </nav>
+</div>
+        

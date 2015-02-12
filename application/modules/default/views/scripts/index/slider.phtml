@@ -1,0 +1,119 @@
+<?php if(!isset($this->hideSlider)||$this->hideSlider==false): ?>
+            
+                                    <div class="slider">
+<script>
+      $(document).ready(function(){
+            $('.r_slider').revolution({
+                    delay:5000,
+                    startwidth:960,
+                    startheight:400,
+                    hideThumbs:0,
+                    fullWidth:"on",
+                    hideTimerBar:"on",
+                    soloArrowRightHOffset:30,
+                    soloArrowLeftHOffset:30,
+                    shadow:0
+            });
+    });
+</script>
+<!--revolution slider-->
+<section class="relative w_full">
+    <style>
+	.videoPromotedWrapper{
+	    position:absolute;
+	    margin-left:auto;
+	    margin-right:auto;
+	    left:0px;
+	    right:0px;
+	    width: 960px;
+	    z-index:100000;
+	}
+	
+	.videoPromotedWrapper iframe{
+	    margin-top:280px;
+	}
+    </style>
+    <div class="videoPromotedWrapper">
+	    <iframe width="300" height="200"
+	    src="<?php echo $this->promotedVideo['VideoRoot']['url']; ?>">
+	    </iframe>
+    </div>
+	<div class="r_slider">
+		<ul>
+		    <?php foreach($this->mainSlides as $slide): ?>
+		    <li 
+			<?php if($slide['transition']): ?>
+			    data-transition="<?php echo $slide['transition'] ?>" 
+			<?php else: ?>
+			    data-transition="fade" 
+			<?php endif; ?>
+			<?php if($slide['slot_amount']): ?>
+			    data-slotamount="<?php echo $slide['slot_amount']; ?>" 
+			<?php else: ?>
+			    data-slotamount="5"
+			<?php endif; ?>
+			<?php if ($slide['delay']): ?>
+			    data-delay="<?php echo $slide['delay']; ?>" 
+			<?php endif; ?>
+			<?php if ($slide['transition_duration']): ?>
+			    data-masterspeed="<?php echo $slide['transition_duration']; ?>" 
+			<?php endif; ?>
+			<?php if ($slide['enable_link'] == 1 && $slide['target_href']): ?>
+			    data-link="http://<?php echo $slide['target_href']; ?>"
+			<?php endif; ?> 
+		    >
+			<?php if ($slide['PhotoRoot']['offset']): ?>
+			    <img src="/media/photos/<?php echo $slide['PhotoRoot']['offset'] ?>/1680x579/<?php echo $slide['PhotoRoot']['filename'] ?>" alt="Slider background">
+			<?php endif; ?>
+			<?php $index = 1; ?>
+			<?php foreach($slide['Layers'] as $layer): ?>
+			    <?php if($layer['type'] == "text"): ?>
+				<div class="tp-caption <?php echo $layer['class']; ?> <?php echo $layer['animation']; ?>"
+				    data-x="<?php echo $layer['x_position']; ?>"
+				    data-y="<?php echo $layer['y_position']; ?>"
+				    data-speed="<?php echo $layer['speed']; ?>"
+				    data-start="<?php echo $layer['start']; ?>"
+				    data-easing="<?php echo $layer['easing']; ?>" style="z-index: <?php echo $index;?>;">
+				    <?php if($layer['target_href']): ?>
+					<a href="http://<?php echo $layer['target_href']; ?>">
+				    <?php endif; ?>
+					<?php echo $layer['text_html']; ?>
+				    <?php if($layer['target_href']): ?>
+					</a>
+				    <?php endif; ?>
+				</div>
+			    <?php elseif($layer['type'] == "image"): ?>
+				<div class="tp-caption <?php echo $layer['animation']; ?>"
+				    data-x="<?php echo $layer['x_position']; ?>"
+				    data-y="<?php echo $layer['y_position']; ?>"
+				    data-speed="<?php echo $layer['speed']; ?>"
+				    data-start="<?php echo $layer['start']; ?>"
+				    data-easing="<?php echo $layer['easing']; ?>" style="z-index: <?php echo $index;?>;">
+				    <?php if($layer['target_href']): ?>
+					<a href="http://<?php echo $layer['target_href']; ?>">
+				    <?php endif; ?>
+					 <img src="/media/photos/<?php echo $layer['PhotoRoot']['offset'] ?>/<?php echo $layer['PhotoRoot']['filename'] ?>" alt="<?php echo $layer['PhotoRoot']['title']; ?>">
+				    <?php if($layer['target_href']): ?>
+					</a>
+				    <?php endif; ?>
+				</div>
+			    <?php elseif($layer['type'] == "video"): ?>
+				<div class="tp-caption <?php echo $layer['animation']; ?>"
+				    data-x="<?php echo $layer['x_position']; ?>"
+				    data-y="<?php echo $layer['y_position']; ?>"
+				    data-speed="<?php echo $layer['speed']; ?>"
+				    data-start="<?php echo $layer['start']; ?>"
+				    data-easing="<?php echo $layer['easing']; ?>" style="z-index: <?php echo $index;?>;">
+				    <?php if($layer['target_href']): ?>
+					<iframe src="<?php echo $layer['target_href']; ?>" width="<?php echo $layer['width_iframe']; ?>" height="<?php echo $layer['height_iframe']; ?>"></iframe>
+				    <?php endif; ?>
+				</div>
+			    <?php endif; ?>
+			<?php $index++; endforeach; ?>
+		    </li>
+		    <?php endforeach; ?>
+		</ul>
+	</div>
+</section>
+                                    </div>
+<?php endif; ?>

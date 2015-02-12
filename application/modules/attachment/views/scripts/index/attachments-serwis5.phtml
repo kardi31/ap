@@ -1,0 +1,18 @@
+<div id="attachments">
+    <ul>
+        <?php foreach($this->attachments as $attachment): ?>
+            <?php if ($attachment['Translation'][$this->language]['slug']): ?>
+                <li>
+                    <a href="/media/attachments/<?php echo $attachment['filename'] ?>">
+                        <?php if ($attachment['PhotoRoot']['filename']): ?>
+                            <img src="/media/photos/<?php echo $attachment['PhotoRoot']['offset'] ?>/200x200/<?php echo $attachment['PhotoRoot']['filename'] ?>" />
+                        <?php else: ?>
+                            <img src="/images/layout/serwis5/no_photo.jpg" alt="<?php echo $this->translate('No photo') ?>" style="width: 200px; height: 200px" />
+                        <?php endif; ?>
+                        <div class="title"><?php echo $attachment['Translation'][$this->language]['title']; ?></div>
+                     </a>
+                <li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+</div>

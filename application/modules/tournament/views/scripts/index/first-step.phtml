@@ -1,0 +1,203 @@
+<?php 
+    if($this->userData!=null)
+    {
+    $arr = explode(' ',trim($this->userData['address']));
+    $street = $arr[0];
+    $newArr = explode('/',$arr[1]);
+    $houseNr = $newArr[0];
+    $flatNr = $newArr[1];
+    
+    // jeżeli cofamy z następnego kroku formularza to wypełniamy go wartościami
+    $dataValues = $this->dataValues;
+       ?>
+<script type="text/javascript">
+     // populate formularza jeżeli user zalogowany
+    $('document').ready(function(){
+         document.getElementById('street').value = "<?php echo $street; ?>";
+         document.getElementById('houseNr').value = "<?php echo $houseNr; ?>";
+         document.getElementById('flatNr').value = "<?php echo $flatNr; ?>";
+         document.getElementById('first_name').value = "<?php echo $this->userData['User']['first_name']; ?>";
+         document.getElementById('last_name').value = "<?php echo $this->userData['User']['last_name']; ?>";
+         document.getElementById('postal_code').value = "<?php echo $this->userData['postal_code']; ?>";
+         document.getElementById('phone').value = "<?php echo $this->userData['phone']; ?>";
+         document.getElementById('city').value = "<?php echo $this->userData['city']; ?>";
+         document.getElementById('email').value = "<?php echo $this->userData['User']['email']; ?>";
+         
+      
+    })
+    
+</script>
+<?php
+    }
+        ?>
+<?php 
+    if($this->dataValues!=null)
+    {
+    
+    // jeżeli cofamy z następnego kroku formularza to wypełniamy go wartościami
+    $dataValues = $this->dataValues;
+       ?>
+<script type="text/javascript">
+     // populate formularza jeżeli user zalogowany
+    $('document').ready(function(){
+        // jeżeli cofamy z następnego kroku formularza to wypełniamy go wartościami
+         document.getElementById('street').value = "<?php echo $dataValues['street']; ?>";
+         document.getElementById('houseNr').value = "<?php echo $dataValues['houseNr']; ?>";
+         document.getElementById('flatNr').value = "<?php echo $dataValues['flatNr']; ?>";
+         document.getElementById('first_name').value = "<?php echo $dataValues['first_name']; ?>";
+         document.getElementById('last_name').value = "<?php echo $dataValues['last_name']; ?>";
+         document.getElementById('postal_code').value = "<?php echo  $dataValues['postal_code']; ?>";
+         document.getElementById('phone').value = "<?php echo $dataValues['phone']; ?>";
+         document.getElementById('city').value = "<?php echo $dataValues['city']; ?>";
+         document.getElementById('email').value = "<?php echo $dataValues['email']; ?>";
+        document.getElementById('difAddress').value = "<?php echo $dataValues['difAddress']; ?>";
+        document.getElementById('difstreet').value = "<?php echo $dataValues['difstreet']; ?>";
+        document.getElementById('difhouseNr').value = "<?php echo $dataValues['difhouseNr']; ?>";
+        document.getElementById('difflatNr').value = "<?php echo $dataValues['difflatNr']; ?>";
+        document.getElementById('difpostal_code').value = "<?php echo $dataValues['difpostal_code']; ?>";
+        document.getElementById('difcity').value = "<?php echo $dataValues['difcity']; ?>";
+        document.getElementById('nip').value = "<?php echo $dataValues['nip']; ?>";
+
+         if(document.getElementById('difstreet') != " ")
+              document.getElementById('difAddress').click();
+      
+         if(document.getElementById('nip').value != " ")
+             {
+                 document.getElementById('client_type-company').click();
+                 showNip('company');
+             }
+             else
+                 {
+                     document.getElementById('client_type-person').click()
+                 }
+    })
+    
+</script>
+<?php
+    }
+        ?>
+
+
+
+<script type="text/javascript">
+    $('document').ready(function(){
+     if(document.getElementById('client_type-company').checked){
+        showNip();
+    }
+    })
+    
+   
+    // inny adres wysyłki
+    function displayDifferentAddress(){
+   
+    var diffield = document.getElementsByTagName('dt');
+     var diffield2 = document.getElementsByTagName('dd');
+    for(var i=0;i<diffield.length;i++)
+    {
+        diffield[i].style.display = "block";
+        diffield2[i].style.display = "block";
+    }
+    if(!document.getElementById('difAddress').checked)
+    {
+        var diffield = document.getElementsByTagName('dt');
+        var diffield2 = document.getElementsByTagName('dd');
+        for(var i=0;i<diffield.length;i++)
+        {
+            diffield[i].style.display = "none";
+            diffield2[i].style.display = "none";
+        }
+    }
+    }
+    
+    // jeżeli firma - dodajemy pole nip 
+    function showNip(val){
+    var nip = document.getElementById('nip');
+    var number = 'nip';
+    var myDiv = $('[for="'+number+'"]');
+        if(val=="company"){
+            nip.style.display = "block";
+            myDiv.css('display','block');
+        }
+        else
+        {
+            nip.style.display = "none";
+            myDiv.css('display','none');
+        }
+//    if(!document.getElementById('difAddress').checked)
+//    {
+//        var diffield = document.getElementsByTagName('dt');
+//        var diffield2 = document.getElementsByTagName('dd');
+//        for(var i=0;i<diffield.length;i++)
+//        {
+//            diffield[i].style.display = "none";
+//            diffield2[i].style.display = "none";
+//        }
+//    }
+    }
+     function hideNip(){
+    
+    var nip = document.getElementById('nip');
+        nip.style.display = "none";
+    var number = 'nip';
+    var myDiv = $('[for="'+number+'"]');
+    myDiv.css('display','none');
+//    if(!document.getElementById('difAddress').checked)
+//    {
+//        var diffield = document.getElementsByTagName('dt');
+//        var diffield2 = document.getElementsByTagName('dd');
+//        for(var i=0;i<diffield.length;i++)
+//        {
+//            diffield[i].style.display = "none";
+//            diffield2[i].style.display = "none";
+//        }
+//    }
+    }
+  
+    
+</script>
+<span class="firstStepMenu">
+    <a href="<?php echo $this->url(array('action' => 'first-step'),'domain-order'); ?>" class="active">1.<?php echo $this->translate('Address data'); ?></a>
+    <a href="<?php echo $this->url(array('action' => 'second-step'),'domain-order'); ?>">2. <?php echo $this->translate('Summary'); ?></a>
+    <a href="#">3. <?php echo $this->translate('Payment'); ?></a>
+</span>
+<h3>1.<?php echo $this->translate('Address data'); ?></h3>
+
+<div id="firstStepForm">
+    <?php echo $this->translate('Buyer data'); ?><span id="requiredFields"><?php echo $this->translate('* Required fields');?></span>    
+    <hr />
+    <form id="" class="" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>">
+   
+    <?php
+    foreach($this->clientType->getMultiOptions() as $key=>$client):
+        ?>
+        <input onclick="showNip(this.value);" id="client_type-<?php echo $key; ?>" class="span8" type="radio" value="<?php echo $key; ?>" name="client_type">
+        <label class="client_type" for="client_type-<?php echo $key; ?>"></label><?php echo $client; ?>
+            <?php
+    endforeach;
+    echo $this->form->first_name;
+    echo $this->form->last_name;
+    echo $this->form->street;
+    echo $this->form->houseNr;
+    echo $this->form->flatNr;
+    echo $this->form->postal_code;
+    echo $this->form->city;
+    echo $this->form->email;
+    echo $this->form->phone;
+    echo $this->form->nip;
+    echo $this->form->difstreet;
+    echo $this->form->difhouseNr;
+    echo $this->form->difflatNr;
+    echo $this->form->difpostal_code;
+    echo $this->form->difcity;
+    ?>
+    <div class="difAdd">
+        <input id="difAddress" type="checkbox" onclick="displayDifferentAddress();" value="1" name="difAddress" >
+        <label class="difAddress" for="difAddress"></label><?php echo $this->translate('Different address for shipping'); ?>
+    </div>
+        <a class="backBtn" href="<?php echo $this->url(array(),'domain-homepage');?>"><?php echo $this->translate('Back to shop'); ?></a>
+        <?php echo $this->form->submit; ?>
+    </form>
+</div>
+<script type="text/javascript">
+  
+</script>

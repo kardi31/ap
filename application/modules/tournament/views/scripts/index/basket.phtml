@@ -1,0 +1,150 @@
+<script type="text/javascript">
+    function updateQuantity(price,key,count)
+{
+    var itemCount =  count;
+    var itemId = key;
+    
+    // liczenie ceny nowego przedmioty
+    var new_price = count*price;
+    document.getElementById('value'+key).innerHTML = new_price + " zł";
+    
+    // liczenie sumy cen
+    var prices = document.getElementsByClassName('productPrice');
+    var sumprice = 0;
+    var pureprice;
+    for(var i=0;i<prices.length;i++){
+        pureprice = prices[i].innerHTML;
+        sumprice += parseInt(pureprice);
+    }
+    document.getElementById('toPay').innerHTML = sumprice + " zł";
+    
+    ajax(itemId,itemCount);
+}
+function ajax(id,number) {
+    // NOTE:  This function must return the value 
+    //        from calling the $.ajax() method.
+    return    $.ajax({
+       type: "POST",
+       url: "/order/ajax/update-basket",
+       data: "id="+id+"&&number="+number ,
+       success: function(){
+       }
+     });
+}
+</script>
+<?php if(count($this->items['Product_Model_Doctrine_Product'])){ ?>
+<span class="basketMenu">
+    <a class="backBtn" href="<?php echo $this->url(array(),'domain-homepage'); ?>" class="">Wróć do zakupów</a>
+    <a href="#" class="active">Złóż zamówienie</a>
+</span>
+<h2 class="basketH2"><span><?php echo $this->translate('Basket'); ?></span></h2>
+
+<table class="basketTable">
+     <tr>
+        <th><?php echo $this->translate('Product name'); ?></th>
+        <th><?php echo $this->translate('Price'); ?></th>
+        <th><?php echo $this->translate('Quantity'); ?></th>
+        <th><?php echo $this->translate('Value'); ?></th>
+        <th></th>
+    </tr>
+<?php 
+foreach($this->items['Product_Model_Doctrine_Product'] as $key=>$item):
+    foreach($item as $itemDetail):
+    ?>
+   
+    <tr>
+        <td>
+            <div class="basketPhoto">
+                <img src="<?php echo ($this->product['PhotoRoot']['filename']?'/media/photos/'.$this->product['PhotoRoot']['offset'].'/400x/'.$this->product['PhotoRoot']['filename']:'/images/temp/product-image.jpg') ?>" />
+            </div>
+            <?php echo $itemDetail['name']; ?>
+        </td>
+        <td><?php echo $itemDetail['price']; ?> zł</td>
+        <td><input size="2" id="quantity<?php echo $key;?>" onblur="updateQuantity(<?php echo $itemDetail['price']; ?>,<?php echo $key; ?>,this.value);"class="itemCount" type="number" value="<?php echo $itemDetail['count']; ?>" />
+            <input type="hidden" class="itemId" value="<?php echo $key; ?>" />
+        </td>
+        <td class="productPrice" id="value<?php echo $key; ?>">
+            <?php echo $itemDetail['price']." zł"; ?>
+        </td>
+        <td><a href="<?php echo $this->url(array('action'=>'remove-item','id'=>$key),'domain-order'); ?>"><img src="/images/icon_usun.png"/></a></td>
+    </tr>
+<?php
+    endforeach;
+endforeach;
+?>
+    <tr>
+        <td colspan="5" class="space">
+        </td>
+    </tr>
+       <form id="" class="" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>">
+    <tr>
+        <td class="formDelivery" colspan="5">
+            <div class="basketLabel"><?php echo $this->form->delivery_type_id->getLabel(); ?></div>
+            <?php 
+            foreach($this->form->delivery_type_id->getMultiOptions() as $key => $elem):
+                ?>
+            <br />
+            <input id="delivery_type_id-<?php echo $key; ?>" type="radio" value="<?php echo $key; ?>" name="delivery_type_id"> 
+            <label for="delivery_type_id-<?php echo $key; ?>"></label><strong><?php echo $elem; ?></strong>
+           
+                <?php
+            endforeach;
+            ?>
+            <br />
+            <div class="basketLabel"><?php echo $this->form->payment_type_id->getLabel(); ?></div>
+            <?php 
+            foreach($this->form->payment_type_id->getMultiOptions() as $key2=>$elem2):
+                ?>
+            <br />
+            <input id="payment_type_id-<?php echo $key2; ?>" type="radio" value="<?php echo $key2; ?>" name="payment_type_id"> 
+            <label for="payment_type_id-<?php echo $key2; ?>"></label><strong><?php echo $elem2; ?></strong>
+           
+                <?php
+            endforeach;
+            ?>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="5" class="bold"><?php echo $this->translate('Total to pay'); ?>
+            <span id="toPay" ><?php echo $this->prices['total_price']; ?> zł</span>
+        </td>
+    </tr>
+<?php 
+    if(isset($this->prices['discount'])):
+?>
+     <tr>
+        <td></td>
+        <td></td>
+        <td><?php echo $this->translate('Discount'); ?></td>
+        <td class="bold"><?php echo $this->prices['discount']; ?> %</td>
+    </tr>
+     <tr>
+        <td></td>
+        <td></td>
+        <td>Do zapłaty</td>
+        <td  class="bold"><?php echo $this->prices['total_price_after_discount']; ?> zł</td>
+    </tr>
+    <?php endif; ?>
+</table>
+<div id="basketSubmit">
+<a class="backBtn" href="<?php echo $this->url(array(),'domain-homepage'); ?>"><?php echo $this->translate('Back to shop'); ?></a>
+<?php echo $this->form->submit; ?>
+</div>
+ </form>
+<!--<form style="display:inline;" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>">
+           <?php // echo $this->form->code; echo $this->form->submit; ?>
+
+</form>-->
+
+<!--<a class="button" onclick="updateQuantity();setTimeout(window.location.reload.bind(window.location), 200);" href="javascript:void(0)">Zaktualizuj koszyk</a>-->
+
+<!--<br />
+<br />
+<a class="button" href="/order/index/clear-basket">Opróżnij koszyk</a>-->
+<?php }
+else{
+    ?>
+<h2>Koszyk jest pusty</h2>
+<?php
+}
+?>

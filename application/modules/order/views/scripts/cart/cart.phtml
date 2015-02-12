@@ -1,0 +1,218 @@
+<script type="text/javascript">	
+$(document).ready(function() {
+     
+     $('.quantity button').on('click',function(){
+	var quantityElem = $(this).parent();
+	var quantity = parseInt(quantityElem.children('input').val());
+	
+	if($(this).attr('data-count')=="plus"){
+	    quantity += 1;
+	}
+	else{
+	    quantity -= 1;
+	}
+	
+	if(quantity<1)
+	    quantity = 1;
+		     
+	var id = quantityElem.attr('rel');
+	$.ajax({
+	    type: "post",
+	    dataType: "json",
+	    url: "<?php echo $this->url(array('action' => 'change-number-of-product'), 'domain-cart-ajax') ?>",
+	    data: {format: "json", id: id, status: "status", counter: quantity},
+	    success: function(resp) {
+		if(resp.status == "success") {
+		     $('[data-title="Total"][rel='+id+']').html(resp.totalPrice);
+		     $('#totalPrice').html(resp.totalSum);
+		     $('#total').html(resp.noCouponPrice);
+		     $('#basketItemCount').html(resp.basketItemCount);	     
+		 }
+	    }
+	});
+	
+	
+     });
+     
+     $(".removeFromCart").click(function(e) {
+            e.preventDefault();
+            var url = $(this).attr("href");
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: url,
+                data: {format: "json", status: "status"},
+                success: function(resp) {
+                    if(resp.status == "success") {
+                        window.location.href = document.URL;
+                    }
+                }
+            });
+        });
+     
+     $("#discountCode").submit(function(e) {
+        e.preventDefault();
+        var code = $("#code").val();
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "<?php echo $this->url(array('action' => 'check-coupon'), 'domain-cart-ajax') ?>",
+            data: {format: "json", code: code, status: "status", totalPrice: "<?php echo $this->totalPrice; ?>"},
+            success: function(resp) {
+                    if(resp.status == "success") {
+                        if (resp.valid){
+                            var expiration = new Date();
+                            var minutes = 30;
+			    if(!$("#discountValue").length){
+				$("#totalWrapper").after("<tr id='discountValue'><td colspan='4' class=t_align_r fw_light'>aa</td><td colspan='2'></td></tr>");
+                            }
+			    expiration.setTime(expiration.getTime() + (minutes * 60 * 1000));
+                            $.cookie("discount_code", code, { expires: expiration,  path: '/' });
+                            $(".code-submit").hide();
+                            $(".code-delete").show();
+			    
+			     $('#discountValue > td').html('Wartosc upustu');
+			     $('#discountValue td:nth-of-type(2)').html(resp.couponAmount);
+			     $('#totalPrice').html(resp.totalSum);
+                            $(".discountWrapper").remove();
+                        }
+                        else{
+                            $(".invalid-code").html("<?php echo $this->translate('Invalid code!') ?>");
+                        }
+                    }
+                }
+            });
+    });
+    
+    $(".code-delete a").click(function(e){
+        e.preventDefault();
+        var expiration = new Date();
+        var minutes = 30;
+        expiration.setTime(expiration.getTime() + (minutes * 60 * 1000));
+        $.cookie("discount_code", null, { expires: expiration,  path: '/' });
+        $("form #discount_code").val("");
+        $(".code-submit").show();
+        $(".code-delete").hide();
+        $(".discount-coupon").html("");
+    });
+ 
+});
+
+</script>
+
+<section class="page_title_2 image_bg_9 translucent_bg_color_scheme t_align_c relative wrapper" style="margin-top: 0px;">
+    <div class="container">
+        <h1 class="color_light fw_light m_bottom_5">Koszyk</h1>
+        <!--breadcrumbs-->
+        <ul class="hr_list d_inline_m breadcrumbs">
+            <li class="m_right_8 f_xs_none"><a href="/" class="color_grey_light_3  d_inline_m m_right_10">Home</a><i class="icon-angle-right d_inline_m color_grey_light_3 fs_small"></i></li>
+            <li><a class="color_grey_light_3  d_inline_m">Koszyk</a></li>
+        </ul>
+    </div>
+</section>
+
+<div class="section_offset counter m_bottom_20">
+    <div class="container">
+	<div class="im_half_container m_bottom_10">
+	    <div class="half_column d_inline_m w_xs_full m_xs_bottom_10">
+		<p class="fw_light">Liczba produktów w koszyku: <span id="basketItemCount"><?php echo $this->count; ?></span></p>
+	    </div>
+	    <div class="half_column d_inline_m w_xs_full t_xs_align_l t_align_r m_xs_bottom_5">
+		<a href="<?php echo $this->url(array(), 'domain-list-product') ?>" class="d_inline_b tr_all r_corners button_type_1 color_pink transparent fs_medium mini_side_offset"><i class="icon-basket d_inline_b m_right_5"></i> Kontynuuj zakupy</a>
+	    </div>
+	</div>
+	<div class="r_corners wrapper border_grey m_bottom_30 m_xs_bottom_30">
+	    <table class="table_type_2 responsive_table w_full t_align_l">
+		<thead>
+		<tr class="bg_light_2 color_dark">
+		    <th>Zdjęcie</th>
+		    <th>Opis</th>
+		    <th>Cena</th>
+		    <th>Ilość</th>
+		    <th>Wartość</th>
+		    <th></th>
+		</tr>
+		</thead>
+		<tbody>
+		<?php foreach($this->items as $key => $item): ?>
+		<tr class="tr_delay">
+		    <td data-title="Product Image">
+			<a href="<?php echo $this->url(array('category' => $item[""]['options']['categorySlug'], 'product' => $item[""]['options']['productSlug']), 'domain-i18n:product') ?>" class="r_corners d_inline_b wrapper">
+			    <img src="/media/photos/<?php echo $item[""]['options']['photoOffset']; ?>/56x60/<?php echo $item[""]['options']['photoFilename']; ?>" alt="">
+			</a>
+		    </td>
+		    <td data-title="Description">
+			<h6 class="m_bottom_5"><a href="<?php echo $this->url(array('category' => $item[""]['options']['categorySlug'], 'product' => $item[""]['options']['productSlug']), 'domain-i18n:product') ?>" class="color_dark tr_all"><?php echo $item[""]['name']; ?></a></h6>
+			<p class="fw_light">Kategoria: <?php echo $item[""]['options']['categoryName']; ?></p>
+		    </td>
+		    <td data-title="Price"><?php echo $item[""]['price'] ;?> zł</td>
+		    <td data-title="Quantity">
+			<div class="wrapper fs_medium r_corners d_inline_b quantity clearfix" rel="<?php echo $key; ?>">
+			    <button class="f_left bg_light_3" data-count="minus">
+				<i class="icon-minus "></i>
+			    </button>
+			    <input type="text" readonly="" value="<?php echo $item[""]['count']; ?>" class="f_left color_grey bg_light">
+			    <button class="f_left bg_light_3" data-count="plus">
+				<i class="icon-plus"></i>
+			    </button>
+			</div>
+		    </td>
+		    <td data-title="Total" rel="<?php echo $key; ?>" class="fw_ex_bold color_dark">
+			<?php echo $item[""]['price']*$item[""]['count'] ;?> zł
+		    </td>
+		    <td>
+			<button class="removeFromCart color_grey_light_2 color_dark_hover tr_all" href="<?php echo $this->url(array('action' => 'remove-product-from-cart','product-id' => $key), 'domain-cart-ajax') ?>">
+
+			    <i class="icon-cancel-circled-1 fs_large"></i>
+			</button>
+		    </td>
+		</tr>
+		<?php endforeach; ?>
+
+		<tr id='totalWrapper'>
+		    <td colspan="4" class="t_align_r fw_light">Łącznie:</td>
+		    <td colspan="2" id='total'><?php echo $this->noCouponPrice; ?> zł</td>
+		</tr>
+		<?php if($this->coupon): ?>
+		<tr id='discountCode'>
+		    <td colspan="4" class="t_align_r fw_light">Zniżka:</td>
+		    <td colspan="2" id='total'>
+			<?php if($this->coupon['type'] == "percent"):
+				echo $this->coupon['amount_coupon']." %";
+			      else: 
+				echo $this->coupon['amount_coupon']; ?> zł
+			<?php endif; ?>
+		    </td>
+		</tr>
+		<?php endif; ?>
+
+		<tr class="bg_light_2">
+		    <td colspan="4" class="v_align_m">
+
+			    <div class="d_table w_full discountWrapper">
+				<div class="col-lg-9 col-md-9 col-sm-11 d_table_cell f_none d_xs_block">
+				    <?php if(!$this->coupon): ?>
+					<p class="fw_light d_inline_m m_right_5 d_xs_block">Kupon rabatowy:</p>
+					<form class="d_inline_m" id="discountCode" method="post">
+					    <input type="text" id="code" name="code" placeholder="Podaj swój kod" class="color_grey r_corners bg_light fw_light coupon m_xs_bottom_15">
+					    <button class="tr_all m_xs_bottom_10 r_corners color_purple transparent tt_uppercase button_type_5 fs_medium">Wprowadź</button>
+					</form>
+				    <?php endif; ?>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-1 v_align_m d_table_cell d_xs_block f_none t_align_r fw_ex_bold color_pink t_xs_align_c">
+				    Do zapłaty:
+				</div>
+			    </div>
+		    </td>
+		    <td colspan="2" class="fw_ex_bold color_pink v_align_m" id="totalPrice"><?php echo $this->totalPrice; ?> zł</td>
+		</tr>
+		</tbody>
+	    </table>
+	</div>
+	
+	<a href="<?php echo $this->url(array(), 'domain-i18n:checkout') ?>" class="m_right_160 f_right button_type_3 tr_all color_pink r_corners tt_uppercase d_inline_b fs_medium mini_side_offset">
+	    <i class="icon-check fs_large d_inline_b m_right_10"></i>
+	    Do kasy
+	</a>
+    </div>
+</div>

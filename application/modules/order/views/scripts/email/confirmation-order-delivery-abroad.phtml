@@ -1,0 +1,40 @@
+<?php echo $this->translate("Witamy serdecznie,"); ?> <br/>
+<br/>
+<?php echo $this->translate("Dziękujemy za zainteresowanie naszą ofertą. Wyślemy Ci wycenę kosztów przesyłki mailem. Po akceptacji kosztów wysyłki i uiszczeniu płatności, przesyłka zostanie nadana."); ?> <br/>
+<br/>
+<?php echo $this->translate('Szczegóły zamówienia:') ?> <br/>
+<br/>
+<table border="1" cellpadding="5px" cellspacing="0" style="width: 800px;">
+    <tr style="font-size: 12px; font-weight: bold; background-color: #B6EDAA;">
+            <td>
+                <?php echo $this->translate('Nazwa produktu') ?>
+            </td>
+            <td>
+                <?php echo $this->translate('Ilość') ?>
+            </td>
+            <td>
+                <?php echo $this->translate('Cena') ?>
+            </td>
+    </tr>
+    <?php foreach($this->order['Items'] as $item): ?>
+        <tr>
+            <td>
+                <?php echo $item['Product']['Translation'][$this->language]['name']; ?>
+            </td>
+            <td>
+                <?php echo $item['number']; ?>
+            </td>
+            <td>
+                <?php echo $this->currency($item['price']); ?>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    <tr style="font-size: 13px; font-weight: bold;">
+        <td colspan="3">
+            <?php echo $this->translate('Koszt zamówienia:') ?> <?php echo $this->currency($this->order['total_cost']); ?> + koszt dostawy
+        </td>
+    </tr>
+</table>
+<br/>
+<?php echo $this->translate('Pozdrawiamy,') ?> <br/>
+<?php echo $this->translate('Zespół serwisu zielonysklep.com') ?> <br/>

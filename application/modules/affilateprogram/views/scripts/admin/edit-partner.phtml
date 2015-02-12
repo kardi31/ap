@@ -1,0 +1,44 @@
+<div class="container_12 clearfix leading">
+    
+    <div class="grid_12">
+ 
+        <div class="box">
+        
+          <div class="content">
+            <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post" enctype="multipart/form-data">
+
+                <div class="title">
+
+                    <h4>
+                        <span class="icon16 icomoon-icon-pencil"></span>
+                        <span><?php echo $this->translate('Edit partner') ?> <?php echo $this->partner['name']; ?></span>
+                    </h4>
+
+                </div>
+
+                <?php echo $this->form->name ?>
+                <?php echo $this->form->discount ?>
+                <?php echo $this->form->comission ?>
+                <?php echo $this->form->id ?>
+                
+                <h2 style="margin-top: 30px;">
+                <?php echo $this->translate('Reference number') ?>: <?php echo $this->partner['reference_number'] ?>
+                </h2>
+                
+                <span style="font-size: 16px;"><?php echo $this->translate('Embed on website code from frame') ?>:</span><br/>
+                <div style="border: 1px solid black; padding: 20px; font-size: 14px; margin-top: 10px;">
+                    <?php echo htmlspecialchars('<a href="http://zielonysklep.com/pl/program-partnerski?reference_number='. $this->partner['reference_number'] .'"><img src="http://zielonysklep.com/images/bannery-reklamowe/banermaly.jpg" /></a>'); ?>
+                    <span style="padding-left: 20px">
+                        <img src="http://zielonysklep.com/images/bannery-reklamowe/banermaly.jpg" />
+                    </span>
+                </div>
+                    
+                <div class="form-actions">
+                    <?php echo $this->form->submit ?>
+                    <a href="<?php echo $this->adminUrl('list-partner', 'affilateprogram'); ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+               </div>       
+            </form>
+          </div>
+        </div>
+    </div>
+</div>

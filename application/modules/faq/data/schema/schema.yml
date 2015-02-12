@@ -1,0 +1,120 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+Faq:
+  tableName: faq_faq
+  actAs:
+    I18n:
+      fields: [title, slug, content]
+      tableName: faq_faq_translation
+      className: FaqTranslation
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    author_id:
+      type: integer(4)
+    last_editor_id:
+      type: integer(4)
+    title:
+      type: string(255)
+    slug:
+      type: string(255)
+    content:
+      type: clob
+    sponsored:
+      type: boolean
+      default: 0
+    publish:
+      type: boolean
+      default: 1
+    publish_date:
+      type: timestamp
+    photo_root_id:
+      type: integer(4)
+    metatag_id:
+      type: integer(4)
+    category_id:
+      type: integer(4)
+  relations:
+    Category:
+      local: category_id
+      foreign: id
+      foreignAlias: Faqs
+      alias: Category
+      type: one
+      foreignType: many
+FaqTranslation:
+  tableName: faq_faq_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    slug:
+      type: string(255)
+    title:
+      type: string(255)
+    content:
+      type: clob
+  relations:
+    Faq:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      type: one
+      foreignType: many
+Category:
+  tableName: faq_category
+  actAs:
+    I18n:
+      fields: [title, slug, content]
+      tableName: faq_category_translation
+      className: CategoryTranslation
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    title:
+      type: string(255)
+    slug:
+      type: string(255)
+    content:
+      type: clob
+    photo_root_id:
+      type: integer(4)
+    metatag_id:
+      type: integer(4)
+CategoryTranslation:
+  tableName: faq_category_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    slug:
+      type: string(255)
+    title:
+      type: string(255)
+    content:
+      type: clob
+  relations:
+    Category:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      type: one
+      foreignType: many

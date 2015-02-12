@@ -1,0 +1,37 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+Partner:
+  tableName: affilateprogram_partner
+  actAs:
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255)
+    reference_number:
+      type: string(255)
+    discount:
+      type: decimal
+    comission:
+      type: decimal
+  relations:
+    PartnerOrders:
+      local: id
+      foreign: partner_id
+      alias: PartnerOrders
+      type: many
+PartnerOrders:
+  tableName: affilateprogram_partner_orders
+  actAs:
+    Timestampable: ~
+  columns:
+    partner_id:
+      type: integer(4)
+    order_id:
+      type: integer(4)

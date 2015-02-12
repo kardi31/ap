@@ -1,0 +1,65 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    var oTable = $("#faq_table").dataTable( {
+        "sPaginationType": "full_numbers",
+        "oLanguage": {
+            "sUrl": "/plugins/tables/dataTables/datatables.polish.txt"
+        },
+        "bFilter": true,
+        "bDestroy": true,
+        "bProcessing": true,
+        "bServerSide": true,
+        "bLengthChange": false,
+        "iDisplayLength": 30,
+        "sAjaxSource": "<?php echo $this->adminUrl('list-faq-data', 'faq') ?>",
+        "aaSorting": [[ 2, "desc" ]],
+        "aoColumns": [
+            null,
+            { "bSortable": true, sWidth: '200px' },
+            { sWidth: '200px' },
+            { "bSortable": false, sWidth: '100px' }
+        ]
+    });
+    
+    $("#faq_table").bind("update", function(e) {
+        oTable.fnReloadAjax();
+    });
+    
+    $("#category_id").select2();
+});
+</script>
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-faqpaper"></span>
+                    <span><?php echo $this->translate('Faq') ?></span>
+                    <div class="box-form right">
+                        <a href="<?php echo $this->adminUrl('add-faq', 'faq') ?>" class="btn btn-success btn-mini"><?php echo $this->translate('Add new') ?></a>
+                    </div>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+                <table id="faq_table" cellpadding="0" cellspacing="0" border="0" class=" display table table-bordered" width="100%">
+                    <thead>
+                        <th><?php echo $this->translate('Title') ?></th>
+                        <th><?php echo $this->translate('Category') ?></th>
+                        <th><?php echo $this->translate('Date') ?></th>
+                        <th><?php echo $this->translate('Options') ?></th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                
+            </div>
+
+        </div><!-- End .box -->
+
+    </div>
+</div>

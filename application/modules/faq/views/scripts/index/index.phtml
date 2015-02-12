@@ -1,0 +1,82 @@
+<div class="container">
+    <div id="content" class="single col-lg-12 col-md-12 col-sm-12">
+        <section class="singleheader-wrap">
+                                <div class="singleheader">  
+                        <div class="container">
+                            <h3 class="new-title" style="text-align: left;"><?php echo $this->translate('Faq') ?></h3>
+                            <div class="col-lg-6 col-sm-6 col-md-6">
+                                <div class="single-title">
+                                    <h3><?php echo $this->translate('Frequently Asked Questions'); ?></h3>
+                                </div>
+                            </div>
+
+                        </div>  
+                    </div>
+                        </section>
+    </div>
+                <div id="content" class="single col-lg-8 col-md-8 col-sm-12">
+ <?php echo $this->translate('Due to unforeseen technical difficulties our Blog is  temporarily unavailable.'); ?><br><?php echo $this->translate('We apologize for any inconvenience.'); ?>
+               
+                    <div class="clearfix"></div>
+    
+                       
+                        <div class="accordion" id="accordion">
+                             <?php foreach($this->category['Faqs'] as $key => $faq): ?>
+                            <?php if($key == 0): ?>
+                            <div class="accordion-group effect-slide-bottom in" data-effect="slide-bottom" style="-webkit-transition: all 0.7s ease-in-out; transition: all 0.7s ease-in-out;">
+                            <div class="accordion-heading">
+                              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                                <em class="fa fa-minus icon-fixed-width"></em>
+                                <?php echo $faq->Translation[$this->language]['title']; ?>
+                              </a>
+                            </div>
+                            <div id="collapseOne" class="accordion-body collapse in">
+                              <div class="panel-body">
+                                <?php echo $faq->Translation[$this->language]['content']; ?>
+                              </div>
+                            </div>
+                          </div>
+                            <?php else: ?>
+                            
+                            <div class="accordion-group effect-slide-bottom in" data-effect="slide-bottom" style="-webkit-transition: all 0.7s ease-in-out; transition: all 0.7s ease-in-out;">
+                            <div class="accordion-heading">
+                              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<?php echo $key; ?>">
+                                <em class="fa fa-plus icon-fixed-width"></em>
+                                <?php echo $faq->Translation[$this->language]['title']; ?>
+                              </a>
+                            </div>
+                            <div id="collapse<?php echo $key; ?>" class="accordion-body collapse">
+                              <div class="panel-body">
+                                 <?php echo strip_tags($faq->Translation[$this->language]['content']); ?>
+                              </div>
+                            </div>
+                          </div>
+                            <?php endif; ?>
+                              <?php endforeach; ?>
+                          
+			</div><!-- end accordion -->
+                        
+                </div><!-- end content -->
+
+            <div id="sidebar" class="col-lg-4 col-md-4 col-sm-12">
+                                
+            	<div class="widget">
+                    <h2 class="general-title">
+                        <span><?php echo $this->translate('Categories'); ?></span>
+                    </h2>
+                    <ul class="categories">
+                        <?php foreach($this->categoryList as $category): ?>
+                            <li><a href="<?php echo $this->url(array('category' => $category['Translation'][$this->language]['slug']),'domain-faq-category'); ?>"><?php echo $category['Translation'][$this->language]['title']; ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+
+				<div class="clearfix"></div>
+                
+            	
+
+            	
+                
+            </div><!-- end sidebar -->
+                             
+</div><!-- end container -->

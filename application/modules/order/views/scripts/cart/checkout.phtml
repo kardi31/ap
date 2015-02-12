@@ -1,0 +1,323 @@
+<script type="text/javascript">
+$(document).ready(function(){
+    
+     if ($("#other_address").length > 0){
+         $(".other-address-box").hide();
+     }
+     else{
+         $(".other-address-box").show();
+     }
+     
+     if ($("#other_address").is(':checked')){
+         $(".other-address-box").show();
+     }
+      
+     $("#other_address").change(function(){
+        if ($("#other_address").is(':checked')){
+            $(".other-address-box").show();
+        }
+        else{
+            $(".other-address-box").hide();
+        }
+     });
+     
+     $(".payment-type-box").hide();
+     
+     var deliveryTypeId;
+     deliveryTypeId = $('input[name=delivery_type_id]:checked').val();
+     $.ajax({
+             type: "post",
+             dataType: "json",
+             url: "<?php echo $this->url(array('action' => 'check-delivery-type'), 'domain-cart-ajax') ?>",
+             data: {format: "json", deliveryTypeId: deliveryTypeId, status: "status", totalPrice: <?php echo $this->totalPrice; ?>},
+             success: function(resp) {
+                if(resp.status == "success") {
+                    $("#deliveryCost").html(resp.deliveryPrice);
+                    $("#totalCostOrder").html(resp.priceWithDelivery);
+                }
+            }
+      });
+     
+     $("[name='delivery_type_id']").change(function(){
+        var deliveryTypeId;
+        deliveryTypeId = $(this).val();
+        $.ajax({
+             type: "post",
+             dataType: "json",
+             url: "<?php echo $this->url(array('action' => 'check-delivery-type'), 'domain-cart-ajax') ?>",
+             data: {format: "json", deliveryTypeId: deliveryTypeId, status: "status", totalPrice: <?php echo $this->totalPrice; ?>},
+             success: function(resp) {
+                if(resp.status == "success") {
+                    $("#deliveryCost").html(resp.deliveryPrice);
+                    $("#totalCostOrder").html(resp.priceWithDelivery);
+                }
+            }
+        });
+     });
+     
+     if ($("#invoice").is(':checked')){
+        $(".invoice-box").show();
+     }
+     else{
+        $(".invoice-box").hide();
+     }
+     
+     $("#invoice").change(function(){
+        if ($("#invoice").is(':checked')){
+            $(".invoice-box").show();
+        }
+        else{
+            $(".invoice-box").hide();
+        }
+     });
+});
+</script>
+
+
+
+
+<div class="section_offset counter">
+    <div class="container">
+	<h4 class="title_counter_type r_corners wrapper m_bottom_23 bg_light_2 counter_inc color_dark">Dane</h4>
+	
+	<form class="m_bottom_12" action="<?php echo $this->orderForm->getAction() ?>" method="post">
+	<div class="col-md-4">
+        <?php if(!$this->user): ?>
+	    <h5 class="color_dark fw_light m_bottom_23">Masz już konto?</h5>
+
+		<ul>
+		    <li class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 m_bottom_8">
+			    <i class="icon-user login_icon fs_medium color_grey_light_2"></i>
+			    <?php echo $this->loginForm->username ?>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 m_bottom_8">
+			    <i class="icon-lock login_icon fs_medium color_grey_light_2"></i>
+			    <?php echo $this->loginForm->password ?>
+			</div>
+		    </li>
+		    <li class="m_bottom_23">
+			<?php echo $this->loginForm->remember ?>
+			<label for="remember" class="d_inline_m fs_medium fw_light">Zapamiętaj</label>
+		    </li>
+		    <li class="clearfix">
+
+			<?php echo $this->loginForm->submit ?>
+			<div class="lh_medium">
+			    <a href="<?php echo $this->url(array('subject' => 'password'), 'domain-i18n:user-update') ?>" class="color_scheme color_purple_hover d_inline_b m_bottom_3 fs_small">Zapomniałeś hasła?</a><br>
+			</div>
+		    </li>
+		</ul>
+        <?php else: ?>
+            Zalogowano jako <?php echo $this->user->email; ?>
+        <?php endif; ?>
+	</div>
+	<div class="col-md-8">
+	    <div class="clearfix m_bottom_20">
+            <?php if(!$this->user): ?>
+		<h5 class="color_dark f_left fw_light">Zakupy bez rejestracji</h5>
+            <?php else: ?>
+        <h5 class="color_dark f_left fw_light">Dane zamówienia</h5>
+            <?php endif; ?>
+		<p class="fw_light fs_medium f_right required_l">Wymagane pola</p>
+	    </div>
+		<ul>
+		    <li class="row">
+			<div class="col-lg-3 col-md-3 col-sm-3 m_bottom_10">
+			    <label for="name" class="required d_inline_b fw_light w_full m_top_8 m_xs_top_0">Imię i nazwisko</label>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-9 m_bottom_10">
+			    <?php echo $this->orderForm->name ?>
+			</div>
+		    </li>
+		    <li class="row">
+			<div class="col-lg-3 col-md-3 col-sm-3 m_bottom_10">
+			    <label for="address" class="required d_inline_b fw_light w_full m_top_8 m_xs_top_0">Adres</label>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-9 m_bottom_10">
+			    <?php echo $this->orderForm->address ?>
+			</div>
+		    </li>
+		    <li class="row">
+			<div class="col-lg-3 col-md-3 col-sm-3 m_bottom_10">
+			    <label for="city" class="required d_inline_b fw_light w_full m_top_8 m_xs_top_0">Miasto</label>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-9 m_bottom_10">
+			    <?php echo $this->orderForm->city ?>
+			</div>
+		    </li>
+		    <li class="row">
+			<div class="col-lg-3 col-md-3 col-sm-3 m_bottom_10">
+			    <label for="postal_code" class="required d_inline_b fw_light w_full m_top_8 m_xs_top_0">Kod pocztowy</label>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-9 m_bottom_10">
+			    <?php echo $this->orderForm->postal_code ?>
+			</div>
+		    </li>
+		    <li class="row">
+			<div class="col-lg-3 col-md-3 col-sm-3 m_bottom_10">
+			    <label class="required d_inline_b fw_light w_full m_top_8 m_xs_top_0">Kraj</label>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-9 m_bottom_10">
+			    <div class="custom_select w_xs_full fe_width_2 m_right_10">
+				<?php echo $this->orderForm->country ?>
+			    </div>
+			</div>
+		    </li>
+		    <li class="row">
+			<div class="col-lg-3 col-md-3 col-sm-3 m_bottom_10">
+			    <label for="contact_number" class="d_inline_b fw_light w_full m_top_8 m_xs_top_0">Telefon kontaktowy</label>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-9 m_bottom_10">
+			    <?php echo $this->orderForm->contact_number ?>
+			</div>
+		    </li>
+            <?php if($this->orderForm->contact_email): ?>
+		    <li class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 m_bottom_10">
+                    <label for="contact_email" class="d_inline_b fw_light w_full m_top_8 m_xs_top_0">Mail kontaktowy</label>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 m_bottom_10 m_xs_bottom_15">
+                  <?php echo $this->orderForm->contact_email ?>
+                </div>
+		    </li>
+            <?php endif; ?>
+		    <li class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 m_bottom_10">
+                    <label for="attention" class="d_inline_b fw_light w_full m_top_8 m_xs_top_0">Dodatkowe informacje</label>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 m_bottom_10">
+                    <?php echo $this->orderForm->attention ?>
+                </div>
+		    </li>
+
+		    <li class="row">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-8 m_bottom_10">
+			    <label class="d_inline_b fw_light w_full m_top_8 m_xs_top_0">Inny adres do faktury</label>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-4 m_bottom_10">
+			    <?php echo $this->orderForm->invoice ?>
+			    <label for="invoice" class="">&nbsp;</label>
+			</div>
+		    </li>
+		    <li class="row invoice-box">
+			<div class="col-lg-3 col-md-3 col-sm-3 m_bottom_10">
+			    <label for="name" class="required d_inline_b fw_light w_full m_top_8 m_xs_top_0">Nazwa firmy</label>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-9 m_bottom_10">
+			    <?php echo $this->orderForm->invoice_company_name ?>
+			</div>
+		    </li>
+		    <li class="row invoice-box">
+			<div class="col-lg-3 col-md-3 col-sm-3 m_bottom_10">
+			    <label for="address" class="required d_inline_b fw_light w_full m_top_8 m_xs_top_0">Miasto</label>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-9 m_bottom_10">
+			    <?php echo $this->orderForm->invoice_city ?>
+			</div>
+		    </li>
+		    <li class="row invoice-box">
+			<div class="col-lg-3 col-md-3 col-sm-3 m_bottom_10">
+			    <label for="city" class="required d_inline_b fw_light w_full m_top_8 m_xs_top_0">Adres</label>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-9 m_bottom_10">
+			    <?php echo $this->orderForm->invoice_address ?>
+			</div>
+		    </li>
+		    <li class="row invoice-box">
+			<div class="col-lg-3 col-md-3 col-sm-3 m_bottom_10">
+			    <label for="postal_code" class="required d_inline_b fw_light w_full m_top_8 m_xs_top_0">Kod pocztowy</label>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-9 m_bottom_10">
+			    <?php echo $this->orderForm->invoice_postal_code ?>
+			</div>
+		    </li>
+		    <li class="row invoice-box">
+			<div class="col-lg-3 col-md-3 col-sm-3 m_bottom_10">
+			    <label for="postal_code" class="required d_inline_b fw_light w_full m_top_8 m_xs_top_0">NIP</label>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-9 m_bottom_10">
+			    <?php echo $this->orderForm->invoice_nip ?>
+			</div>
+		    </li>
+		</ul>
+	</div>
+	<div class="row">
+	    <div class="col-lg-6 col-md-6 col-sm-6 m_bottom_40 m_xs_bottom_30">
+		<h4 class="title_counter_type r_corners wrapper m_bottom_23 bg_light_2 counter_inc color_dark">Opcje dostawy</h4>
+		<h5 class="fw_light color_dark m_bottom_23">Wybierz</h5>
+		<ul>
+		    <?php 
+		    $licznik = 0;
+		    foreach($this->orderForm->delivery_type_id->getMultiOptions() as $id => $label):
+			?>
+		    <li class="m_bottom_15">
+			<input type="radio" <?php echo $licznik==0?"checked":""; ?>  value="<?php echo $id; ?>" id="delivery_<?php echo $id; ?>" name="delivery_type_id" class="d_none">
+			<label for="delivery_<?php echo $id; ?>" class="d_inline_m m_right_15 m_bottom_3 fw_light"><?php echo $label; ?></label>
+		    </li>
+		    <?php $licznik++;
+		    endforeach; ?>
+		</ul>
+	    </div>
+	    <div class="col-lg-6 col-md-6 col-sm-6 m_bottom_40 m_xs_bottom_30">
+		<h4 class="title_counter_type r_corners wrapper m_bottom_23 bg_light_2 counter_inc color_dark">Metody płatności</h4>
+		<h5 class="fw_light color_dark m_bottom_23">Wybierz</h5>
+		
+		<ul>
+		 <?php 
+		    $licznik = 0;
+		    foreach($this->orderForm->payment_type_id->getMultiOptions() as $id => $label):
+			?>
+		    <li class="m_bottom_15">
+			<input type="radio" <?php echo $licznik==0?"checked":""; ?> value="<?php echo $id; ?>" id="payment_type_<?php echo $id; ?>" name="payment_type_id" class="d_none">
+			<label for="payment_type_<?php echo $id; ?>" class="d_inline_m m_right_15 m_bottom_3 fw_light"><?php echo $label; ?></label>
+		    </li>
+		    <?php $licznik++;
+		    endforeach; ?>
+		</ul>
+	    </div>
+	</div>
+	<div class="checkoutWrapper">
+	    <div class="r_corners wrapper border_grey wrap_xs d_inline_b d_mxs_block m_bottom_15">
+		<table class="t_align_l table_type_3">
+		    <tbody>
+		    <tr class="tr_delay">
+                <td class="fw_light t_align_r">Wartość produktów</td>
+                <td><?php echo $this->noCouponPrice; ?> zł</td>
+		    </tr>
+            <?php if($this->couponValue): ?>
+		    <tr class="tr_delay">
+                <td class="fw_light t_align_r">Zniżka:</td>
+                <td><?php echo $this->couponValue; ?></td>
+		    </tr>
+            <?php endif; ?>
+		    <tr class="tr_delay">
+			    <td class="fw_light t_align_r">Łącznie:</td>
+			    <td><?php echo $this->totalPrice; ?> zł</td>
+		    </tr>
+		    <tr class="tr_delay">
+                <td class="fw_light t_align_r">Koszt dostawy:</td>
+                <td id="deliveryCost">$9.99</td>
+		    </tr>
+		    <tr class="bg_light_2">
+                <td class="fw_light t_align_r"><p class="fw_ex_bold color_pink m_top_10 m_bottom_10">Do zapłaty:</p></td>
+                <td><p class="fw_ex_bold color_pink m_top_10 m_bottom_10" id="totalCostOrder">$299.99</p></td>
+		    </tr>
+		    </tbody>
+		</table>
+	    </div>
+	    <div class="m_bottom_23">
+		<input type="checkbox" id="checkbox_7" name="" class="d_none">
+		<label for="checkbox_7" class="d_inline_m fw_light w_xs_auto">Akceptuje </label>
+		<p class="d_inline_m fw_light"><a href="<?php echo $this->url(array('slug' => 'rules'),'domain-i18n:page'); ?>" class="tr_all color_dark_hover fw_light">regulamin</a></p>
+	    </div>
+	    <button type="submit" class="button_type_3 tr_all color_pink r_corners tt_uppercase d_inline_b fs_medium mini_side_offset">
+		<i class="icon-check fs_large d_inline_b m_right_10"></i>
+		Zamów
+	    </button>
+	</div>
+	    <input type="hidden" name="type" value="order-form" />
+    </form>
+    </div>
+</div>
+

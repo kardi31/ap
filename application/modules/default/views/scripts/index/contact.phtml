@@ -1,0 +1,38 @@
+<?php $row = 0; ?>
+<article class="main">
+    <iframe width="1000" height="335" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.pl/maps?f=q&amp;source=s_q&amp;hl=pl&amp;geocode=&amp;q=Kr%C3%B3tka+5,+Kalwaria+Zebrzydowska&amp;aq=0&amp;oq=kr%C3%B3tka+5,+Kalwa&amp;sll=50.046766,20.004863&amp;sspn=0.384939,0.572662&amp;ie=UTF8&amp;hq=&amp;hnear=Kr%C3%B3tka+5,+34-130+Kalwaria+Zebrzydowska,+wadowicki,+Wojew%C3%B3dztwo+ma%C5%82opolskie&amp;t=m&amp;ll=49.87124,19.645357&amp;spn=0.018532,0.085745&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="https://maps.google.pl/maps?f=q&amp;source=embed&amp;hl=pl&amp;geocode=&amp;q=Kr%C3%B3tka+5,+Kalwaria+Zebrzydowska&amp;aq=0&amp;oq=kr%C3%B3tka+5,+Kalwa&amp;sll=50.046766,20.004863&amp;sspn=0.384939,0.572662&amp;ie=UTF8&amp;hq=&amp;hnear=Kr%C3%B3tka+5,+34-130+Kalwaria+Zebrzydowska,+wadowicki,+Wojew%C3%B3dztwo+ma%C5%82opolskie&amp;t=m&amp;ll=49.87124,19.645357&amp;spn=0.018532,0.085745&amp;z=14&amp;iwloc=A" style="color:#0000FF;text-align:left">Wyświetl większą mapę</a></small>
+    <?php if($this->success=="success"){ ?>
+    <h2><?php echo $this->translate('Thank you, your message was sent. We will contact you soon'); ?></h2>
+    <?php } ?>
+    <h4><?php echo $this->translate('Contact data'); ?></h4>
+        <div class="contactDiv">
+           
+            <h6><?php echo $this->translate('Address'); ?></h6>
+             <img src="/img/icon_kont1.png"/>
+           <span> <?php echo $this->service[$row]['address']; ?></span>
+        </div>
+        <div class="contactDiv">
+            
+            <h6><?php echo $this->translate('Phone'); ?></h6>
+            <img src="/img/icon_kont2.png" />
+            <span><?php echo $this->service[$row]['phone']; ?><br />
+            <?php echo $this->service[$row]['opening']; ?></span>
+        </div>
+        <div class="contactDiv">
+            
+             <h6><?php echo $this->translate('E-mail'); ?></h6>
+             <img src="/img/icon_kont3.png" class="lastContactDivImg" />
+            <span> <?php echo $this->service[$row]['email']; ?></span>
+        </div>
+        <div class="clear"></div>
+        
+         <h4><?php echo $this->translate('Contact form'); ?></h4>
+         <form class="contactForm" name="contact" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>">
+        
+             <span class="contactFormLeft"><?php echo $this->form->name; ?></span><span class="contactFormRight"><?php echo $this->form->surname; ?></span><br/>
+             <span class="contactFormLeft"><?php echo $this->form->email; ?></span><span class="contactFormRight"><?php echo $this->form->phone; ?></span>
+            <span class="contactFormWidth"> <?php echo $this->form->subject; ?></span>
+            <span class="contactFormWidth"> <?php echo $this->form->messageContact; ?></span>
+             <?php echo $this->form->submit; ?>
+        </form>
+</article>

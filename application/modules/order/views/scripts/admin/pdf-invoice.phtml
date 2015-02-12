@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        .cb { clear: both; }
+        .fl { float: left; }
+        .fr { float: right; }
+        .al { text-align: left; }
+        .ar { text-align: right; }
+        ul { margin: 0; padding: 0; }
+        li { margin: 0; padding: 0; } 
+        
+        .seller{
+            clear: both;
+            border-bottom: 1px solid black;
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .buyer{
+            clear: both;
+            border-bottom: 1px solid black;
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .data{
+            text-align: center;
+        }
+        
+        .product_header{
+            font-size: 25px;
+        }
+        
+        .products{
+            font-size: 20px;
+            padding-bottom: 0px;
+        }
+        
+        .total{
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .date{
+            text-align: right;
+        }
+        
+        .signature{
+            margin-top: 50px;
+            
+        }
+        
+    </style>
+</head>
+<body>
+    <article style="margin: 0 auto; width: 100%;">
+
+    <div class="date">
+        <?php if(strlen($this->cms()->setting('city'))): ?>
+            <?php echo $this->translate('City') ?>: <?php echo $this->cms()->setting('city') ?> <br/>
+        <?php endif; ?>
+        <?php echo $this->translate('Invoice date') ?>: <?php echo $this->invoice_date; ?> <br/>
+        <?php echo $this->translate('Sale date') ?>: <?php echo $this->sale_date; ?> <br/>
+    </div>
+    <header class="row-fluid">
+        <h3 class="span8" style="text-align: center; font-size: 60px;"><?php echo $this->translate('Invoice') ?>: <?php echo $this->code; ?></h3>
+    </header>
+    <table cellspacing="20">
+        <tr>
+            <th class="seller">
+                <?php echo $this->translate('Seller') ?> <br/>  
+            </th>
+            <th class="buyer">
+                <?php echo $this->translate('Buyer') ?> <br/>  
+            </th>
+        </tr>
+        <tr  class="data">
+            <td>
+                <?php if(strlen($this->cms()->setting('name'))): ?>
+                    <?php echo $this->cms()->setting('name') ?> <br/>
+                <?php endif; ?>
+                <?php if(strlen($this->cms()->setting('owner'))): ?>
+                    <?php echo $this->cms()->setting('owner') ?> <br/>
+                <?php endif; ?>
+                <?php if(strlen($this->cms()->setting('address'))): ?>
+                    <?php echo $this->cms()->setting('address') ?> <br/>
+                <?php endif; ?>
+                <?php if(strlen($this->cms()->setting('post_code'))): ?>
+                    <?php echo $this->cms()->setting('post_code') ?> <?php echo $this->cms()->setting('city') ?> <br/>
+                <?php endif; ?>
+                <?php if(strlen($this->cms()->setting('province'))): ?>
+                    <?php echo $this->cms()->setting('province') ?> <br/>
+                <?php endif; ?>
+                <?php if(strlen($this->cms()->setting('phone'))): ?>
+                    <?php echo $this->translate('Phone') ?>: <strong><?php echo $this->cms()->setting('phone') ?></strong> <br/>
+                <?php endif; ?>
+                <?php if(strlen($this->cms()->setting('fax'))): ?>
+                    <?php echo $this->translate('Fax') ?>: <strong><?php echo $this->cms()->setting('fax') ?></strong> <br/>
+                <?php endif; ?>
+            </td>
+            <td>
+                <?php echo $this->order['Invoice']['invoice_company_name']; ?> <br/>
+                <?php echo $this->order['User']['first_name'].' '.$this->order['User']['last_name']; ?> <br/>
+                <?php echo $this->order['Invoice']['invoice_address']; ?> <br/>
+                <?php echo $this->order['Invoice']['invoice_postal_code'].' '.$this->order['Invoice']['invoice_city']; ?> <br/>
+                <?php echo $this->order['Invoice']['invoice_nip']; ?> <br/>
+                <?php if(strlen($this->order['User']['Profile']['phone'])): ?>
+                    <?php echo $this->translate('Phone') ?>: <strong><?php echo $this->order['User']['Profile']['phone']; ?></strong> <br/>
+                <?php endif; ?>
+            </td>
+        </tr>
+    </table>
+    <table border="1px" style="clear: both; padding: 10px 10px 10px; width: 100%;">
+        <tr class="product_header">
+            <th width="30px"><?php echo 'Lp.'; ?></th>
+            <th width="220px"><?php echo $this->translate('Product name'); ?></th>
+            <th width="40px"><?php echo $this->translate('Number'); ?></th>
+            <th><?php echo $this->translate('Nett price'); ?></th>
+            <th width="50px"><?php echo $this->translate('VAT'); ?></th>
+            <th width="50px"><?php echo $this->translate('VAT amount'); ?></th>
+            <th><?php echo $this->translate('Gross price'); ?></th>
+        </tr>
+        <?php 
+            $counter = 1; 
+            $nett_total = 0;
+            $vat_total = 0;
+        ?>
+        <?php foreach($this->order['Items'] as $item): ?>
+        <tr class="products">
+            <?php 
+            $vat = $item['Product']['vat'];
+            $vat_amount = $item['price']*$vat/100*$item['number'];
+            $vat_total = $vat_total + $vat_amount;
+            $nett = $item['price']-$vat_amount*$item['number'];
+            $nett_total = $nett_total + $nett;
+            $gross = $item['price']*$item['number'];
+            ?>
+            <td width="30px"><?php echo $counter; ?></td>
+            <td width="220px"><?php echo $item['Product']['Translation'][$this->language]['name'] ?></td>
+            <td width="40px"><?php echo $item['number'] ?></td>
+            <td><?php echo $this->currency($nett); ?></td>
+            <td width="50px"><?php echo $vat; ?>%</td>
+            <td width="50px"><?php echo $this->currency($vat_amount); ?></td>
+            <td><?php echo $this->currency($gross); ?></td>
+        </tr>
+        <?php $counter++; ?>
+        <?php endforeach; ?>
+        <tr class="total">
+            <td colspan="3" class="ar"><?php echo $this->translate('Total amount'); ?>:</td>
+            <td><?php echo $this->currency($nett_total); ?>:</td>
+            <td></td>
+            <td><?php echo $this->currency($vat_total); ?></td>
+            <td><?php echo $this->currency($this->order['total_cost']) ?></td>
+        </tr>
+    </table>
+    <div class="clear"></div>
+    <br/><br/><br/>
+    <div class="clear"></div>
+
+    <table class="signature" style="clear: both; width: 100%;">
+        <tr>
+            <th class="al">...................................................</th>
+            <th class="ar">...................................................</th>
+        </tr>  
+        <tr>
+            <td class="al"><?php echo $this->translate('Signature of issuing'); ?></td>
+            <td class="ar"><?php echo $this->translate('Customer signature'); ?></td>
+        </tr> 
+    </table>
+    </article>
+</body>
+</html>

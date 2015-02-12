@@ -1,0 +1,35 @@
+<div class="content" style="text-align:left">
+<h1><?php echo $this->page['Translation'][$this->language]['title'] ?></h1>
+    <hr />
+<?php echo $this->page['Translation'][$this->language]['content'] ?>
+<?php if($this->page->get('PhotoRoot')){ ?>
+    <div class="gallery-container">
+
+                <div class="gallery-box">
+                        <ul>
+                            <?php foreach($this->page->get('PhotoRoot')->getNode()->getChildren() as $photo): ?>
+                                <li>
+                                    <a href="/media/photos/<?php echo $photo['offset'] ?>/<?php echo $photo['filename'] ?>" alt="<?php echo $photo['title'] ?>"
+                                       data-lightview-group='<?php echo $this->page['Translation'][$this->language]['slug'] ?>'
+                                       data-lightview-title="<?php echo $photo['title'] ?>"
+                                       class='lightview' 
+                                       data-lightview-options="
+                                           width: 800,
+                                           height: 460,
+                                           viewport: 'false',
+                                         "
+                                       >
+                                        <img src="/media/photos/<?php echo $photo['offset'] ?>/<?php echo $this->photoDimension; ?>/<?php echo $photo['filename'] ?>" alt="<?php echo $photo['title'] ?>" />
+                                    </a>
+                                </li>
+                                <?php endforeach; ?>
+                        </ul>	
+
+
+                </div>
+
+            </div>
+<?php
+}
+?>
+</div>

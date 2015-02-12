@@ -1,0 +1,110 @@
+<?php $values = $this->dataValues; ?>
+<span class="firstStepMenu">
+    <a href="<?php echo $this->url(array('action' => 'first-step'),'domain-order'); ?>">1.Dane adresowe</a>
+    <a href="<?php echo $this->url(array('action' => 'second-step'),'domain-order'); ?>" class="active" >2. Podsumowanie</a>
+    <a href="#">3. Płatność</a>
+</span>
+<h3>2.Podsumowanie</h3>
+
+<table class="basketTable">
+     <tr>
+        <th><?php echo $this->translate('Product name'); ?></th>
+        <th><?php echo $this->translate('Price'); ?></th>
+        <th><?php echo $this->translate('Quantity'); ?></th>
+        <th><?php echo $this->translate('Value'); ?></th>
+    </tr>
+<?php 
+foreach($this->items['Product_Model_Doctrine_Product'] as $key=>$item):
+    foreach($item as $itemDetail):
+    ?>
+   
+    <tr>
+        <td>
+             <div class="basketPhoto">
+                <img src="<?php echo ($this->product['PhotoRoot']['filename']?'/media/photos/'.$this->product['PhotoRoot']['offset'].'/400x/'.$this->product['PhotoRoot']['filename']:'/images/temp/product-image.jpg') ?>" />
+            </div>
+            <?php echo $itemDetail['name']; ?>
+        </td>
+        <td><?php echo $itemDetail['price']; ?> zł</td>
+        <td><?php echo $itemDetail['count']; ?></td>
+        <td class="productPrice" id="value<?php echo $key; ?>">
+            <?php echo $itemDetail['price']." zł"; ?>
+        </td>
+    </tr>
+<?php
+    endforeach;
+endforeach;
+?>
+    <tr>
+        <td colspan="4" class="space">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <span class="stepTwo">Sposób dostawy - płatności<br/>
+             <?php echo $this->deliveryType['name']." - ".$this->paymentType['name']; ?></span>
+       
+        <div class="second-step">
+            Adres dostawy <a href="<?php echo $this->url(array('action' => 'first-step'),'domain-order'); ?>">zmień</a><br /><br />
+            <?php echo $values['last_name']." ".$values['first_name'] ;?><br />
+            <?php if($values['difAddress']==1){ ?>
+            <?php echo $values['difstreet']." ".$values['difhouseNr'] ;
+            if(!empty($values['difflat_number'])) echo "/".$values['difflatNr']; ?><br />
+            <?php echo $values['difpostal_code']." ".$values['difcity']; ?><br />
+            <?php }
+            else{?>
+              <?php echo $values['street']." ".$values['houseNr'] ;
+            if(!empty($values['flat_number'])) echo "/".$values['flatNr']; ?><br />
+            <?php echo $values['postal_code']." ".$values['city']; ?><br />
+            <?php } ?>
+        </div>
+        <div id="" class="second-step">
+            Dane kontaktowe <a href="<?php echo $this->url(array('action' => 'first-step'),'domain-order'); ?>">zmień</a><br /><br />
+            <?php echo $values['email']; ?><br />
+            <?php echo $values['phone']; ?>
+        </div>
+        <div id="" class="second-step">
+            Dane do faktury <a href="<?php echo $this->url(array('action' => 'first-step'),'domain-order'); ?>">zmień</a><br /><br />
+            <?php echo $values['last_name']." ".$values['first_name'] ;?><br />
+            <?php echo $values['street']." ".$values['houseNr'] ;
+            if(!empty($values['flat_number'])) echo "/".$values['flatNr']; ?><br />
+            <?php echo $values['postal_code']." ".$values['city']; ?><br />
+        </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4" class="bold"><?php echo $this->translate('Total to pay'); ?>
+            <span id="toPay" ><?php echo $this->prices['total_price']; ?> zł</span>
+        </td>
+    </tr>
+<?php 
+    if(isset($this->prices['discount'])):
+?>
+     <tr>
+        <td></td>
+        <td></td>
+        <td>Upust</td>
+        <td class="bold"><?php echo $this->prices['discount']; ?> %</td>
+    </tr>
+     <tr>
+        <td></td>
+        <td></td>
+        <td>Do zapłaty</td>
+        <td  class="bold"><?php echo $this->prices['total_price_after_discount']; ?> zł</td>
+    </tr>
+    <?php endif; ?>
+</table>
+<span class="basketMenu">
+    <a href="#">Wróć do zakupów</a>
+    <a href="<?php echo $this->url(array('action'=>'third-step'),'domain-order'); ?>" class="active">Złóż zamówienie</a>
+</span>
+<!--<form style="display:inline;" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>">
+           <?php // echo $this->form->code; echo $this->form->submit; ?>
+
+</form>-->
+
+<!--<a class="button" onclick="updateQuantity();setTimeout(window.location.reload.bind(window.location), 200);" href="javascript:void(0)">Zaktualizuj koszyk</a>-->
+
+<!--<br />
+<br />
+<a class="button" href="/order/index/clear-basket">Opróżnij koszyk</a>-->

@@ -1,0 +1,15 @@
+<?php echo $this->translate("Welcome,"); ?> <br/>
+<br/>
+<?php echo $this->translate("Thank you for your order. If you accept the delivery cost click the link below:"); ?> <br/>
+<br/>
+<a href="<?php echo $this->url(array('payment' => $this->order['Payment']['id'], 'order' => $this->order['id']), 'domain-i18n:order-abroad-complete') ?>">
+    <?php echo $this->url(array('payment' => $this->order['Payment']['id'], 'order' => $this->order['id']), 'domain-i18n:order-abroad-complete') ?>
+</a> <br/>
+<br/>
+<?php echo $this->translate("Delivery cost"); ?>: <?php echo $this->currency($this->order['Delivery']['delivery_cost']); ?> <br/>
+<?php echo $this->translate("Total cost of the order"); ?>: <?php echo $this->currency($this->order['total_cost']); ?> <br/>
+<br/>
+<?php echo $this->translate("Po otrzymaniu potwierdzenie dokonania płatności, przesyłka zostanie nadana."); ?> <br/>
+<br/>
+<?php echo $this->translate('Zapraszamy do nas ponownie. Pozdrawiamy,') ?> <br/>
+<?php echo $this->translate('Zespół serwisu zielonysklep.com') ?> <br/>

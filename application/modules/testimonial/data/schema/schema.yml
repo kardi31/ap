@@ -1,0 +1,48 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+Testimonial:
+  tableName: testimonial_testimonial
+  actAs:
+    I18n:
+      fields: [description]
+      tableName: testimonial_testimonial_translation
+      className: TestimonialTranslation
+    NestedSet:
+      HasManyRoots: false
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    author_name:
+      type: string(255)
+    city:
+      type: string(255)
+    description:
+      type: clob
+    status:
+      type: boolean
+      default: 1
+TestimonialTranslation:
+  tableName: testimonial_testimonial_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    description:
+      type: clob
+  relations:
+   Testimonial:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      type: one
+      foreignType: many

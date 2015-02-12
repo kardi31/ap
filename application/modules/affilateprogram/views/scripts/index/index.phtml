@@ -1,0 +1,40 @@
+<section id="partner-program">
+    <header>
+        <?php echo $this->translate('Partner program') ?>
+    </header>
+    <div id="partner_program_content">
+        <?php if ($this->partner): ?>
+            Witamy w naszym sklepie - zielonysklep.com, <br/>
+            <br/>
+            oferującym publikacje promujące zdrowy styl życia w połączeniu z bogatą gamą produktów naturalnych, produktów ajurwedyjskich: kosmetyków, olejów do masażu, suplementów diety, produktów spożywczych, herbatek… 
+            <br/><br/>
+            W związku z tym, że jesteś klientem naszego partnera <span style="color: red"><?php echo $this->partner->name; ?></span>, przygotowaliśmy dla Ciebie rabat, który widoczny będzie po włożeniu produktów do koszyka.
+            <br/><br/>
+            Serdecznie zapraszamy!!!
+            <a href="<?php echo $this->url(array(), 'domain-i18n:default', true) ?>">
+                <div class="go-to-shopping"></div>
+            </a>
+        <?php else: ?>
+            <?php echo $this->page['Translation'][$this->language]['content']; ?>
+            <div class="title"><?php echo $this->translate('Contact form') ?></div>
+            <div class="messages">
+                <?php echo $this->messages()->render() ?>
+            </div>
+            <form class="form-horizontal" method="post" action="<?php echo $this->form->getAction() ?>" >
+                <?php echo $this->form->name ?>
+                <?php echo $this->form->email ?>
+                <?php echo $this->form->subject ?>
+                <?php echo $this->form->message ?>
+                <?php echo $this->form->csrf ?>
+                 <?php if($this->form->captcha): ?>
+                    <div class="control-group">
+                        <div class="controls captcha">
+                            <?php echo $this->form->captcha ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <?php echo $this->form->submit ?>
+            </form>
+        <?php endif; ?>
+    </div>
+</section>

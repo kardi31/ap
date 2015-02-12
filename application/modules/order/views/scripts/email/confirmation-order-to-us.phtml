@@ -1,0 +1,70 @@
+Otrzymano następujące zamówienie: <br/>
+<br/>
+Zamówienie<br/>
+--------------------------------------------------------------------------------<br/>
+Numer zamówienia: <?php echo $this->order->getId(); ?> <br/>
+Data zamówienia: <?php echo $this->order->getCreatedAt(); ?> <br/>
+Stan zamówienia: <?php echo $this->order['OrderStatus']['name']; ?> <br/>
+<br/>
+Dane klienta <br/>
+--------------------------------------------------------------------------------<br/>
+<?php if($this->user): ?>
+E-mail: <?php echo $this->user->getEmail(); ?> <br/>
+<?php else: ?>
+E-mail: <?php echo $this->order->getContactMail(); ?> <br/>
+<?php endif; ?>
+<br/>
+<?php if($this->user): ?>
+Imię i nazwisko: <?php echo $this->user->getFirstName()." ".$this->user->getLastName(); ?> <br/>
+Adres: <?php echo $this->user['Profile']['address']; ?> <br/>
+Miasto: <?php echo $this->user['Profile']['city']; ?> <br/>
+Kod pocztowy: <?php echo $this->user['Profile']['postal_code']; ?> <br/>
+Województwo: <?php echo $this->user['Profile']['province']; ?> <br/>
+Telefon: <?php echo $this->user['Profile']['phone']; ?> <br/>
+<br/>
+<?php if($this->order['Delivery']['delivery_address_id']): ?>
+Wysyłka do <br/>
+--------------------------------------------------------------------------------<br/> 
+Imię i nazwisko: <?php echo $this->order['Delivery']['DeliveryAddress']['name']; ?> <br/>
+Adres: <?php echo $this->order['Delivery']['DeliveryAddress']['address']; ?> <br/>
+Miasto: <?php echo $this->order['Delivery']['DeliveryAddress']['city']; ?> <br/>
+Kod pocztowy: <?php echo $this->order['Delivery']['DeliveryAddress']['postal_code']; ?> <br/>
+Województwo: <?php echo $this->order['Delivery']['DeliveryAddress']['province']; ?> <br/>
+<?php endif; ?>
+<?php else: ?>
+Imię i nazwisko: <?php echo $this->order['Delivery']['DeliveryAddress']['name']; ?> <br/>
+Adres: <?php echo $this->order['Delivery']['DeliveryAddress']['address']; ?> <br/>
+Miasto: <?php echo $this->order['Delivery']['DeliveryAddress']['city']; ?> <br/>
+Kod pocztowy: <?php echo $this->order['Delivery']['DeliveryAddress']['postal_code']; ?> <br/>
+Województwo: <?php echo $this->order['Delivery']['DeliveryAddress']['province']; ?> <br/>
+<?php endif; ?>
+<?php if ($this->order['invoice_id']): ?>
+Chcę otrzymać fakturę VAT: TAK <br/>
+<?php else: ?>
+Chcę otrzymać fakturę VAT: NIE <br/>
+<?php endif; ?>
+Numer kontaktowy: <?php echo $this->order['contact_number']; ?> <br/>
+<br/>
+Szczegóły zamówienia <br/>
+--------------------------------------------------------------------------------<br/> 
+<?php foreach($this->order['Items'] as $item): ?>
+Produkt: <?php echo $item['Product']['Translation']['pl']['name']; ?> <br/>
+Ilość: <?php echo $item['number']; ?> <br/>
+Symbol: <?php echo $item['Product']['code']; ?> <br/>
+Cena: <?php echo $this->currency($item['price']); ?> <br/>
+<br/>
+<?php endforeach; ?>
+Suma: <?php echo $this->currency($this->order['total_cost']); ?> <br/>
+Koszty wysyłki: <?php echo $this->currency($this->order['Delivery']['DeliveryType']['price']); ?> <br/>
+--------------------------------------------------------------------------------<br/>
+Informacje o wysyłce: <?php echo $this->order['Delivery']['DeliveryType']['name']; ?><br/>
+--------------------------------------------------------------------------------<br/>  
+Notatka klienta: <br/>
+--------------------------------------------------------------------------------<br/>
+<?php echo $this->order['attention']; ?> <br/>
+--------------------------------------------------------------------------------<br/>
+Obejrzyj zamówienie podążając za poniższym linkiem. 
+<a href="http://slimtea.pl<?php echo $this->adminUrl('edit-order', 'order', array('id' => $this->order['id'])) ?>">
+http://slimtea.pl<?php echo $this->adminUrl('edit-order', 'order', array('id' => $this->order['id'])) ?>
+</a>
+<br/>

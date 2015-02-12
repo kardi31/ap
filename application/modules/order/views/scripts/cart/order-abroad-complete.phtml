@@ -1,0 +1,30 @@
+<section id="cart">
+    <header>
+        <?php echo $this->translate('Zapłać za zamówienie') ?>
+    </header>
+    <div class="confirmation-order">
+        <?php if($this->order['Delivery']['delivery_type_id'] == 9): ?>
+            <span style="font-weight: bold;"><?php echo $this->translate("Zamówienia numer"); ?>: <? echo $this->order['id']; ?></span> <br/><br/>
+            <?php echo $this->translate("Data zamówienia"); ?> <?php echo $this->order['created_at']; ?> <br/> <br/>
+            <?php echo $this->translate('Zamówienie złożone na email:') ?>: 
+            <?php if($this->order['contact_email']): ?>
+                <span style="font-weight: bold;"><?php echo $this->order['contact_email']; ?></span>
+            <?php else: ?>
+                <span style="font-weight: bold;"><?php echo $this->order['User']['email']; ?></span>
+            <?php endif; ?> <br/>
+            <?php echo $this->translate('Koszt przesyłki:') ?> <?php echo $this->currency($this->order['Delivery']['delivery_cost']); ?> <br/>
+            <?php echo $this->translate('Całkowity koszt zamówienia:') ?> <?php echo $this->currency($this->order['total_cost']); ?>
+            <br/>
+            <?php if($this->payment && $this->payment['payment_type_id'] == 2 && $this->payment['status_id'] == 3): ?>
+                <div class="payment_form">
+                    <div class="payment-normal">
+                        <?php echo $this->payUForm ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if($this->payment['status_id'] == 5): ?>
+                <span style="font-weight: bold;"><?php echo $this->translate('Zapłacono za zamówienie.') ?></span>
+            <?php endif; ?>
+        <?php endif; ?>
+    </div>
+</section>

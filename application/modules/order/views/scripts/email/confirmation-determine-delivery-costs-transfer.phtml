@@ -1,0 +1,25 @@
+<?php echo $this->translate("Witamy serdecznie,"); ?> <br/>
+<br/>
+<?php echo $this->translate("Dziękujemy za zamówienie. Jeżeli akceptujesz koszty wysyłki, dokonaj przelewu na nasze konto (rachunek PLN), dane poniżej:"); ?> <br/>
+<br/>
+IBAN: <br/>
+PL 33 1140 2004 0000 3602 7479 9505 <br/>
+SWIFT/BIC: <br/>
+BREXPLPWMBK <br/>
+Adres i nazwa banku: <br/>
+mBank S.A. Internet Banking, <br/>
+90-959 Łódź 2, <br/>
+Skrytka Pocztowa 2108 <br/>
+<br/>
+Dane osobowe klienta <br/>
+a-ti sp. z o.o. <br/>
+ul. Zamkowa 18/14 <br/>
+30-301 Kraków <br/>
+<br/>
+<?php echo $this->translate("Delivery cost"); ?>: <?php echo $this->currency($this->order['Delivery']['delivery_cost']); ?> <br/>
+<?php echo $this->translate("Total cost of the order"); ?>: <?php echo $this->currency($this->order['total_cost']); ?> <br/>
+<br/>
+<?php echo $this->translate("Po otrzymaniu potwierdzenie dokonania płatności, przesyłka zostanie nadana."); ?> <br/>
+<br/>
+<?php echo $this->translate('Zapraszamy do nas ponownie. Pozdrawiamy,') ?> <br/>
+<?php echo $this->translate('Zespół serwisu zielonysklep.com') ?> <br/>

@@ -1,0 +1,19 @@
+<?php if(isset($this->tree)): ?>
+<ul id="menu">
+
+        <?php foreach($this->tree as $key=>$item): ?>
+        <li id="nav<?php echo $key+1; ?>"  class="<?php 
+        if(strlen($item->getRoute())&&$this->url(array('slug' => $item->Translation[$this->language]->slug), $item->getRoute()) == "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"): ?>active<?php endif; ?>">
+            
+            <?php if(strlen($item->getRoute())): ?>
+            <a href="<?php echo $this->url(array('slug' => $item->Translation[$this->language]->slug), $item->getRoute()); ?>">
+                <?php else: ?>
+            <a href="#">
+                <?php endif; ?>
+                <?php echo $item->Translation[$this->language]['title'] ?>
+                <span><?php echo $item->Translation[$this->language]['title_attr'] ?></span>
+            </a>
+        </li>
+        <?php endforeach; ?>
+</ul>
+<?php  endif; ?>

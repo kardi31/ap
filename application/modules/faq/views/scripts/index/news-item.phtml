@@ -1,0 +1,63 @@
+<section id="news_item_page">
+    <header>
+        <ul>
+            <li>
+                <a href="<?php echo $this->url(array(), 'domain-i18n:news') ?>">
+                    <?php echo $this->translate('News') ?>
+                </a>
+            </li>
+            <li>
+                <?php if($this->news['Translation'][$this->language]['slug']): ?>
+                    <a href="<?php echo $this->url(array('slug' => $this->news['Translation'][$this->language]['slug']), 'domain-i18n:news-item') ?>">
+                        <?php echo $this->news['Translation'][$this->language]['title']; ?>
+                    </a>
+                <?php endif; ?>
+            </li>
+        </ul>
+    </header>
+        <ul class="tags">
+                <?php 
+                $tags = explode(',', $this->news['Metatags']['Translation'][$this->language]['keywords'], 5);
+                $counter = 0;
+                ?>
+                <?php foreach ($tags as $tag): ?>
+                    <?php if ($counter == 0): ?>
+                        <li class="first"><?php echo $tag ?></li>
+                    <?php elseif($counter < 4): ?>
+                        <li><?php echo $tag ?></li>
+                    <?php endif; ?>
+                <?php $counter++; endforeach; ?>
+        </ul>
+        <div class="share-article">
+            <?php
+            $uri = $_SERVER['REQUEST_URI'];
+            $host = "http://".$_SERVER['HTTP_HOST'];
+            $url = $host.$uri;
+            ?>
+            <a title="Share this article on Facebook" 
+                    href="http://www.facebook.com/sharer.php?
+                    s=100
+                    &p[url]=<?php echo $url; ?>
+                    &p[images][0]=<?php echo $host; ?>/media/photos/<?php echo $this->news['PhotoRoot']['offset'] ?>/245x155/<?php echo $this->news['PhotoRoot']['filename'] ?>
+                    &p[title]=<?php echo strip_tags($this->news['Translation'][$this->language]['title']); ?>
+                    &p[summary]=<?php echo strip_tags($this->news['Translation'][$this->language]['content']); ?>" 
+                    target="_blank">
+                    <img src="/images/layout/ajurweda/icon_fb.png" alt="Share on Facebook" />
+            </a>
+        </div>
+        <div id="news_content">   
+                <div class="picture">
+                    <?php if($this->news['PhotoRoot']['offset']): ?>
+                        <img src="/media/photos/<?php echo $this->news['PhotoRoot']['offset'] ?>/245x155/<?php echo $this->news['PhotoRoot']['filename'] ?>" data-original="/media/photos/<?php echo $this->news['PhotoRoot']['offset'] ?>/<?php echo $this->news['PhotoRoot']['filename'] ?>" alt="<?php echo $this->news['PhotoRoot']['alternate_text']; ?>" title="<?php echo $this->news['PhotoRoot']['title'] ?>" />
+                    <?php else: ?>
+                        <img src="/images/layout/shop/no_photo.jpg" data-original="/images/layout/shop/no_photo.jpg" alt="<?php echo $this->translate('No photo') ?>" style="width: 155px; height: 155px" />
+                    <?php endif; ?>
+                </div>
+                <div class="name">
+                    <?php echo $this->news['Translation'][$this->language]['title']; ?>
+                </div>
+                <div class="description">
+                    <?php echo $this->news['Translation'][$this->language]['content']; ?>
+                </div>
+        </div>
+</section>

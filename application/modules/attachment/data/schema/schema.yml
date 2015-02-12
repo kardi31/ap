@@ -1,0 +1,55 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+Attachment:
+  tableName: attachment_attachment
+  actAs:
+    I18n:
+      fields: [title, slug, description]
+      tableName: attachment_attachment_translation
+      className: AttachmentTranslation
+    Timestampable: 
+      updated:
+        disabled: true
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    filename:
+      type: string(255)
+    title:
+      type: string(255)
+    slug:
+      type: string(255)
+    description:
+      type: clob
+    extension:
+      type: string(255)
+    photo_root_id:
+      type: integer(4)
+AttachmentTranslation:
+  tableName: attachment_attachment_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    title:
+      type: string(255)
+    slug:
+      type: string(255)
+    description:
+      type: clob
+  relations:
+    Attachment:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      alias: Attachment
+      type: one
+      foreignType: many

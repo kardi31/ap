@@ -1,0 +1,119 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+Location:
+  tableName: location_location
+  actAs:
+    I18n:
+      fields: [title, slug, content,city]
+      tableName: location_location_translation
+      className: LocationTranslation
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    title:
+      type: string(255)
+    slug:
+      type: string(255)
+    content:
+      type: clob
+    city:
+      type: string(255)
+    publish:
+      type: boolean
+      default: 1
+    photo_root_id:
+      type: integer(4)
+    metatag_id:
+      type: integer(4)
+    category_id:
+      type: integer(4)
+    lat:
+      type: string(255)
+    lng:
+      type: string(255)
+  relations:
+    Category:
+      local: category_id
+      foreign: id
+      foreignAlias: Locations
+      alias: Category
+      type: one
+      foreignType: many
+LocationTranslation:
+  tableName: location_location_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    slug:
+      type: string(255)
+    title:
+      type: string(255)
+    content:
+      type: clob
+    city:
+      type: string(255)
+  relations:
+    Location:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      type: one
+      foreignType: many
+Category:
+  tableName: location_category
+  actAs:
+    I18n:
+      fields: [title, slug, content]
+      tableName: location_category_translation
+      className: CategoryTranslation
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    title:
+      type: string(255)
+    slug:
+      type: string(255)
+    content:
+      type: clob
+    photo_root_id:
+      type: integer(4)
+    metatag_id:
+      type: integer(4)
+CategoryTranslation:
+  tableName: location_category_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    slug:
+      type: string(255)
+    title:
+      type: string(255)
+    content:
+      type: clob
+  relations:
+    Category:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      type: one
+      foreignType: many

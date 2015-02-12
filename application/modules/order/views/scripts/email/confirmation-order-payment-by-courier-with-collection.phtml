@@ -1,0 +1,46 @@
+<?php echo $this->translate("Welcome,"); ?> <br/>
+<br/>
+<?php echo $this->translate("Dziękujemy za złożenie zamówienia. Zostanie ono dostarczone w ciągu kilku dni roboczych pod wskazany adres."); ?> <br/>
+<br/>
+<br/>
+<?php echo $this->translate('Order details:') ?> <br/>
+<br/>
+<table border="1" cellpadding="5px" cellspacing="0" style="width: 800px;">
+    <tr style="font-size: 12px; font-weight: bold;">
+            <td>
+                <?php echo $this->translate('Product name') ?>
+            </td>
+            <td>
+                <?php echo $this->translate('Quantity') ?>
+            </td>
+            <td>
+                <?php echo $this->translate('Price') ?>
+            </td>
+    </tr>
+    <?php foreach($this->order['Items'] as $item): ?>
+        <tr>
+            <td>
+                <?php echo $item['Product']['Translation'][$this->language]['name']; ?>
+            </td>
+            <td>
+                <?php echo $item['number']; ?>
+            </td>
+            <td>
+                <?php echo $this->currency($item['price']); ?>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    <tr style="font-size: 12px; font-weight: bold;">
+        <td colspan="3">
+            <?php echo $this->translate('Delivery cost:') ?> <?php echo $this->currency($this->order['Delivery']['DeliveryType']['price']); ?>
+        </td>
+    </tr>
+    <tr style="font-size: 13px; font-weight: bold;">
+        <td colspan="3">
+            <?php echo $this->translate('Total cost:') ?> <?php echo $this->currency($this->order['total_cost']); ?>
+        </td>
+    </tr>
+</table>
+<br/>
+<?php echo $this->translate('Pozdrawiamy,') ?> <br/>
+<?php echo $this->translate('ecoslimtea.pl') ?> <br/>

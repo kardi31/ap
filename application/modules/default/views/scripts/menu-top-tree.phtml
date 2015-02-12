@@ -1,0 +1,23 @@
+<?php if(isset($this->topMenuTree)): ?>
+<ul class="hr_list stripe_list fs_small">
+        <?php foreach($this->topMenuTree as $item): ?>
+        <?php if($item['level'] == 1 && $item->Translation[$this->language]->title): ?>
+        <li class="container3d relative f_xs_none m_xs_bottom_5">
+            <?php if($item['target_type']): ?>
+                <?php if($item['target_type'] == "route" && $item->Translation[$this->language]->slug): ?>
+                    <?php if($item->Translation[$this->language]->slug=="rejestracja"): ?>
+                        <a class="color_dark fs_large relative r_xs_corners"  href="<?php echo $this->url(array(), $item['route']) ?>"><?php echo $item->Translation[$this->language]->title; ?></a>
+                     <?php else: ?>
+                        <a class="color_dark fs_large relative r_xs_corners"  href="<?php echo $this->url(array('slug' => $item->Translation[$this->language]->slug), $item['route']) ?>"><?php echo $item->Translation[$this->language]->title; ?></a>
+                    <?php endif; ?>
+                <?php endif; ?>
+            <?php elseif($item->Translation[$this->language]->slug=="o-nas"): ?>
+                <a class="color_dark fs_large relative r_xs_corners"  href="/pl/#o-nas"><?php echo $item->Translation[$this->language]->title; ?></a>
+            <?php else: ?>
+                    <a class="color_dark fs_large relative r_xs_corners"  href="#"><?php echo $item->Translation[$this->language]->title; ?></a>
+            <?php endif; ?>
+        </li>
+        <?php endif;?>
+        <?php endforeach; ?>  
+</ul>
+<?php endif; ?>

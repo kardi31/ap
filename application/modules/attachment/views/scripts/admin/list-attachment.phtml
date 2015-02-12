@@ -1,0 +1,89 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    
+    var uploader = new qq.FileUploaderBasic({
+        button: document.getElementById('add_attachment'),
+        action: "<?php echo $this->adminUrl('add-attachment', 'attachment') ?>/id/"+$('#id').val(),
+        inputName: "file",
+        forceMultiple: true,
+        autoUpload: true,
+        debug: true,
+        forceMultipart: true,
+        sizeLimit: 10520000,
+        
+        onSubmit: function (id, fileName) {
+            $('#add_attachment').find('.qq-upload-file').each(function () {
+                if ($(this).text() == fileName) {
+                    return false;
+                return true;
+                }
+            });
+        },
+        onComplete: function(){
+            $("#attachment_table").trigger("update");
+        }
+     });
+     
+     var oTable = $("#attachment_table").dataTable( {
+        "sPaginationType": "full_numbers",
+        "oLanguage": {
+            "sUrl": "/plugins/tables/dataTables/datatables.polish.txt"
+        },
+        "bFilter": false,
+        "bDestroy": true,
+        "bProcessing": true,
+        "bServerSide": true,
+        "bLengthChange": false,
+        "iDisplayLength": 50,
+        "sAjaxSource": "<?php echo $this->adminUrl('list-attachment-data', 'attachment') ?>",
+        "aaSorting": [[ 1, "desc" ]],
+        "aoColumns": [
+            { sWidth: '200px'},
+            null,
+            { "bSortable": false, sWidth: '100px' },
+            { "bSortable": false, sWidth: '50px' }
+        ]
+    });
+    
+    $("#attachment_table").bind("update", function(e) {
+        oTable.fnReloadAjax();
+    });
+});
+</script>
+
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 entypo-icon-attachment"></span>
+                    <span><?php echo $this->translate('Attachments') ?></span>
+                    <div class="box-form right">
+                        <a href="/file/upload" class="btn btn-success btn-mini nostyle" id="add_attachment"><?php echo $this->translate('Add attachment') ?></a>
+                    </div>
+                </h4>
+                
+            </div>
+            
+            <div class="content clearfix">
+                <table id="attachment_table" cellpadding="0" cellspacing="0" border="0" class=" display table table-bordered" width="100%">
+                     <thead>
+                        <th><?php echo $this->translate('Title') ?></th>
+                        <th><?php echo $this->translate('Link') ?></th>
+                        <th><?php echo $this->translate('Extension') ?></th>
+                        <th><?php echo $this->translate('Options') ?></th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                
+            </div>
+
+        </div><!-- End .box -->
+
+    </div>
+</div>

@@ -1,0 +1,62 @@
+<script>
+    $(document).ready(function(){
+
+
+        $(".removeFromCart").click(function(e) {
+            e.preventDefault();
+            var url = $(this).attr("href");
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: url,
+                data: {format: "json", status: "status"},
+                success: function(resp) {
+                    if(resp.status == "success") {
+                        $('#miniCart').html(resp.miniCartView);
+                        jSuccess(
+                            '<?php echo $this->translate('Produkt usunięty z koszyka') ?>',
+                            {
+                                MinWidth : 250,
+                                TimeShown : 800,
+                                ShowTimeEffect : 200,
+                                HideTimeEffect : 200,
+                                HorizontalPosition : 'center',
+                                VerticalPosition : 'center',
+                                ShowOverlay : true
+                            }
+                        );
+                    }
+                }
+            });
+        });
+    });
+</script>
+<div class="sc_header bg_light_2 fs_small color_grey">
+	Ilość produktów w koszyku: <?php echo count($this->cartItems); ?>
+</div>
+<ul class="added_items_list">
+<?php foreach($this->cartItems as $key => $item): ?>
+	<li class="clearfix lh_large m_bottom_20 relative">
+        <a href="<?php echo $this->url(array('category' => $item[""]['options']['categorySlug'], 'product' => $item[""]['options']['productSlug']), 'domain-i18n:product') ?>" class="d_block f_left m_right_10"><img src="/media/photos/<?php echo $item[""]['options']['photoOffset']; ?>/56x60/<?php echo $item[""]['options']['photoFilename']; ?>" alt="<?php echo $item[""]['name']; ?>"></a>
+        <div class="f_left item_description lh_ex_small">
+            <a href="<?php echo $this->url(array('category' => $item[""]['options']['categorySlug'], 'product' => $item[""]['options']['productSlug']), 'domain-i18n:product') ?>" class="color_dark fs_medium d_inline_b m_bottom_3"><?php echo $item[""]['name']; ?></a>
+            <p class="color_grey_light fs_small"><?php echo $item[""]['options']['categoryName']; ?></p>
+        </div>
+		<div class="f_right fs_small lh_medium d_xs_none">
+			<span class="color_grey"><?php echo $item[""]['count']; ?> x </span><span class="color_dark"><?php echo $item[""]['price']; ?> zł</span>
+		</div>
+        <a class="remove delete removeFromCart" title="<?php echo $this->translate('Remove this product') ?>" href="<?php echo $this->url(array('action' => 'remove-product-from-cart','product-id' => $key), 'domain-cart-ajax') ?>">
+            <i class="icon-cancel-circled-1 color_grey_light_2 fs_large color_dark_hover tr_all"></i>
+        </a>
+	</li>
+<?php endforeach;?>
+</ul>
+<div class="total_price bg_light_2 t_align_r fs_medium m_bottom_15">
+	<ul>
+		<li class="color_dark"><span class="fw_ex_bold">Łacznie:</span> <span class="fw_ex_bold d_inline_b m_left_15 price t_align_l color_pink"><?php echo $this->cart->getSum(); ?> zł</span></li>
+	</ul>
+</div>
+<div class="clearfix border_none p_top_0 sc_footer">
+    <a href="<?php echo $this->url(array(), 'domain-i18n:checkout') ?>" class="button_type_5 d_block color_pink transparent f_right r_corners tr_all fs_medium m_left_5">Do kasy</a>
+    <a href="<?php echo $this->url(array(), 'domain-i18n:cart') ?>" class="button_type_5 d_block color_dark f_right r_corners color_pink_hover tr_all fs_medium">Zobacz karte</a>
+</div>

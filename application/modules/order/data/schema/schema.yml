@@ -1,0 +1,266 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+Order:
+  tableName: order_order
+  actAs:
+     Timestampable: ~
+     SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    user_id:
+      type: integer(4) 
+    attention:
+      type: clob
+    contact_number:
+      type: string(255)
+    contact_email:
+      type: string(255)
+    total_cost:
+      type: decimal
+    order_status_id:
+      type: integer(4) 
+    delivery_id:
+      type: integer(4) 
+    payment_id:
+      type: integer(4) 
+    invoice_id:
+      type: integer(4) 
+  relations:
+    Delivery:
+      local: delivery_id
+      foreign: id
+      foreignType: one
+    Payment:
+      local: payment_id
+      foreign: id
+      foreignType: one
+    OrderStatus:
+      local: order_status_id
+      foreign: id
+      foreignType: many
+      foreignAlias: Orders 
+    Invoice:
+      local: invoice_id
+      foreign: id
+      foreignType: one
+Invoice:
+  tableName: order_invoice
+  actAs:
+     Timestampable: ~
+     SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    invoice_company_name:
+      type: string(255)
+    invoice_city:
+      type: string(255)
+    invoice_address:
+      type: string(255)
+    invoice_postal_code:
+      type: string(255)
+    invoice_nip:
+      type: string(255)
+OrderStatus:
+  tableName: order_order_status
+  actAs:
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255)
+    type:
+      type: string(255)
+Item:
+  tableName: order_item
+  actAs:
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    order_id:
+      type: integer(4)
+    product_id:
+      type: integer(4)
+    price:
+      type: decimal
+    discount_id:
+      type: integer(4)
+    number:
+      type: integer(4)
+  relations:
+    Order:
+      local: order_id
+      foreign: id
+      foreignAlias: Items  
+Delivery:
+  tableName: order_delivery
+  actAs:
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    delivery_type_id:
+      type: integer(4) 
+    delivery_address_id:
+      type: integer(4) 
+    delivery_cost:
+      type: decimal
+    status_id:
+      type: integer(4) 
+  relations:
+    OrderStatus:
+      local: status_id
+      foreign: id
+      foreignType: one
+      alias: Status  
+    DeliveryType:
+      local: delivery_type_id
+      foreign: id
+      foreignAlias: Deliveries
+      foreignType: many
+    DeliveryAddress:
+      local: delivery_address_id
+      foreign: id
+      foreignType: one
+DeliveryType:
+  tableName: order_delivery_type
+  actAs:
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255)
+    price:
+      type: decimal
+      default: 0
+    type:
+      type: string(255)
+    description:
+      type: clob
+DeliveryAddress:
+  tableName: order_delivery_address
+  actAs:
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255)
+    address:
+      type: string(255)
+    postal_code:
+      type: string(255)
+    city:
+      type: string(255)
+    province:
+      type: string(255)
+    country:
+      type: string(255)
+Payment:
+  tableName: order_payment
+  actAs:
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    status:
+      type: string(255)
+    error_status:
+      type: string(255)
+    desc:
+      type: string(255)
+    client_ip:
+      type: string(255)
+    trans_id:
+      type: string(255)
+    ts:
+      type: string(128)
+    status_id:
+      type: integer(4)
+    payment_type_id:
+      type: integer(4)
+  relations:
+    OrderStatus:
+      local: status_id
+      foreign: id
+      foreignType: one
+      alias: Status  
+    PaymentType:
+      local: payment_type_id
+      foreign: id
+      foreignAlias: Payments
+      foreignType: many
+PaymentType:
+  tableName: order_payment_type
+  actAs:
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255)
+    description:
+      type: clob
+Coupon:
+  tableName: order_coupon
+  actAs:
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    code:
+      type: string(255)
+    type:
+      type: string(255)
+    used:
+      type: boolean
+      default: 0
+    start_validity_date:
+      type: timestamp
+    finish_validity_date:
+      type: timestamp
+    amount_coupon:
+      type: integer(4)
+    sent:
+      type: boolean
+      default: 0
+    order_id: 
+      type: integer(4)
+    user_id: 
+      type: integer(4)
+  relations:
+    Order:
+      local: order_id
+      foreign: id
+      foreignAlias: Coupon
+      foreignType: one

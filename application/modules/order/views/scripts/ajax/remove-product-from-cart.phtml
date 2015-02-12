@@ -1,0 +1,53 @@
+<div class="items">
+                <?php foreach($this->products as $product): ?>
+                    <?php foreach($this->items as $id=>$item): ?>
+                        <?php if($product->getId() == $id): ?>
+                           <ul class="item">
+                                <li class="name"><?php echo $product->Translation[$this->language]->name ?></li>
+                                <li class="count">
+                                    <input id="spinner<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo $item[""]['count'] ?>">
+                                </li>    
+                                <?php 
+                                $arrayDiscounts = array($product['Discount'], $product['Producer']['Discount'], $this->userDiscount);
+                                foreach($this->userGroupDiscounts as $userGroupDiscount):
+                                    $arrayDiscounts[] = $userGroupDiscount;
+                                endforeach;
+                                $flag = MF_Discount::getPriceWithDiscount($product['promotion_price'], $arrayDiscounts);
+                                $flag = $flag['flag'];
+                                ?>
+                                <?php if($flag || $product['promotion']): ?>
+                                    <?php if($product['promotion']): ?>
+                                        <?php if($flag): ?>
+                                            <li class="price" style="color: red;">
+                                                <?php 
+                                                $price = MF_Discount::getPriceWithDiscount($product['promotion_price'], $arrayDiscounts); 
+                                                $price = $price['price']*$item[""]['count'];
+                                                echo $price; ?> zł
+                                             </li>
+                                            <?php else: ?>
+                                                <li class="price" style="color: red;">
+                                                    <?php echo $product['promotion_price']*$item[""]['count']; ?> zł
+                                                </li>
+                                            <?php endif; ?>
+                                        <?php elseif($flag): ?> 
+                                            <li class="price" style="color: red;">
+                                                <?php 
+                                                $price = MF_Discount::getPriceWithDiscount($product['price'], $arrayDiscounts); 
+                                                $price = $price['price'];
+                                                echo $price*$item[""]['count']; ?> zł
+                                            </li>
+                                        <?php endif; ?>
+                                    <?php else: ?>
+                                        <li class="price">
+                                            <?php echo $product['price']*$item[""]['count']; ?> zł
+                                        </li>
+                                    <?php endif; ?>
+                                    <li class="remove">
+                                        <a href="" class="delete" rel="<?php echo $product->getId(); ?>">Usuń</a>
+                                    </li>
+                              </ul>
+                              
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>    
+        </div>

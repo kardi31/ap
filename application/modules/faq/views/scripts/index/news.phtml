@@ -1,0 +1,56 @@
+<section id="news">
+    <header>
+        <a href="">
+            <?php echo $this->translate('News') ?>
+        </a>
+    </header>
+    <div id="news_item">
+        <?php if(isset($this->paginator)): ?>
+            <?php foreach($this->paginator as $newsItem):?>
+                 <?php if($newsItem['Translation'][$this->language]['slug']): ?>
+                    <article>
+                        <ul>
+                            <?php 
+                            $tags = explode(',', $newsItem['Metatags']['Translation'][$this->language]['keywords'], 5);
+                            $counter = 0;
+                            ?>
+                            <?php foreach ($tags as $tag): ?>
+                                <?php if ($counter == 0): ?>
+                                    <li class="first"><?php echo $tag ?></li>
+                                <?php elseif($counter < 4): ?>
+                                    <li><?php echo $tag ?></li>
+                                <?php endif; ?>
+                            <?php $counter++; endforeach; ?>
+                        </ul>
+                        <div class="content">
+                            <div class="picture">
+                                <?php if($newsItem['PhotoRoot']['offset']): ?>
+                                    <img src="/media/photos/<?php echo $newsItem['PhotoRoot']['offset'] ?>/122x77/<?php echo $newsItem['PhotoRoot']['filename'] ?>" data-original="/media/photos/<?php echo $newsItem['PhotoRoot']['offset'] ?>/<?php echo $newsItem['PhotoRoot']['filename'] ?>" alt="<?php echo $newsItem['PhotoRoot']['alternate_text']; ?>" title="<?php echo $newsItem['PhotoRoot']['title'] ?>" />
+                                <?php else: ?>
+                                    <img src="/images/layout/shop/no_photo.jpg" data-original="/images/layout/shop/no_photo.jpg" alt="<?php echo $this->translate('No photo') ?>" style="width: 77px; height: 77px" />
+                                <?php endif; ?>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="desc">
+                                <header><?php echo $newsItem['Translation'][$this->language]['title']; ?></header>
+                                <?php echo MF_Text::truncate($newsItem['Translation'][$this->language]['content'], 1, 'paragraphs') ?>
+                            </div>
+                        </div>
+                        <div class="more">
+                            <a href="<?php echo $this->url(array('slug' => $newsItem['Translation'][$this->language]['slug']), 'domain-i18n:news-item') ?>">
+                                <?php echo $this->translate('read more') ?>
+                            </a>
+                        </div>    
+                        <div class="line"></div> 
+                    </article>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
+    <div class="clearfix"></div>
+    <div class="bottom_bar">
+        <div class="pagination">
+            <?php echo $this->paginationControl($this->paginator, 'Sliding', 'news_pagination_control.phtml') ?>
+        </div>
+    </div>  
+</section>
