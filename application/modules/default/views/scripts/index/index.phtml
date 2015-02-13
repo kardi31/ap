@@ -1,7 +1,8 @@
 <article id="content">
         <div class="wrapper">
                 <section class="col1">
-                        <h2 class="under"><?php echo $this->homepage['Translation'][$this->language]['title']; ?></h2>
+                    <div class="shadowBoxLeft">
+                        <h1 class="under mainPage"><?php echo $this->homepage['Translation'][$this->language]['title']; ?></h1>
                         <div class="wrapper">
                                 <figure class="left marg_right1">
                                     <?php if(strlen($homepage['PhotoRoot']['offset'])): ?>
@@ -12,10 +13,42 @@
                                 </figure>
                                 <?php echo $this->homepage['Translation'][$this->language]['content']; ?>
                         </div>
+                    </div>
+                        
+                    <div class="shadowBoxLeft box2Main">
+                        
+                         <div class="tab-content" id="tab1">
+                             <h2>Aktualności</h2>
+                             <hr />
+                        <?php foreach($this->paginator as $news): ?>
+                             <div class="newsWrapper">
+                        <h5>
+			    <span class="dropcap">
+				<strong><?php echo MF_Text::timeFormat($news['publish_date'],'d');?></strong>
+				<span><?php echo MF_Text::polishShortMonth($news['publish_date']);?></span>
+			    </span>
+				<?php echo $news['Translation'][$this->language]['title']; ?>
+			</h5>
+                        <div class="wrapper pad_bot2">
+                                <figure class="left marg_right1">
+				    <?php if(strlen($news['PhotoRoot']['offset'])): ?>
+				        <img src="<?php echo MF_Text::getPhotoPath($news['PhotoRoot'],'180x141'); ?>" alt="<?php echo $news['Translation'][$this->language]['title']; ?>" title="<?php echo $news['Translation'][$this->language]['title']; ?>">
+				    <?php endif; ?>
+				</figure>
+                                <p class="pad_bot1"><?php echo MF_Text::truncate(strip_tags($news['Translation'][$this->language]['content']),300,'letters'); ?></p>
+                                <a href="<?php echo $this->url(array('slug' => $news['Translation'][$this->language]['slug']),'domain-news-article'); ?>" class="link1">Czytaj więcej</a>
+                        </div>
+                             </div>
+                        <?php endforeach; ?>
+		</div>
+                    </div>
                 </section>
-                <section class="col2 pad_left_30">
+            
+            
+                <section class="col2 pad_left_30 mainPageRightCol">
+                    <div class="shadowBoxRightSmall">
                          <h2 class="nextEventHeader under">Najbliższe wydarzenie</h2>
-                        <div class="nextEvents testimonials">
+                        <div class=" nextEvents testimonials">
                             <div id="nextEvent">
                               <ul>
                                   <?php foreach($this->nextEvents as $nextEvent): ?>
@@ -31,37 +64,8 @@
                         <a href="#" class="upEvent"></a>
                         <a href="#" class="downEvent"></a>
                         </div>
-<!--                        <h2>Testimonials</h2>
-                        <div class="testimonials">
-                        <div id="testimonials">
-                          <ul>
-                                <li>
-                                        <div>
-                                                “Nam libero tempore, cum soluta nobis eligendi quo minus quod maxime placeat facere.”
-                                        </div>
-                                        <span><strong class="color1">James Coloway,</strong> <br>
-                                        Director</span>
-                                </li>
-                                <li>
-                                        <div>
-                                                “Nam libero tempore, cum soluta nobis eligendi quo minus quod maxime placeat facere.”
-                                        </div>
-                                        <span><strong class="color1">James Coloway,</strong> <br>
-                                        Director</span>
-                                </li>
-                                <li>
-                                        <div>
-                                                “Nam libero tempore, cum soluta nobis eligendi quo minus quod maxime placeat facere.”
-                                        </div>
-                                        <span><strong class="color1">James Coloway,</strong> <br>
-                                        Director</span>
-                                </li>
-                          </ul>
-                        </div>
-                        <a href="#" class="up"></a>
-                        <a href="#" class="down"></a>
-                        </div>-->
-			<div id="activeLeagues">
+                    </div>
+			<div id="activeLeagues" class="shadowBoxRightSmall">
 			    <div id="selectLeague">
 				<?php foreach($this->leagues as  $key => $league): ?>
 				    <a href="javascript:void(0)" class="leagueChoose <?php if($key==0) echo "active"; ?>" rel="<?php echo $league['id']; ?>"><?php echo $league['name']; ?></a>
@@ -97,7 +101,7 @@
 					
 				    </tbody>
 				</table>
-				<br /><br />
+				<br />
 				<h3>Poprzednie mecze</h3>
 				<?php if(isset($this->prevMatches[$leagueId])): ?>
 				<strong><?php echo MF_Text::timeFormat($this->prevMatches[$leagueId][0]['match_date'],'d-m-Y'); ?></strong><br />
@@ -109,7 +113,7 @@
 					 endforeach; ?>
 				
 				<?php endif; ?>
-				<br /><br />
+				<br />
 				<h3>Najbliższe mecze</h3>
 				<?php if(isset($this->nextMatches[$leagueId])): ?>
 				<strong><?php echo MF_Text::timeFormat($this->nextMatches[$leagueId][0]['match_date'],'d-m-Y'); ?></strong><br />

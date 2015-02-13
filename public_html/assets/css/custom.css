@@ -8,12 +8,26 @@ and open the template in the editor.
     Author     : Tomasz Kardas
 */
 
+h1.mainPage{
+    font-size: 40px;
+font-style: normal;
+font-weight: 400;
+line-height: 1.2em;
+padding: 10px 0 11px 0;
+color: #000;
+letter-spacing: -1px;
+}
+
 .nextEvents.testimonials{
     height:150px;
+}
+.nextEvents.testimonials p{
+    padding-bottom:1px;
 }
 
 h2.nextEventHeader{
     font-size:26px;
+padding-top: 21px;
     margin-bottom:2px;
 }
 
@@ -21,15 +35,16 @@ h2.nextEventHeader{
     padding-left:30px;
 }
 .col2.pad_left_30{
-    width:240px;
+    width:255px;
 }
 
 #nextEvent h6{
    margin-top:10px;
    margin-bottom:5px;
+   font-weight:bold;
 }
 
-.upEvent, .downEvent{position:absolute;z-index:2;bottom:8px;right:0;width:32px;height:32px;display:block}
+.upEvent, .downEvent{position:absolute;z-index:2;bottom:8px;right:5px;width:32px;height:32px;display:block}
 .upEvent{right:33px;background:url(../images/marker_up.gif) 0 0 no-repeat}
 .downEvent{background:url(../images/marker_down.gif) 0 0 no-repeat}
 .upEvent:hover, .downEvent:hover{background-position:bottom}
@@ -131,6 +146,25 @@ i.fa {
     font-weight:bold;
 }
 
+#activeLeagues{
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+#activeLeagues div h2{
+    margin-top:15px;
+    margin-bottom: 10px;
+    text-align:center;
+    padding-top:0px;
+}
+
+#activeLeagues div h3{
+    padding-bottom:5px;
+}
+
+#activeLeagues div{
+    font-style:normal;
+}
 
 .activeLeague table{
     width:100%;
@@ -142,23 +176,63 @@ i.fa {
 }
 
 .leagueChoose{
-    width:100px;
-    margin:0px;
+    width:90px;;
+    margin:0px auto;
     display:inline-block;
-    border:1px solid #000;
+    border:1px solid #0000ff;
     margin-top:20px;
+    border-radius:6px;
+    padding:10px;
+    text-decoration:none;
+    font-style:normal;
+}
+
+.leagueChoose:hover{
+    text-decoration: underline;
 }
 
 .leagueChoose.active{
     background:blue;
     color:#fff;
 }
+
+.leagueChoose.active:hover{
+    text-decoration:none;
+}
+
 .activeLeague:not(.first){
     display:none;
 }
 
 .colList{
     margin:10px;
+}
+
+.shadowBoxLeft{
+    
+    box-shadow: 2px 2px 5px #888888;
+    padding:0px 10px;
+    border-top:1px solid #bbb;
+    border-left:1px solid #bbb;
+}
+
+.mainPageRightCol{
+    
+/*    box-shadow: 2px 2px 5px #888888;
+    padding:0px 10px;*/
+    padding-bottom:5px;
+    padding-left:0px;
+    margin-left:14px;
+}
+
+.shadowBoxRightSmall{
+    border-top:1px solid #bbb;
+    border-left:1px solid #bbb;
+    box-shadow: 2px 2px 5px #888888;
+    padding-right:10px;
+    padding-left:12px;
+/*    padding:0px 10px;
+    margin-left:14px;*/
 }
 
 .colListWrapper1{
@@ -237,4 +311,31 @@ i.fa {
 
 header .main{
     padding-bottom:15px;
+}
+
+.box2Main{
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.box2Main h2{
+    text-align:center;
+    padding-top:10px;
+    margin-top:10px;
+    padding-bottom:0px;
+}
+
+.box2Main hr{
+    border:1px solid #000;
+    margin-bottom:20px;
+    width:195px;
+}
+
+.box2Main .newsWrapper{
+    border-bottom:1px dotted #000;
+    margin-bottom:10px;
+}
+
+.box2Main .newsWrapper .pad_bot2{
+    padding-bottom:20px;
 }

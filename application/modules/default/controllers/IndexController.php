@@ -14,8 +14,7 @@ class Default_IndexController extends MF_Controller_Action
         $photoService = $this->_service->getService('Media_Service_Photo');
         $photoDimensionService = $this->_service->getService('Default_Service_PhotoDimension');
 
-        $photoDimension = $photoDimensionService->getElementDimension('news');
-        $query = $newsService->getNewsPaginationQuery();
+        $query = $newsService->getNewsPaginationQuery($this->view->language);
         
         $adapter = new MF_Paginator_Adapter_Doctrine($query, Doctrine_Core::HYDRATE_RECORD);
         $paginator = new Zend_Paginator($adapter);
