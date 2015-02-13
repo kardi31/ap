@@ -14,13 +14,16 @@
                                 <?php echo $this->homepage['Translation'][$this->language]['content']; ?>
                         </div>
                     </div>
-                        
-                    <div class="shadowBoxLeft box2Main">
+                    
+                    <?php echo $this->action('banner-over-news','index','banner'); ?>
+                    <div class="box2Main">
+                        <h2>Aktualności</h2>
+                             <hr />
                         
                          <div class="tab-content" id="tab1">
-                             <h2>Aktualności</h2>
-                             <hr />
+                             
                         <?php foreach($this->paginator as $news): ?>
+                    <div class="shadowBoxLeft">
                              <div class="newsWrapper">
                         <h5>
 			    <span class="dropcap">
@@ -39,6 +42,7 @@
                                 <a href="<?php echo $this->url(array('slug' => $news['Translation'][$this->language]['slug']),'domain-news-article'); ?>" class="link1">Czytaj więcej</a>
                         </div>
                              </div>
+                    </div>
                         <?php endforeach; ?>
 		</div>
                     </div>
@@ -65,6 +69,8 @@
                         <a href="#" class="downEvent"></a>
                         </div>
                     </div>
+                    
+                    <?php echo $this->action('banner-right','index','banner'); ?>
 			<div id="activeLeagues" class="shadowBoxRightSmall">
 			    <div id="selectLeague">
 				<?php foreach($this->leagues as  $key => $league): ?>

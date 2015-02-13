@@ -331,8 +331,12 @@ header .main{
     width:195px;
 }
 
+.box2Main .shadowBoxLeft{
+    margin-bottom:20px;
+    padding-top:10px;
+}
+
 .box2Main .newsWrapper{
-    border-bottom:1px dotted #000;
     margin-bottom:10px;
 }
 

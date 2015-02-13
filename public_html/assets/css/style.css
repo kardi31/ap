@@ -111,8 +111,8 @@ header{padding-top:25px;}
 /*--- tabs end ---*/
 #address span{float:left;width:80px}
 /* ============================= footer ====================== */
-footer {padding:34px 0 38px 0;font-style:normal;color:#696969;text-align:center}
-footer a{color:#fff}
+footer {padding:5px 0 5px 0;font-style:normal;color:#696969;text-align:center}
+footer a{color:#fff;text-decoration:none;}
 footer a:hover{}
 /* ============================= forms ============================= */
 #ContactForm {margin-top:-4px}
