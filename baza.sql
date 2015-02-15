@@ -1,16 +1,17 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               5.6.21 - MySQL Community Server (GPL)
--- Server OS:                    Win32
--- HeidiSQL Version:             9.1.0.4867
+-- Server version:               5.5.40-0ubuntu0.12.04.1 - (Ubuntu)
+-- Server OS:                    debian-linux-gnu
+-- HeidiSQL version:             7.0.0.4053
+-- Date/time:                    2015-02-15 17:58:16
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8mb4 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40101 SET NAMES utf8 */;
+/*!40014 SET FOREIGN_KEY_CHECKS=0 */;
 
 -- Dumping structure for table ap.banner_ad
+DROP TABLE IF EXISTS `banner_ad`;
 CREATE TABLE IF NOT EXISTS `banner_ad` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `publish` tinyint(1) DEFAULT '1',
@@ -34,6 +35,7 @@ DELETE FROM `banner_ad`;
 
 
 -- Dumping structure for table ap.banner_ad_translation
+DROP TABLE IF EXISTS `banner_ad_translation`;
 CREATE TABLE IF NOT EXISTS `banner_ad_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `title` varchar(255) DEFAULT NULL,
@@ -50,6 +52,7 @@ DELETE FROM `banner_ad_translation`;
 
 
 -- Dumping structure for table ap.banner_banner
+DROP TABLE IF EXISTS `banner_banner`;
 CREATE TABLE IF NOT EXISTS `banner_banner` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `last_editor_id` int(11) DEFAULT NULL,
@@ -78,6 +81,7 @@ DELETE FROM `banner_banner`;
 
 
 -- Dumping structure for table ap.banner_banner_category
+DROP TABLE IF EXISTS `banner_banner_category`;
 CREATE TABLE IF NOT EXISTS `banner_banner_category` (
   `banner_id` int(11) NOT NULL DEFAULT '0',
   `category_id` int(11) NOT NULL DEFAULT '0',
@@ -91,6 +95,7 @@ DELETE FROM `banner_banner_category`;
 
 
 -- Dumping structure for table ap.banner_banner_translation
+DROP TABLE IF EXISTS `banner_banner_translation`;
 CREATE TABLE IF NOT EXISTS `banner_banner_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(255) DEFAULT NULL,
@@ -107,6 +112,7 @@ DELETE FROM `banner_banner_translation`;
 
 
 -- Dumping structure for table ap.banner_category
+DROP TABLE IF EXISTS `banner_category`;
 CREATE TABLE IF NOT EXISTS `banner_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -121,6 +127,7 @@ DELETE FROM `banner_category`;
 
 
 -- Dumping structure for table ap.default_available_route
+DROP TABLE IF EXISTS `default_available_route`;
 CREATE TABLE IF NOT EXISTS `default_available_route` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `route` varchar(255) DEFAULT NULL,
@@ -141,6 +148,7 @@ INSERT INTO `default_available_route` (`id`, `route`, `name`) VALUES
 
 
 -- Dumping structure for table ap.default_city
+DROP TABLE IF EXISTS `default_city`;
 CREATE TABLE IF NOT EXISTS `default_city` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -149,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `default_city` (
   KEY `province_id_idx` (`province_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2329 DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.default_city: 2,328 rows
+-- Dumping data for table ap.default_city: 2 328 rows
 DELETE FROM `default_city`;
 /*!40000 ALTER TABLE `default_city` DISABLE KEYS */;
 INSERT INTO `default_city` (`id`, `name`, `province_id`) VALUES
@@ -2485,6 +2493,7 @@ INSERT INTO `default_city` (`id`, `name`, `province_id`) VALUES
 
 
 -- Dumping structure for table ap.default_language
+DROP TABLE IF EXISTS `default_language`;
 CREATE TABLE IF NOT EXISTS `default_language` (
   `id` varchar(64) NOT NULL DEFAULT '',
   `name` varchar(255) DEFAULT NULL,
@@ -2504,15 +2513,16 @@ INSERT INTO `default_language` (`id`, `name`, `active`, `default`, `admin`) VALU
 
 
 -- Dumping structure for table ap.default_metatag
+DROP TABLE IF EXISTS `default_metatag`;
 CREATE TABLE IF NOT EXISTS `default_metatag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `description` longtext,
   `keywords` longtext,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1660 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1665 DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.default_metatag: 232 rows
+-- Dumping data for table ap.default_metatag: 237 rows
 DELETE FROM `default_metatag`;
 /*!40000 ALTER TABLE `default_metatag` DISABLE KEYS */;
 INSERT INTO `default_metatag` (`id`, `title`, `description`, `keywords`) VALUES
@@ -2747,11 +2757,17 @@ INSERT INTO `default_metatag` (`id`, `title`, `description`, `keywords`) VALUES
 	(1655, NULL, NULL, NULL),
 	(1657, NULL, NULL, NULL),
 	(1658, NULL, NULL, NULL),
-	(1659, NULL, NULL, NULL);
+	(1659, NULL, NULL, NULL),
+	(1660, NULL, NULL, NULL),
+	(1661, NULL, NULL, NULL),
+	(1662, NULL, NULL, NULL),
+	(1663, NULL, NULL, NULL),
+	(1664, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `default_metatag` ENABLE KEYS */;
 
 
 -- Dumping structure for table ap.default_metatag_translation
+DROP TABLE IF EXISTS `default_metatag_translation`;
 CREATE TABLE IF NOT EXISTS `default_metatag_translation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lang` varchar(64) NOT NULL DEFAULT '',
@@ -2759,9 +2775,9 @@ CREATE TABLE IF NOT EXISTS `default_metatag_translation` (
   `description` longtext,
   `keywords` longtext,
   PRIMARY KEY (`id`,`lang`)
-) ENGINE=MyISAM AUTO_INCREMENT=1660 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1665 DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.default_metatag_translation: 339 rows
+-- Dumping data for table ap.default_metatag_translation: 344 rows
 DELETE FROM `default_metatag_translation`;
 /*!40000 ALTER TABLE `default_metatag_translation` DISABLE KEYS */;
 INSERT INTO `default_metatag_translation` (`id`, `lang`, `title`, `description`, `keywords`) VALUES
@@ -3103,11 +3119,17 @@ INSERT INTO `default_metatag_translation` (`id`, `lang`, `title`, `description`,
 	(1656, 'pl', 'Testowa galeria', 'To jest nasza testowa galeria', 'testowa, galeria'),
 	(1657, 'pl', 'Druga galeria', 'To jest druga galeria', 'galeria'),
 	(1658, 'pl', 'O nas', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'consectetur, adipiscing, eiusmod, tempor, incididunt, labore, dolore, aliqua, veniam, nostrud, exercitation, ullamco, laboris, aliquip, commodo, consequat, reprehenderit, voluptate, cillum, dolore, fugiat, pariatur, Excepteur, occaecat, cupidatat, proident, officia, deserunt, mollit, laborum'),
-	(1659, 'pl', 'Nabór', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'consectetur, adipiscing, eiusmod, tempor, incididunt, labore, dolore, aliqua, veniam, nostrud, exercitation, ullamco, laboris, aliquip, commodo, consequat, reprehenderit, voluptate, cillum, dolore, fugiat, pariatur, Excepteur, occaecat, cupidatat, proident, officia, deserunt, mollit, laborum');
+	(1659, 'pl', 'Nabór', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'consectetur, adipiscing, eiusmod, tempor, incididunt, labore, dolore, aliqua, veniam, nostrud, exercitation, ullamco, laboris, aliquip, commodo, consequat, reprehenderit, voluptate, cillum, dolore, fugiat, pariatur, Excepteur, occaecat, cupidatat, proident, officia, deserunt, mollit, laborum'),
+	(1660, 'pl', '', '', ''),
+	(1661, 'pl', '', '', ''),
+	(1662, 'pl', '', '', ''),
+	(1663, 'pl', '', '', ''),
+	(1664, 'pl', '', '', '');
 /*!40000 ALTER TABLE `default_metatag_translation` ENABLE KEYS */;
 
 
 -- Dumping structure for table ap.default_photo_dimensions
+DROP TABLE IF EXISTS `default_photo_dimensions`;
 CREATE TABLE IF NOT EXISTS `default_photo_dimensions` (
   `id` varchar(255) NOT NULL DEFAULT '',
   `width` bigint(20) DEFAULT NULL,
@@ -3135,6 +3157,7 @@ INSERT INTO `default_photo_dimensions` (`id`, `width`, `height`) VALUES
 
 
 -- Dumping structure for table ap.default_province
+DROP TABLE IF EXISTS `default_province`;
 CREATE TABLE IF NOT EXISTS `default_province` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -3165,6 +3188,7 @@ INSERT INTO `default_province` (`id`, `name`) VALUES
 
 
 -- Dumping structure for table ap.default_service
+DROP TABLE IF EXISTS `default_service`;
 CREATE TABLE IF NOT EXISTS `default_service` (
   `id` int(11) DEFAULT NULL,
   `name` char(50) COLLATE utf8_bin DEFAULT NULL,
@@ -3177,12 +3201,11 @@ CREATE TABLE IF NOT EXISTS `default_service` (
 -- Dumping data for table ap.default_service: ~1 rows (approximately)
 DELETE FROM `default_service`;
 /*!40000 ALTER TABLE `default_service` DISABLE KEYS */;
-INSERT INTO `default_service` (`id`, `name`, `email`, `phone`, `address`, `opening`) VALUES
-	(1, 'Lucoa', 'pomoc@lucoa.pl', '+48 33 876 49 75', 'Ul. Krótka 5 Poland 34-130 Kalwaria Zebrzydowska', 'pn - pt 8.00 - 20.00');
 /*!40000 ALTER TABLE `default_service` ENABLE KEYS */;
 
 
 -- Dumping structure for table ap.default_setting
+DROP TABLE IF EXISTS `default_setting`;
 CREATE TABLE IF NOT EXISTS `default_setting` (
   `id` varchar(255) NOT NULL DEFAULT '',
   `value` text,
@@ -3194,23 +3217,20 @@ DELETE FROM `default_setting`;
 /*!40000 ALTER TABLE `default_setting` DISABLE KEYS */;
 INSERT INTO `default_setting` (`id`, `value`) VALUES
 	('contact_email', 'kardi31@o2.pl'),
-	('ga_profile_id', ''),
-	('company_name', 'Sofa linea'),
-	('company_address', 'Długa 22'),
-	('company_city', 'Kraków'),
-	('company_province', ''),
-	('company_postal_code', '55-555'),
-	('company_phone', '555 1231 32'),
-	('company_fax', ''),
+	('address', 'Pl.Kulczyckiego 2'),
+	('city', 'Krzeszowice'),
+	('province', 'Małopolskie'),
+	('postal_code', '32-067'),
+	('phone', '555 1231 32'),
 	('facebook_url', 'http://facebook.com/nazwa_konta'),
 	('youtube_url', 'http://youtube.com/nazwa.konta'),
 	('twitter_url', 'http://twitter.com/nazwa.konta'),
-	('googleplus_url', 'http://googleplus.com/nazwa.konta'),
-	('google_analytics', '<script>\r\n  (function(i,s,o,g,r,a,m){i[\'GoogleAnalyticsObject\']=r;i[r]=i[r]||function(){\r\n  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\r\n  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\r\n  })(window,document,\'script\',\'//www.google-analytics.com/analytics.js\',\'ga\');\r\n\r\n  ga(\'create\', \'UA-50640000-1\', \'nottinghamanalogue.pl\');\r\n  ga(\'send\', \'pageview\');\r\n\r\n</script>');
+	('googleplus_url', 'http://googleplus.com/nazwa.konta');
 /*!40000 ALTER TABLE `default_setting` ENABLE KEYS */;
 
 
 -- Dumping structure for table ap.default_tag
+DROP TABLE IF EXISTS `default_tag`;
 CREATE TABLE IF NOT EXISTS `default_tag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -3225,6 +3245,7 @@ DELETE FROM `default_tag`;
 
 
 -- Dumping structure for table ap.default_tag_translation
+DROP TABLE IF EXISTS `default_tag_translation`;
 CREATE TABLE IF NOT EXISTS `default_tag_translation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lang` varchar(64) NOT NULL DEFAULT '',
@@ -3240,6 +3261,7 @@ DELETE FROM `default_tag_translation`;
 
 
 -- Dumping structure for table ap.district_attraction
+DROP TABLE IF EXISTS `district_attraction`;
 CREATE TABLE IF NOT EXISTS `district_attraction` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -3268,6 +3290,7 @@ DELETE FROM `district_attraction`;
 
 
 -- Dumping structure for table ap.district_attraction_translation
+DROP TABLE IF EXISTS `district_attraction_translation`;
 CREATE TABLE IF NOT EXISTS `district_attraction_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `title` varchar(255) DEFAULT NULL,
@@ -3284,6 +3307,7 @@ DELETE FROM `district_attraction_translation`;
 
 
 -- Dumping structure for table ap.district_event
+DROP TABLE IF EXISTS `district_event`;
 CREATE TABLE IF NOT EXISTS `district_event` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -3315,6 +3339,7 @@ INSERT INTO `district_event` (`id`, `user_id`, `last_user_id`, `publish`, `publi
 
 
 -- Dumping structure for table ap.district_event_translation
+DROP TABLE IF EXISTS `district_event_translation`;
 CREATE TABLE IF NOT EXISTS `district_event_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `title` varchar(255) DEFAULT NULL,
@@ -3334,6 +3359,7 @@ INSERT INTO `district_event_translation` (`id`, `title`, `slug`, `content`, `lan
 
 
 -- Dumping structure for table ap.district_people
+DROP TABLE IF EXISTS `district_people`;
 CREATE TABLE IF NOT EXISTS `district_people` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -3361,6 +3387,7 @@ DELETE FROM `district_people`;
 
 
 -- Dumping structure for table ap.district_people_translation
+DROP TABLE IF EXISTS `district_people_translation`;
 CREATE TABLE IF NOT EXISTS `district_people_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `title` varchar(255) DEFAULT NULL,
@@ -3377,6 +3404,7 @@ DELETE FROM `district_people_translation`;
 
 
 -- Dumping structure for table ap.gallery_gallery
+DROP TABLE IF EXISTS `gallery_gallery`;
 CREATE TABLE IF NOT EXISTS `gallery_gallery` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `metatag_id` int(11) DEFAULT NULL,
@@ -3396,6 +3424,7 @@ INSERT INTO `gallery_gallery` (`id`, `metatag_id`, `photo_root_id`) VALUES
 
 
 -- Dumping structure for table ap.gallery_gallery_translation
+DROP TABLE IF EXISTS `gallery_gallery_translation`;
 CREATE TABLE IF NOT EXISTS `gallery_gallery_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(255) DEFAULT NULL,
@@ -3415,6 +3444,7 @@ INSERT INTO `gallery_gallery_translation` (`id`, `name`, `slug`, `description`, 
 
 
 -- Dumping structure for table ap.gallery_video
+DROP TABLE IF EXISTS `gallery_video`;
 CREATE TABLE IF NOT EXISTS `gallery_video` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -3430,17 +3460,20 @@ CREATE TABLE IF NOT EXISTS `gallery_video` (
   `updated_at` datetime NOT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.gallery_video: 1 rows
+-- Dumping data for table ap.gallery_video: 3 rows
 DELETE FROM `gallery_video`;
 /*!40000 ALTER TABLE `gallery_video` DISABLE KEYS */;
 INSERT INTO `gallery_video` (`id`, `user_id`, `last_user_id`, `publish`, `promoted`, `publish_date`, `photo_root_id`, `metatag_id`, `video_root_id`, `views`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(6, NULL, 0, 0, 1, NULL, 11, 1655, 4, NULL, '2015-02-08 17:31:23', '2015-02-08 22:26:09', NULL);
+	(6, NULL, 0, 0, 0, '2015-02-15 18:18:02', 11, 1660, 4, NULL, '2015-02-08 17:31:23', '2015-02-15 18:19:24', NULL),
+	(7, NULL, 0, 0, 1, '2015-02-15 18:19:40', 25, 1661, 7, NULL, '2015-02-15 18:19:40', '2015-02-15 18:19:51', NULL),
+	(8, NULL, 0, 0, 0, '2015-02-15 18:19:46', 26, 1664, 8, NULL, '2015-02-15 18:19:41', '2015-02-15 18:19:46', NULL);
 /*!40000 ALTER TABLE `gallery_video` ENABLE KEYS */;
 
 
 -- Dumping structure for table ap.gallery_video_translation
+DROP TABLE IF EXISTS `gallery_video_translation`;
 CREATE TABLE IF NOT EXISTS `gallery_video_translation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lang` varchar(64) NOT NULL DEFAULT '',
@@ -3448,17 +3481,20 @@ CREATE TABLE IF NOT EXISTS `gallery_video_translation` (
   `name` varchar(255) DEFAULT NULL,
   `description` longtext,
   PRIMARY KEY (`id`,`lang`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.gallery_video_translation: 1 rows
+-- Dumping data for table ap.gallery_video_translation: 3 rows
 DELETE FROM `gallery_video_translation`;
 /*!40000 ALTER TABLE `gallery_video_translation` DISABLE KEYS */;
 INSERT INTO `gallery_video_translation` (`id`, `lang`, `slug`, `name`, `description`) VALUES
-	(6, 'pl', 'testowy-film', 'Testowy film', '<p>Lorem ipsum&nbsp;<span>Lorem ipsum&nbsp;<span>Lorem ipsum</span></span></p>');
+	(6, 'pl', 'testowy-film', 'Testowy film', '<p>Lorem ipsum&nbsp;<span>Lorem ipsum&nbsp;<span>Lorem ipsum</span></span></p>'),
+	(7, 'pl', 'testowy-film-2', 'Testowy film 2', '<p>Opis testowego flmu 2</p>'),
+	(8, 'pl', 'testowy-film-2-1', 'Testowy film 2', '<p>Opis testowego flmu 2</p>');
 /*!40000 ALTER TABLE `gallery_video_translation` ENABLE KEYS */;
 
 
 -- Dumping structure for table ap.insurance_country
+DROP TABLE IF EXISTS `insurance_country`;
 CREATE TABLE IF NOT EXISTS `insurance_country` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `metatag_id` int(11) DEFAULT NULL,
@@ -3478,6 +3514,7 @@ INSERT INTO `insurance_country` (`id`, `metatag_id`, `photo_root_id`) VALUES
 
 
 -- Dumping structure for table ap.insurance_country_translation
+DROP TABLE IF EXISTS `insurance_country_translation`;
 CREATE TABLE IF NOT EXISTS `insurance_country_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(255) DEFAULT NULL,
@@ -3500,6 +3537,7 @@ INSERT INTO `insurance_country_translation` (`id`, `name`, `slug`, `description`
 
 
 -- Dumping structure for table ap.insurance_item
+DROP TABLE IF EXISTS `insurance_item`;
 CREATE TABLE IF NOT EXISTS `insurance_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `metatag_id` int(11) DEFAULT NULL,
@@ -3546,6 +3584,7 @@ INSERT INTO `insurance_item` (`id`, `metatag_id`, `photo_root_id`, `product_id`,
 
 
 -- Dumping structure for table ap.insurance_item_translation
+DROP TABLE IF EXISTS `insurance_item_translation`;
 CREATE TABLE IF NOT EXISTS `insurance_item_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(255) DEFAULT NULL,
@@ -3589,6 +3628,7 @@ INSERT INTO `insurance_item_translation` (`id`, `name`, `slug`, `description`, `
 
 
 -- Dumping structure for table ap.insurance_product
+DROP TABLE IF EXISTS `insurance_product`;
 CREATE TABLE IF NOT EXISTS `insurance_product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `metatag_id` int(11) DEFAULT NULL,
@@ -3610,6 +3650,7 @@ INSERT INTO `insurance_product` (`id`, `metatag_id`, `photo_root_id`, `created_a
 
 
 -- Dumping structure for table ap.insurance_product_translation
+DROP TABLE IF EXISTS `insurance_product_translation`;
 CREATE TABLE IF NOT EXISTS `insurance_product_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(255) DEFAULT NULL,
@@ -3632,6 +3673,7 @@ INSERT INTO `insurance_product_translation` (`id`, `name`, `slug`, `description`
 
 
 -- Dumping structure for table ap.insurance_sport
+DROP TABLE IF EXISTS `insurance_sport`;
 CREATE TABLE IF NOT EXISTS `insurance_sport` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `metatag_id` int(11) DEFAULT NULL,
@@ -3650,6 +3692,7 @@ INSERT INTO `insurance_sport` (`id`, `metatag_id`, `photo_root_id`) VALUES
 
 
 -- Dumping structure for table ap.insurance_sport_translation
+DROP TABLE IF EXISTS `insurance_sport_translation`;
 CREATE TABLE IF NOT EXISTS `insurance_sport_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(255) DEFAULT NULL,
@@ -3670,6 +3713,7 @@ INSERT INTO `insurance_sport_translation` (`id`, `name`, `slug`, `description`, 
 
 
 -- Dumping structure for table ap.invoice_invoice
+DROP TABLE IF EXISTS `invoice_invoice`;
 CREATE TABLE IF NOT EXISTS `invoice_invoice` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -3691,6 +3735,7 @@ INSERT INTO `invoice_invoice` (`id`, `user_id`, `code`, `sum`, `created_at`, `up
 
 
 -- Dumping structure for table ap.invoice_item
+DROP TABLE IF EXISTS `invoice_item`;
 CREATE TABLE IF NOT EXISTS `invoice_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `invoice_id` int(11) DEFAULT NULL,
@@ -3712,6 +3757,7 @@ INSERT INTO `invoice_item` (`id`, `invoice_id`, `name`, `price`, `item_id`, `cou
 
 
 -- Dumping structure for table ap.invoice_payment
+DROP TABLE IF EXISTS `invoice_payment`;
 CREATE TABLE IF NOT EXISTS `invoice_payment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `invoice_id` int(11) DEFAULT NULL,
@@ -3733,6 +3779,7 @@ INSERT INTO `invoice_payment` (`id`, `invoice_id`, `type`, `status`, `created_at
 
 
 -- Dumping structure for table ap.league_booking
+DROP TABLE IF EXISTS `league_booking`;
 CREATE TABLE IF NOT EXISTS `league_booking` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `player_id` int(11) NOT NULL,
@@ -3913,6 +3960,7 @@ INSERT INTO `league_booking` (`id`, `player_id`, `quantity`, `weight`, `comment`
 
 
 -- Dumping structure for table ap.league_cup
+DROP TABLE IF EXISTS `league_cup`;
 CREATE TABLE IF NOT EXISTS `league_cup` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -3965,6 +4013,7 @@ INSERT INTO `league_cup` (`id`, `name`, `slug`, `description`, `photo_root_id`, 
 
 
 -- Dumping structure for table ap.league_league
+DROP TABLE IF EXISTS `league_league`;
 CREATE TABLE IF NOT EXISTS `league_league` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` char(50) NOT NULL,
@@ -3983,6 +4032,7 @@ INSERT INTO `league_league` (`id`, `name`, `slug`, `active`) VALUES
 
 
 -- Dumping structure for table ap.league_match
+DROP TABLE IF EXISTS `league_match`;
 CREATE TABLE IF NOT EXISTS `league_match` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `team1` int(11) NOT NULL,
@@ -4429,6 +4479,7 @@ INSERT INTO `league_match` (`id`, `team1`, `team2`, `goal1`, `goal2`, `league_id
 
 
 -- Dumping structure for table ap.league_player
+DROP TABLE IF EXISTS `league_player`;
 CREATE TABLE IF NOT EXISTS `league_player` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(255) DEFAULT NULL,
@@ -5371,6 +5422,7 @@ INSERT INTO `league_player` (`id`, `first_name`, `last_name`, `team_id`) VALUES
 
 
 -- Dumping structure for table ap.league_shooter
+DROP TABLE IF EXISTS `league_shooter`;
 CREATE TABLE IF NOT EXISTS `league_shooter` (
   `match_id` int(11) NOT NULL,
   `player_id` int(11) NOT NULL,
@@ -5379,7 +5431,7 @@ CREATE TABLE IF NOT EXISTS `league_shooter` (
   KEY `league_shooter_match_id_league_match_id` (`match_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.league_shooter: 2,285 rows
+-- Dumping data for table ap.league_shooter: 2 285 rows
 DELETE FROM `league_shooter`;
 /*!40000 ALTER TABLE `league_shooter` DISABLE KEYS */;
 INSERT INTO `league_shooter` (`match_id`, `player_id`, `goal`) VALUES
@@ -7672,6 +7724,7 @@ INSERT INTO `league_shooter` (`match_id`, `player_id`, `goal`) VALUES
 
 
 -- Dumping structure for table ap.league_tabela
+DROP TABLE IF EXISTS `league_tabela`;
 CREATE TABLE IF NOT EXISTS `league_tabela` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `team_id` int(11) DEFAULT NULL,
@@ -7702,6 +7755,7 @@ INSERT INTO `league_tabela` (`id`, `team_id`, `games`, `won`, `draw`, `lost`, `g
 
 
 -- Dumping structure for table ap.league_team
+DROP TABLE IF EXISTS `league_team`;
 CREATE TABLE IF NOT EXISTS `league_team` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -7732,6 +7786,7 @@ INSERT INTO `league_team` (`id`, `name`, `slug`, `league_id`, `my_team`) VALUES
 
 
 -- Dumping structure for table ap.liga
+DROP TABLE IF EXISTS `liga`;
 CREATE TABLE IF NOT EXISTS `liga` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` char(50) NOT NULL,
@@ -7763,6 +7818,7 @@ INSERT INTO `liga` (`id`, `name`, `slug`, `active`) VALUES
 
 
 -- Dumping structure for table ap.media_attachment
+DROP TABLE IF EXISTS `media_attachment`;
 CREATE TABLE IF NOT EXISTS `media_attachment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `filename` varchar(255) DEFAULT NULL,
@@ -7782,6 +7838,7 @@ DELETE FROM `media_attachment`;
 
 
 -- Dumping structure for table ap.media_attachment_translation
+DROP TABLE IF EXISTS `media_attachment_translation`;
 CREATE TABLE IF NOT EXISTS `media_attachment_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `title` varchar(255) DEFAULT NULL,
@@ -7800,6 +7857,7 @@ DELETE FROM `media_attachment_translation`;
 
 
 -- Dumping structure for table ap.media_photo
+DROP TABLE IF EXISTS `media_photo`;
 CREATE TABLE IF NOT EXISTS `media_photo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `offset` varchar(128) DEFAULT NULL,
@@ -7811,9 +7869,9 @@ CREATE TABLE IF NOT EXISTS `media_photo` (
   `rgt` int(11) DEFAULT NULL,
   `level` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.media_photo: ~18 rows (approximately)
+-- Dumping data for table ap.media_photo: ~20 rows (approximately)
 DELETE FROM `media_photo`;
 /*!40000 ALTER TABLE `media_photo` DISABLE KEYS */;
 INSERT INTO `media_photo` (`id`, `offset`, `filename`, `title`, `crop_data`, `root_id`, `lft`, `rgt`, `level`) VALUES
@@ -7834,11 +7892,14 @@ INSERT INTO `media_photo` (`id`, `offset`, `filename`, `title`, `crop_data`, `ro
 	(19, NULL, NULL, NULL, NULL, 19, 1, 4, 0),
 	(22, '3496277946', 'big-lion-hd-wallpaper.jpg', 'Big-Lion-hd-wallpaper', NULL, 19, 2, 3, 1),
 	(23, '3496277946', 'dsc01735-1.jpg', 'DSC01735', NULL, 16, 4, 5, 1),
-	(24, '3496277946', 'imgp7268-1.jpg', 'imgp7268', NULL, 16, 2, 3, 1);
+	(24, '3496277946', 'imgp7268-1.jpg', 'imgp7268', NULL, 16, 2, 3, 1),
+	(25, NULL, NULL, NULL, NULL, 25, 1, 2, 0),
+	(26, NULL, NULL, NULL, NULL, 26, 1, 2, 0);
 /*!40000 ALTER TABLE `media_photo` ENABLE KEYS */;
 
 
 -- Dumping structure for table ap.media_video
+DROP TABLE IF EXISTS `media_video`;
 CREATE TABLE IF NOT EXISTS `media_video` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `offset` varchar(128) DEFAULT NULL,
@@ -7857,6 +7918,7 @@ DELETE FROM `media_video`;
 
 
 -- Dumping structure for table ap.media_video_url
+DROP TABLE IF EXISTS `media_video_url`;
 CREATE TABLE IF NOT EXISTS `media_video_url` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) DEFAULT NULL,
@@ -7867,19 +7929,22 @@ CREATE TABLE IF NOT EXISTS `media_video_url` (
   `rgt` int(11) DEFAULT NULL,
   `level` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.media_video_url: ~3 rows (approximately)
+-- Dumping data for table ap.media_video_url: ~5 rows (approximately)
 DELETE FROM `media_video_url`;
 /*!40000 ALTER TABLE `media_video_url` DISABLE KEYS */;
 INSERT INTO `media_video_url` (`id`, `url`, `extension`, `ad_id`, `root_id`, `lft`, `rgt`, `level`) VALUES
 	(2, NULL, NULL, NULL, 2, 1, 2, 0),
 	(3, NULL, NULL, NULL, 3, 1, 2, 0),
-	(4, 'https://www.youtube.com/embed/nI5yE8xI8OU', NULL, NULL, 4, 1, 2, 0);
+	(4, 'https://www.youtube.com/embed/nI5yE8xI8OU', NULL, NULL, 4, 1, 2, 0),
+	(7, 'https://www.youtube.com/embed/j3BslT97fR4', NULL, NULL, 7, 1, 2, 0),
+	(8, 'https://www.youtube.com/embed/j3BslT97fR4', NULL, NULL, 8, 1, 2, 0);
 /*!40000 ALTER TABLE `media_video_url` ENABLE KEYS */;
 
 
 -- Dumping structure for table ap.media_video_url_translation
+DROP TABLE IF EXISTS `media_video_url_translation`;
 CREATE TABLE IF NOT EXISTS `media_video_url_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `title` varchar(255) DEFAULT NULL,
@@ -7891,17 +7956,20 @@ CREATE TABLE IF NOT EXISTS `media_video_url_translation` (
   CONSTRAINT `media_video_url_translation_id_media_video_url_id_1` FOREIGN KEY (`id`) REFERENCES `media_video_url` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.media_video_url_translation: ~3 rows (approximately)
+-- Dumping data for table ap.media_video_url_translation: ~5 rows (approximately)
 DELETE FROM `media_video_url_translation`;
 /*!40000 ALTER TABLE `media_video_url_translation` DISABLE KEYS */;
 INSERT INTO `media_video_url_translation` (`id`, `title`, `slug`, `description`, `lang`) VALUES
 	(2, NULL, NULL, NULL, 'pl'),
 	(3, NULL, NULL, NULL, 'pl'),
-	(4, 'Testowy film', NULL, '<p>Lorem ipsum&nbsp;<span>Lorem ipsum&nbsp;<span>Lorem ipsum</span></span></p>', 'pl');
+	(4, 'Testowy film', NULL, '<p>Lorem ipsum&nbsp;<span>Lorem ipsum&nbsp;<span>Lorem ipsum</span></span></p>', 'pl'),
+	(7, 'Testowy film 2', NULL, '<p>Opis testowego flmu 2</p>', 'pl'),
+	(8, 'Testowy film 2', NULL, '<p>Opis testowego flmu 2</p>', 'pl');
 /*!40000 ALTER TABLE `media_video_url_translation` ENABLE KEYS */;
 
 
 -- Dumping structure for table ap.menu_footer
+DROP TABLE IF EXISTS `menu_footer`;
 CREATE TABLE IF NOT EXISTS `menu_footer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -7920,6 +7988,7 @@ INSERT INTO `menu_footer` (`id`, `name`, `root_id`, `location`) VALUES
 
 
 -- Dumping structure for table ap.menu_footer_item
+DROP TABLE IF EXISTS `menu_footer_item`;
 CREATE TABLE IF NOT EXISTS `menu_footer_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `target_type` varchar(128) DEFAULT NULL,
@@ -7947,6 +8016,7 @@ INSERT INTO `menu_footer_item` (`id`, `target_type`, `route`, `target_id`, `menu
 
 
 -- Dumping structure for table ap.menu_footer_item_translation
+DROP TABLE IF EXISTS `menu_footer_item_translation`;
 CREATE TABLE IF NOT EXISTS `menu_footer_item_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `target_href` varchar(255) DEFAULT NULL,
@@ -8005,6 +8075,7 @@ INSERT INTO `menu_footer_item_translation` (`id`, `target_href`, `title`, `title
 
 
 -- Dumping structure for table ap.menu_menu
+DROP TABLE IF EXISTS `menu_menu`;
 CREATE TABLE IF NOT EXISTS `menu_menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -8022,6 +8093,7 @@ INSERT INTO `menu_menu` (`id`, `name`, `root_id`, `location`) VALUES
 
 
 -- Dumping structure for table ap.menu_menu_item
+DROP TABLE IF EXISTS `menu_menu_item`;
 CREATE TABLE IF NOT EXISTS `menu_menu_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `target_type` varchar(128) DEFAULT NULL,
@@ -8054,6 +8126,7 @@ INSERT INTO `menu_menu_item` (`id`, `target_type`, `route`, `target_id`, `menu_i
 
 
 -- Dumping structure for table ap.menu_menu_item_translation
+DROP TABLE IF EXISTS `menu_menu_item_translation`;
 CREATE TABLE IF NOT EXISTS `menu_menu_item_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `target_href` varchar(255) DEFAULT NULL,
@@ -8077,6 +8150,7 @@ INSERT INTO `menu_menu_item_translation` (`id`, `target_href`, `title`, `title_a
 
 
 -- Dumping structure for table ap.migration_version
+DROP TABLE IF EXISTS `migration_version`;
 CREATE TABLE IF NOT EXISTS `migration_version` (
   `version` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -8090,6 +8164,7 @@ INSERT INTO `migration_version` (`version`) VALUES
 
 
 -- Dumping structure for table ap.newsletter
+DROP TABLE IF EXISTS `newsletter`;
 CREATE TABLE IF NOT EXISTS `newsletter` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
@@ -8103,6 +8178,7 @@ DELETE FROM `newsletter`;
 
 
 -- Dumping structure for table ap.newsletter_group
+DROP TABLE IF EXISTS `newsletter_group`;
 CREATE TABLE IF NOT EXISTS `newsletter_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -8123,6 +8199,7 @@ INSERT INTO `newsletter_group` (`id`, `name`, `visible`, `group_type`, `created_
 
 
 -- Dumping structure for table ap.newsletter_message
+DROP TABLE IF EXISTS `newsletter_message`;
 CREATE TABLE IF NOT EXISTS `newsletter_message` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(128) DEFAULT NULL,
@@ -8144,6 +8221,7 @@ DELETE FROM `newsletter_message`;
 
 
 -- Dumping structure for table ap.newsletter_message_group
+DROP TABLE IF EXISTS `newsletter_message_group`;
 CREATE TABLE IF NOT EXISTS `newsletter_message_group` (
   `message_id` int(11) NOT NULL DEFAULT '0',
   `group_id` int(11) NOT NULL DEFAULT '0',
@@ -8161,6 +8239,7 @@ INSERT INTO `newsletter_message_group` (`message_id`, `group_id`) VALUES
 
 
 -- Dumping structure for table ap.newsletter_message_subscriber
+DROP TABLE IF EXISTS `newsletter_message_subscriber`;
 CREATE TABLE IF NOT EXISTS `newsletter_message_subscriber` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `message_id` int(11) DEFAULT NULL,
@@ -8188,6 +8267,7 @@ INSERT INTO `newsletter_message_subscriber` (`id`, `message_id`, `subscriber_id`
 
 
 -- Dumping structure for table ap.newsletter_subscriber
+DROP TABLE IF EXISTS `newsletter_subscriber`;
 CREATE TABLE IF NOT EXISTS `newsletter_subscriber` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -8210,6 +8290,7 @@ INSERT INTO `newsletter_subscriber` (`id`, `name`, `lastname`, `email`, `created
 
 
 -- Dumping structure for table ap.newsletter_subscriber_group
+DROP TABLE IF EXISTS `newsletter_subscriber_group`;
 CREATE TABLE IF NOT EXISTS `newsletter_subscriber_group` (
   `subscriber_id` int(11) NOT NULL DEFAULT '0',
   `group_id` int(11) NOT NULL DEFAULT '0',
@@ -8226,6 +8307,7 @@ INSERT INTO `newsletter_subscriber_group` (`subscriber_id`, `group_id`) VALUES
 
 
 -- Dumping structure for table ap.news_article
+DROP TABLE IF EXISTS `news_article`;
 CREATE TABLE IF NOT EXISTS `news_article` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) DEFAULT NULL,
@@ -8253,6 +8335,7 @@ DELETE FROM `news_article`;
 
 
 -- Dumping structure for table ap.news_article_translation
+DROP TABLE IF EXISTS `news_article_translation`;
 CREATE TABLE IF NOT EXISTS `news_article_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `title` varchar(255) DEFAULT NULL,
@@ -8269,6 +8352,7 @@ DELETE FROM `news_article_translation`;
 
 
 -- Dumping structure for table ap.news_category
+DROP TABLE IF EXISTS `news_category`;
 CREATE TABLE IF NOT EXISTS `news_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -8288,6 +8372,7 @@ DELETE FROM `news_category`;
 
 
 -- Dumping structure for table ap.news_category_translation
+DROP TABLE IF EXISTS `news_category_translation`;
 CREATE TABLE IF NOT EXISTS `news_category_translation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lang` varchar(64) NOT NULL DEFAULT '',
@@ -8304,6 +8389,7 @@ DELETE FROM `news_category_translation`;
 
 
 -- Dumping structure for table ap.news_comment
+DROP TABLE IF EXISTS `news_comment`;
 CREATE TABLE IF NOT EXISTS `news_comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `news_id` int(11) DEFAULT NULL,
@@ -8325,6 +8411,7 @@ DELETE FROM `news_comment`;
 
 
 -- Dumping structure for table ap.news_group
+DROP TABLE IF EXISTS `news_group`;
 CREATE TABLE IF NOT EXISTS `news_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
@@ -8345,6 +8432,7 @@ DELETE FROM `news_group`;
 
 
 -- Dumping structure for table ap.news_news
+DROP TABLE IF EXISTS `news_news`;
 CREATE TABLE IF NOT EXISTS `news_news` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -8384,6 +8472,7 @@ INSERT INTO `news_news` (`id`, `user_id`, `last_user_id`, `publish`, `gallery`, 
 
 
 -- Dumping structure for table ap.news_news_tag
+DROP TABLE IF EXISTS `news_news_tag`;
 CREATE TABLE IF NOT EXISTS `news_news_tag` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `tag_id` int(11) DEFAULT NULL,
@@ -8399,6 +8488,7 @@ DELETE FROM `news_news_tag`;
 
 
 -- Dumping structure for table ap.news_news_translation
+DROP TABLE IF EXISTS `news_news_translation`;
 CREATE TABLE IF NOT EXISTS `news_news_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `title` varchar(255) DEFAULT NULL,
@@ -8417,6 +8507,7 @@ INSERT INTO `news_news_translation` (`id`, `title`, `slug`, `content`, `lang`) V
 
 
 -- Dumping structure for table ap.news_stream
+DROP TABLE IF EXISTS `news_stream`;
 CREATE TABLE IF NOT EXISTS `news_stream` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -8439,6 +8530,7 @@ DELETE FROM `news_stream`;
 
 
 -- Dumping structure for table ap.news_stream_translation
+DROP TABLE IF EXISTS `news_stream_translation`;
 CREATE TABLE IF NOT EXISTS `news_stream_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `title` varchar(255) DEFAULT NULL,
@@ -8455,6 +8547,7 @@ DELETE FROM `news_stream_translation`;
 
 
 -- Dumping structure for table ap.news_tag
+DROP TABLE IF EXISTS `news_tag`;
 CREATE TABLE IF NOT EXISTS `news_tag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
@@ -8471,6 +8564,7 @@ DELETE FROM `news_tag`;
 
 
 -- Dumping structure for table ap.page_page
+DROP TABLE IF EXISTS `page_page`;
 CREATE TABLE IF NOT EXISTS `page_page` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -8495,6 +8589,7 @@ INSERT INTO `page_page` (`id`, `user_id`, `metatag_id`, `type`, `photo_root_id`)
 
 
 -- Dumping structure for table ap.page_page_translation
+DROP TABLE IF EXISTS `page_page_translation`;
 CREATE TABLE IF NOT EXISTS `page_page_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `title` varchar(255) DEFAULT NULL,
@@ -8517,6 +8612,7 @@ INSERT INTO `page_page_translation` (`id`, `title`, `slug`, `content`, `lang`) V
 
 
 -- Dumping structure for table ap.product_category
+DROP TABLE IF EXISTS `product_category`;
 CREATE TABLE IF NOT EXISTS `product_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `discount_id` int(11) DEFAULT NULL,
@@ -8557,6 +8653,7 @@ INSERT INTO `product_category` (`id`, `discount_id`, `status`, `metatag_id`, `ph
 
 
 -- Dumping structure for table ap.product_category_translation
+DROP TABLE IF EXISTS `product_category_translation`;
 CREATE TABLE IF NOT EXISTS `product_category_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(255) DEFAULT NULL,
@@ -8590,6 +8687,7 @@ INSERT INTO `product_category_translation` (`id`, `name`, `description`, `slug`,
 
 
 -- Dumping structure for table ap.product_comment
+DROP TABLE IF EXISTS `product_comment`;
 CREATE TABLE IF NOT EXISTS `product_comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` longtext,
@@ -8614,6 +8712,7 @@ DELETE FROM `product_comment`;
 
 
 -- Dumping structure for table ap.product_producer
+DROP TABLE IF EXISTS `product_producer`;
 CREATE TABLE IF NOT EXISTS `product_producer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `owner` varchar(255) DEFAULT NULL,
@@ -8654,6 +8753,7 @@ INSERT INTO `product_producer` (`id`, `owner`, `email`, `phone`, `website`, `add
 
 
 -- Dumping structure for table ap.product_producer_translation
+DROP TABLE IF EXISTS `product_producer_translation`;
 CREATE TABLE IF NOT EXISTS `product_producer_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(255) DEFAULT NULL,
@@ -8670,6 +8770,7 @@ DELETE FROM `product_producer_translation`;
 
 
 -- Dumping structure for table ap.product_product
+DROP TABLE IF EXISTS `product_product`;
 CREATE TABLE IF NOT EXISTS `product_product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `price` decimal(18,2) DEFAULT '0.00',
@@ -8980,6 +9081,7 @@ INSERT INTO `product_product` (`id`, `price`, `dimensions`, `code`, `availabilit
 
 
 -- Dumping structure for table ap.product_product_category
+DROP TABLE IF EXISTS `product_product_category`;
 CREATE TABLE IF NOT EXISTS `product_product_category` (
   `product_id` int(11) NOT NULL DEFAULT '0',
   `category_id` int(11) NOT NULL DEFAULT '0',
@@ -9262,6 +9364,7 @@ INSERT INTO `product_product_category` (`product_id`, `category_id`) VALUES
 
 
 -- Dumping structure for table ap.product_product_translation
+DROP TABLE IF EXISTS `product_product_translation`;
 CREATE TABLE IF NOT EXISTS `product_product_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(255) DEFAULT NULL,
@@ -9745,6 +9848,7 @@ INSERT INTO `product_product_translation` (`id`, `name`, `slug`, `description`, 
 
 
 -- Dumping structure for table ap.slider_slide
+DROP TABLE IF EXISTS `slider_slide`;
 CREATE TABLE IF NOT EXISTS `slider_slide` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `slider_id` bigint(20) DEFAULT NULL,
@@ -9775,6 +9879,7 @@ INSERT INTO `slider_slide` (`id`, `slider_id`, `transition`, `slot_amount`, `rot
 
 
 -- Dumping structure for table ap.slider_slider
+DROP TABLE IF EXISTS `slider_slider`;
 CREATE TABLE IF NOT EXISTS `slider_slider` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -9795,6 +9900,7 @@ INSERT INTO `slider_slider` (`id`, `name`, `slug`, `slide_root_id`) VALUES
 
 
 -- Dumping structure for table ap.slider_slide_layer
+DROP TABLE IF EXISTS `slider_slide_layer`;
 CREATE TABLE IF NOT EXISTS `slider_slide_layer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `slide_id` varchar(128) DEFAULT NULL,
@@ -9827,6 +9933,7 @@ DELETE FROM `slider_slide_layer`;
 
 
 -- Dumping structure for table ap.tournament_match
+DROP TABLE IF EXISTS `tournament_match`;
 CREATE TABLE IF NOT EXISTS `tournament_match` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `team1` int(11) DEFAULT NULL,
@@ -9867,6 +9974,7 @@ INSERT INTO `tournament_match` (`id`, `team1`, `team2`, `goal1`, `goal2`, `tourn
 
 
 -- Dumping structure for table ap.tournament_player
+DROP TABLE IF EXISTS `tournament_player`;
 CREATE TABLE IF NOT EXISTS `tournament_player` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(255) DEFAULT NULL,
@@ -9883,6 +9991,7 @@ DELETE FROM `tournament_player`;
 
 
 -- Dumping structure for table ap.tournament_shooter
+DROP TABLE IF EXISTS `tournament_shooter`;
 CREATE TABLE IF NOT EXISTS `tournament_shooter` (
   `match_id` int(11) NOT NULL DEFAULT '0',
   `player_id` int(11) NOT NULL DEFAULT '0',
@@ -9898,6 +10007,7 @@ DELETE FROM `tournament_shooter`;
 
 
 -- Dumping structure for table ap.tournament_team
+DROP TABLE IF EXISTS `tournament_team`;
 CREATE TABLE IF NOT EXISTS `tournament_team` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -9928,6 +10038,7 @@ INSERT INTO `tournament_team` (`id`, `name`, `slug`, `tournament_id`, `group_id`
 
 
 -- Dumping structure for table ap.tournament_tournament
+DROP TABLE IF EXISTS `tournament_tournament`;
 CREATE TABLE IF NOT EXISTS `tournament_tournament` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -9947,6 +10058,7 @@ INSERT INTO `tournament_tournament` (`id`, `name`, `slug`, `active`, `date_from`
 
 
 -- Dumping structure for table ap.user_group
+DROP TABLE IF EXISTS `user_group`;
 CREATE TABLE IF NOT EXISTS `user_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `discount_id` int(11) DEFAULT NULL,
@@ -9965,6 +10077,7 @@ DELETE FROM `user_group`;
 
 
 -- Dumping structure for table ap.user_group_translation
+DROP TABLE IF EXISTS `user_group_translation`;
 CREATE TABLE IF NOT EXISTS `user_group_translation` (
   `id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(255) DEFAULT NULL,
@@ -9981,6 +10094,7 @@ DELETE FROM `user_group_translation`;
 
 
 -- Dumping structure for table ap.user_profile
+DROP TABLE IF EXISTS `user_profile`;
 CREATE TABLE IF NOT EXISTS `user_profile` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -10049,6 +10163,7 @@ INSERT INTO `user_profile` (`id`, `user_id`, `about`, `address`, `postal_code`, 
 
 
 -- Dumping structure for table ap.user_update
+DROP TABLE IF EXISTS `user_update`;
 CREATE TABLE IF NOT EXISTS `user_update` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -10066,6 +10181,7 @@ DELETE FROM `user_update`;
 
 
 -- Dumping structure for table ap.user_user
+DROP TABLE IF EXISTS `user_user`;
 CREATE TABLE IF NOT EXISTS `user_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fb_id` varchar(128) DEFAULT NULL,
@@ -10096,6 +10212,7 @@ INSERT INTO `user_user` (`id`, `fb_id`, `first_name`, `last_name`, `email`, `use
 
 
 -- Dumping structure for table ap.user_user_group
+DROP TABLE IF EXISTS `user_user_group`;
 CREATE TABLE IF NOT EXISTS `user_user_group` (
   `user_id` int(11) NOT NULL DEFAULT '0',
   `group_id` int(11) NOT NULL DEFAULT '0',
@@ -10107,6 +10224,5 @@ CREATE TABLE IF NOT EXISTS `user_user_group` (
 DELETE FROM `user_user_group`;
 /*!40000 ALTER TABLE `user_user_group` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user_user_group` ENABLE KEYS */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=1 */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

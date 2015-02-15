@@ -133,6 +133,18 @@ class Default_IndexController extends MF_Controller_Action
         endif;
         $form = new Default_Form_Contact();
         
+	$form->getElement('name')->clearDecorators();
+	$form->getElement('name')->addDecorator('viewHelper');
+	
+	$form->getElement('email')->clearDecorators();
+	$form->getElement('email')->addDecorator('viewHelper');
+	
+	$form->getElement('subject')->clearDecorators();
+	$form->getElement('subject')->addDecorator('viewHelper');
+	
+	$form->getElement('message')->clearDecorators();
+	$form->getElement('message')->addDecorator('viewHelper');
+	
         $captchaDir = Zend_Controller_Front::getInstance()->getParam('bootstrap')->getOption('captchaDir');
         $form->addElement('captcha', 'captcha',
             array(
@@ -162,6 +174,7 @@ class Default_IndexController extends MF_Controller_Action
 
         $this->view->assign('form', $form);
         $this->view->assign('page', $page);
+        $this->view->assign('hideSlider', true);
         $this->view->assign('success',$this->getRequest()->getParam('success'));
         $this->_helper->actionStack('layout', 'index', 'default');
     }

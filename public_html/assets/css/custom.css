@@ -343,3 +343,7 @@ header .main{
 .box2Main .newsWrapper .pad_bot2{
     padding-bottom:20px;
 }
+
+.textarea_box textarea{
+    max-height:40px;
+}
