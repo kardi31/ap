@@ -127,6 +127,7 @@ class Default_IndexController extends MF_Controller_Action
         }
  
         $contactEmail = $this->getInvokeArg('bootstrap')->getOption('contact_email');
+        $mailerEmail = $this->getInvokeArg('bootstrap')->getOption('mailer_email');
         
         if ($page != NULL):
             $metatagService->setViewMetatags($page->get('Metatag'), $this->view);
@@ -158,19 +159,28 @@ class Default_IndexController extends MF_Controller_Action
                 'imgUrl' => $this->view->serverUrl() . '/captcha/',  
             )
         ));
-          if(isset($_POST['submit_contact'])) {
-                    $this->_service->get('doctrine')->getCurrentConnection()->beginTransaction();
+        
+        if($this->getRequest()->isPost()) {
+            if($form->isValid($this->getRequest()->getParams())) {
+                try {
                     
-                    if(!strlen($contactEmail)){
+                   if(!strlen($contactEmail)){
                         $this->_helper->redirector->gotoUrl($this->view->url(array('success' => 'fail'), 'domain-contact'));
                     }
                     $values = $_POST;
-                    $serviceService->sendMail($values,$contactEmail);
+                    $serviceService->sendMail($values,$contactEmail,$mailerEmail);
                     
                     $this->view->messages()->add($this->view->translate('Message sent'));
                     $this->_helper->redirector->gotoUrl($this->view->url(array('success' => 'fail'), 'domain-contact'));
-                  
-         }
+                    
+                } catch(Exception $e) {
+                    var_dump($e->getMessage());exit;
+                    $this->_service->get('doctrine')->getCurrentConnection()->rollback();
+                    $this->_service->get('log')->log($e->getMessage(), 4);
+                }
+            }
+        }
+          
 
         $this->view->assign('form', $form);
         $this->view->assign('page', $page);

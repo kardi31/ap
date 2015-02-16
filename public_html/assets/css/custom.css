@@ -347,3 +347,21 @@ header .main{
 .textarea_box textarea{
     max-height:40px;
 }
+
+.errors li{
+    color:#ff0000;
+}
+
+.alert_box{
+    padding:10px 20px;
+    font-size:18px;
+    color:#fff;
+    text-align:center;
+    margin-bottom:20px;
+}
+.alert_box.success{
+    background:green;
+}
+.alert_box.error{
+    background:red;
+}
