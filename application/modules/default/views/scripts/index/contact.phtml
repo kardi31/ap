@@ -1,3 +1,48 @@
+<article id="content">
+	<div class="wrapper">
+		<section class="col1">
+			<h2 class="under">Napisz do nas</h2>
+                        <?php echo $this->messages()->render(); ?>
+			<form id="ContactForm" method="post">
+			<div>
+				<div  class="wrapper">
+					<span>Imie i nazwisko:</span>
+					<?php echo $this->form->name; ?>
+				</div>
+				
+				<div  class="wrapper">
+					<span>Email:</span>
+					<?php echo $this->form->email; ?>
+				</div>
+				<div  class="wrapper">
+					<span>Tytuł</span>
+					<?php echo $this->form->subject; ?>
+				</div>
+				<div  class="textarea_box">
+					<span>Wiadomość:</span>
+					<?php echo $this->form->message; ?>
+				</div>
+			     
+				<?php echo $this->form->captcha; ?>
+				<?php echo $this->form->submit; ?>
+			</div>
+		</form>
+		</section>
+		<section class="col2 pad_left1">
+			<h2 class="under">Kontakt</h2>
+			<div id="address">
+			    <?php echo $this->cms()->setting('address'); ?> <?php echo $this->cms()->setting('postal_code'); ?><br />
+			     <?php echo $this->cms()->setting('city'); ?>,
+			      <?php echo $this->cms()->setting('province'); ?> <br/>
+			    <?php echo $this->cms()->setting('phone'); ?><br>
+			    <a href="mailto:<?php echo $this->cms()->setting('contact_email'); ?>" class="color2"><?php echo $this->cms()->setting('contact_email'); ?></a>
+			</div>
+					<br /><br />
+					<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2557.224816513646!2d19.633148!3d50.138225999999996!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4716f0dbeb34d443%3A0x761b91863e5a58a5!2s%C5%9Awit+Krzeszowice!5e0!3m2!1spl!2spl!4v1424021254006" width="230" height="400" frameborder="0" style="border:0"></iframe>
+		</section>
+	</div>
+
+</article>
 <?php $row = 0; ?>
 <article class="main">
     <iframe width="1000" height="335" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.pl/maps?f=q&amp;source=s_q&amp;hl=pl&amp;geocode=&amp;q=Kr%C3%B3tka+5,+Kalwaria+Zebrzydowska&amp;aq=0&amp;oq=kr%C3%B3tka+5,+Kalwa&amp;sll=50.046766,20.004863&amp;sspn=0.384939,0.572662&amp;ie=UTF8&amp;hq=&amp;hnear=Kr%C3%B3tka+5,+34-130+Kalwaria+Zebrzydowska,+wadowicki,+Wojew%C3%B3dztwo+ma%C5%82opolskie&amp;t=m&amp;ll=49.87124,19.645357&amp;spn=0.018532,0.085745&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="https://maps.google.pl/maps?f=q&amp;source=embed&amp;hl=pl&amp;geocode=&amp;q=Kr%C3%B3tka+5,+Kalwaria+Zebrzydowska&amp;aq=0&amp;oq=kr%C3%B3tka+5,+Kalwa&amp;sll=50.046766,20.004863&amp;sspn=0.384939,0.572662&amp;ie=UTF8&amp;hq=&amp;hnear=Kr%C3%B3tka+5,+34-130+Kalwaria+Zebrzydowska,+wadowicki,+Wojew%C3%B3dztwo+ma%C5%82opolskie&amp;t=m&amp;ll=49.87124,19.645357&amp;spn=0.018532,0.085745&amp;z=14&amp;iwloc=A" style="color:#0000FF;text-align:left">Wyświetl większą mapę</a></small>
@@ -29,7 +74,7 @@
          <h4><?php echo $this->translate('Contact form'); ?></h4>
          <form class="contactForm" name="contact" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>">
         
-             <span class="contactFormLeft"><?php echo $this->form->name; ?></span><span class="contactFormRight"><?php echo $this->form->surname; ?></span><br/>
+             <span class="contactFormLeft"></span><span class="contactFormRight"><?php echo $this->form->surname; ?></span><br/>
              <span class="contactFormLeft"><?php echo $this->form->email; ?></span><span class="contactFormRight"><?php echo $this->form->phone; ?></span>
             <span class="contactFormWidth"> <?php echo $this->form->subject; ?></span>
             <span class="contactFormWidth"> <?php echo $this->form->messageContact; ?></span>

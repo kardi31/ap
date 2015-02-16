@@ -1,11 +1,11 @@
-<div class="widget">
-        <div id="rightBanner" class="flexslider banner" >
+<?php if(count($this->rightBanners)>0): ?>
+    <div id="rightBanner" class="flexslider article-body-banner banner" style="width:240px;height:150px;margin:0 auto;">
                 <ul class="slides">
                     <?php foreach($this->rightBanners as $rightBanner): ?>
                     <li>
                         <a href="<?php echo $rightBanner['website'] ?>" rel="nofollow" target="_blank" >
                             <div class="slide">
-                                <img src="/media/attachments/<?php echo $rightBanner['AttachmentRoot']['filename']; ?>" alt="<?php echo $rightBanner['Translation'][$this->language]['name']; ?>">
+                                <img style="width:240px;height:150px;" src="/media/attachments/<?php echo $rightBanner['AttachmentRoot']['filename']; ?>" alt="<?php echo $rightBanner['Translation'][$this->language]['name']; ?>">
                             </div>
                         </a>
                     </li>
@@ -27,4 +27,4 @@
                     });
             </script>
 
-</div>
+<?php endif; ?>

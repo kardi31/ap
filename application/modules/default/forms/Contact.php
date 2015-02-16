@@ -15,11 +15,11 @@ class Default_Form_Contact extends Admin_Form {
         $name->setDecorators(self::$textDecorators);
         $name->setAttrib('class', 'span8');
         
-        $surname = $this->createElement('text', 'surname');
-        $surname->setLabel('Last name');
-        $surname->setRequired(true);
-        $surname->setDecorators(self::$textDecorators);
-        $surname->setAttrib('class', 'span8');
+//        $surname = $this->createElement('text', 'surname');
+//        $surname->setLabel('Last name');
+//        $surname->setRequired(true);
+//        $surname->setDecorators(self::$textDecorators);
+//        $surname->setAttrib('class', 'span8');
         
         
         $email = new Glitch_Form_Element_Text_Email('email');
@@ -42,7 +42,7 @@ class Default_Form_Contact extends Admin_Form {
         $subject->setAttrib('class', 'span8');
         
         
-        $message = $this->createElement('textarea', 'messageContact');
+        $message = $this->createElement('textarea', 'message');
         $message->setLabel('Message');
         $message->setRequired(true);
         $message->setDecorators(self::$textDecorators);
@@ -50,13 +50,13 @@ class Default_Form_Contact extends Admin_Form {
         
           
        $submit = $this->createElement('button', 'submit');
-        $submit->setLabel('Submit');
+        $submit->setLabel('Wyślij');
         $submit->setDecorators(self::$submitDecorators);
         $submit->setAttribs(array('class' => 'btn btn-info', 'type' => 'submit'));
        
         $this->setElements(array(
             $name,
-            $surname,
+//            $surname,
             $email,
             $phone,
             $subject,

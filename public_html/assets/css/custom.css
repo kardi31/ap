@@ -1,0 +1,367 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29-Jan-2015, 16:35:09
+    Author     : Tomasz Kardas
+*/
+
+h1.mainPage{
+    font-size: 40px;
+font-style: normal;
+font-weight: 400;
+line-height: 1.2em;
+padding: 10px 0 11px 0;
+color: #000;
+letter-spacing: -1px;
+}
+
+.nextEvents.testimonials{
+    height:150px;
+}
+.nextEvents.testimonials p{
+    padding-bottom:1px;
+}
+
+h2.nextEventHeader{
+    font-size:26px;
+padding-top: 21px;
+    margin-bottom:2px;
+}
+
+.pad_left_30{
+    padding-left:30px;
+}
+.col2.pad_left_30{
+    width:255px;
+}
+
+#nextEvent h6{
+   margin-top:10px;
+   margin-bottom:5px;
+   font-weight:bold;
+}
+
+.upEvent, .downEvent{position:absolute;z-index:2;bottom:8px;right:5px;width:32px;height:32px;display:block}
+.upEvent{right:33px;background:url(../images/marker_up.gif) 0 0 no-repeat}
+.downEvent{background:url(../images/marker_down.gif) 0 0 no-repeat}
+.upEvent:hover, .downEvent:hover{background-position:bottom}
+
+
+.r_slider{
+    position:relative;
+    /*width:960px;*/
+    margin:0 auto;
+}
+.r_slider.tp-simpleresponsive img{
+    /*max-width:100%;*/
+    /*max-height:300px;*/
+}
+.slider{
+    position:relative;
+    /*padding:20px 0px;*/
+}
+
+.photoGallery a{
+    margin-right:10px;
+}
+
+.share-article-body {
+	padding-top: 10px;
+	display: block;
+	position: relative;
+}
+
+.share-article-body .right {
+	position: absolute;
+	z-index: 5;
+	top: 48px;
+	right: 0px;
+}
+
+
+.share-body {
+	display: block;
+	float: left;
+	color: #fff!important;
+	text-decoration: none!important;
+	position: relative;
+	margin-left: 8px;
+}
+
+i.fa {
+	line-height: inherit!important;
+	font-weight: normal!important;
+	font-size: inherit!important;
+	display: inline-block!important;
+}
+
+.share-body:hover {
+	background: #444444;
+}
+
+.share-body i.fa {
+	display: block!important;
+	text-align: center;
+	font-size: 1.8em!important;
+	padding: 18px 0;
+	width: 65px;
+}
+
+.share-body span {
+	display: block;
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	font-size: 0.75em;
+}
+
+
+.ot-facebook {
+	background: #3b5998;
+}
+
+.ot-twitter {
+	background: #00aced;
+}
+
+.ot-google {
+	background: #dd4b39;
+}
+
+.ot-linkedin {
+	background: #007bb6;
+}
+
+.ot-pinterest {
+	background: #cb2027;
+}
+
+
+.myteam,.myteam td{
+    background:blue;
+    color:#fff;
+    font-weight:bold;
+}
+
+#activeLeagues{
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+#activeLeagues div h2{
+    margin-top:15px;
+    margin-bottom: 10px;
+    text-align:center;
+    padding-top:0px;
+}
+
+#activeLeagues div h3{
+    padding-bottom:5px;
+}
+
+#activeLeagues div{
+    font-style:normal;
+}
+
+.activeLeague table{
+    width:100%;
+}
+
+
+.activeLeague table td{
+    text-align:center;
+}
+
+.leagueChoose{
+    width:90px;;
+    margin:0px auto;
+    display:inline-block;
+    border:1px solid #0000ff;
+    margin-top:20px;
+    border-radius:6px;
+    padding:10px;
+    text-decoration:none;
+    font-style:normal;
+}
+
+.leagueChoose:hover{
+    text-decoration: underline;
+}
+
+.leagueChoose.active{
+    background:blue;
+    color:#fff;
+}
+
+.leagueChoose.active:hover{
+    text-decoration:none;
+}
+
+.activeLeague:not(.first){
+    display:none;
+}
+
+.colList{
+    margin:10px;
+}
+
+.shadowBoxLeft{
+    
+    box-shadow: 2px 2px 5px #888888;
+    padding:0px 10px;
+    border-top:1px solid #bbb;
+    border-left:1px solid #bbb;
+}
+
+.mainPageRightCol{
+    
+/*    box-shadow: 2px 2px 5px #888888;
+    padding:0px 10px;*/
+    padding-bottom:5px;
+    padding-left:0px;
+    margin-left:14px;
+}
+
+.shadowBoxRightSmall{
+    border-top:1px solid #bbb;
+    border-left:1px solid #bbb;
+    box-shadow: 2px 2px 5px #888888;
+    padding-right:10px;
+    padding-left:12px;
+/*    padding:0px 10px;
+    margin-left:14px;*/
+}
+
+.colListWrapper1{
+    width:618px;
+    border-left:2px solid #B8B8B8;
+    padding-left:10px;
+    box-shadow: 2px 2px 5px #888888;
+}
+.colListWrapper2{
+    width:313px;;
+    padding-left:15px;
+    box-shadow: 2px 2px 5px #888888;
+}
+.colListWrapper1,.colListWrapper2{
+    float:left;
+}
+
+.clearfix:after {
+   content: " "; /* Older browser do not support empty content */
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+.videoImage{
+    width:270px;
+    height:110px;
+    display:block;
+    background-repeat: no-repeat;
+    /*background-size: 100% 100%;*/
+}
+
+.fleft{
+    float:left;
+    margin-right:20px;
+    margin-bottom:10px;
+}
+
+.breadcrumbs {
+    padding-top:10px;
+}
+
+.breadcrumbs ul{
+    display: inline-block;
+}
+
+.breadcrumbs li{
+    display:inline-block;
+    margin-right:7px;
+}
+
+.breadcrumbs li:not(:first-of-type){
+    display:inline-block;
+}
+.breadcrumbs li:not(:first-of-type):before{
+    content: ">";
+    display:inline-block;
+    margin-right:7px;
+}
+
+.body3 .main{
+    background:#fff;
+    border-top:20px solid #0B1129;
+    border-bottom:20px solid #0B1129;
+    border-radius:49px;
+    padding:10px 20px;
+    -moz-border-radius:6px;
+    /*-webkit-border-radius:6px;*/
+    border-left:none;
+    border-right:none;
+}
+
+
+#menu li.active a,#menu li.active span{color:#ffff00}
+
+header .main{
+    padding-bottom:15px;
+}
+
+.box2Main{
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.box2Main h2{
+    text-align:center;
+    padding-top:10px;
+    margin-top:10px;
+    padding-bottom:0px;
+}
+
+.box2Main hr{
+    border:1px solid #000;
+    margin-bottom:20px;
+    width:195px;
+}
+
+.box2Main .shadowBoxLeft{
+    margin-bottom:20px;
+    padding-top:10px;
+}
+
+.box2Main .newsWrapper{
+    margin-bottom:10px;
+}
+
+.box2Main .newsWrapper .pad_bot2{
+    padding-bottom:20px;
+}
+
+.textarea_box textarea{
+    max-height:40px;
+}
+
+.errors li{
+    color:#ff0000;
+}
+
+.alert_box{
+    padding:10px 20px;
+    font-size:18px;
+    color:#fff;
+    text-align:center;
+    margin-bottom:20px;
+}
+.alert_box.success{
+    background:green;
+}
+.alert_box.error{
+    background:red;
+}

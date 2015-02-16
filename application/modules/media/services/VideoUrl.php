@@ -138,6 +138,14 @@ class Media_Service_VideoUrl extends MF_Service_ServiceAbstract {
         return $form;
     }
     
+     public function saveEditedVideoFromArray($values) {
+        if($video = $this->getVideo((int) $values['video_root_id'])) {
+            $video->fromArray($values);
+            $video->save();
+            return $video;
+        }
+    }
+    
     public function saveFromArray($values) {
         if($video = $this->getVideo((int) $values['id'])) {
             $video->fromArray($values);

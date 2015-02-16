@@ -66,6 +66,13 @@ class News_IndexController extends MF_Controller_Action {
         $newsList = $newsService->getAllNews();
         
         
+         $query = $newsService->getNewsPaginationQuery($category['id'],$this->language);
+
+        $adapter = new MF_Paginator_Adapter_Doctrine($query, Doctrine_Core::HYDRATE_ARRAY);
+        $paginator = new Zend_Paginator($adapter);
+        $paginator->setCurrentPageNumber($this->getRequest()->getParam('page', 1));
+        $paginator->setItemCountPerPage(self::$articleItemCountPerPage);
+        
         $this->view->assign('newsList', $newsList);
         
         $this->_helper->actionStack('layout', 'index', 'default');

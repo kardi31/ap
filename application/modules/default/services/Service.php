@@ -67,16 +67,16 @@ class Default_Service_Service extends MF_Service_ServiceAbstract {
         
         return $service;
     }
-    public function sendMail($values,$mailTo)
+    public function sendMail($values,$mailTo,$mailerEmail)
     {
         $message = "Dane nadawcy:<br /><br />
             <b>Imie i nazwisko</b> ".$values['name']." ".$values['surname']."<br />
-           <b>Email</b> ".$values['email']."<br /><b>Telefon</b> ".$values['phone']."<br /><br /> <br />".$values['messageContact'];
+           <b>Email</b> ".$values['email']."<br /><b>Telefon</b> ".$values['phone']."<br /><br /> <br />".$values['message'];
 
         
          $mail = new Zend_Mail('UTF-8');
          $mail->setSubject($values['subject']);
-         $mail->setFrom('andrzej@varts.pl',$values['name']." ".$values['surname']);
+         $mail->setFrom($mailerEmail,$values['name']." ".$values['surname']);
          $mail->setReplyTo($values['email']);
          $mail->addTo($mailTo);
          $mail->setBodyHtml($message);

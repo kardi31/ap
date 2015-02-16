@@ -3,7 +3,7 @@
 -- Server version:               5.5.40-0ubuntu0.12.04.1 - (Ubuntu)
 -- Server OS:                    debian-linux-gnu
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2015-02-12 02:24:41
+-- Date/time:                    2015-02-15 17:58:16
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -139,9 +139,9 @@ CREATE TABLE IF NOT EXISTS `default_available_route` (
 DELETE FROM `default_available_route`;
 /*!40000 ALTER TABLE `default_available_route` DISABLE KEYS */;
 INSERT INTO `default_available_route` (`id`, `route`, `name`) VALUES
-	(1, 'domain-i18n:product', 'Produkty'),
+	(1, 'domain-i18n:homepage', 'Strona główna'),
 	(2, 'domain-i18n:page', 'Strony'),
-	(3, 'domain-i18n:gallery', 'Galeria'),
+	(3, 'domain-gallery-list', 'Galeria'),
 	(4, 'domain-news', 'Aktualności'),
 	(5, 'domain-contact', 'Kontakt');
 /*!40000 ALTER TABLE `default_available_route` ENABLE KEYS */;
@@ -2520,9 +2520,9 @@ CREATE TABLE IF NOT EXISTS `default_metatag` (
   `description` longtext,
   `keywords` longtext,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1658 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1665 DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.default_metatag: 233 rows
+-- Dumping data for table ap.default_metatag: 237 rows
 DELETE FROM `default_metatag`;
 /*!40000 ALTER TABLE `default_metatag` DISABLE KEYS */;
 INSERT INTO `default_metatag` (`id`, `title`, `description`, `keywords`) VALUES
@@ -2643,7 +2643,6 @@ INSERT INTO `default_metatag` (`id`, `title`, `description`, `keywords`) VALUES
 	(1535, NULL, NULL, NULL),
 	(1532, NULL, NULL, NULL),
 	(1533, NULL, NULL, NULL),
-	(1530, NULL, NULL, NULL),
 	(1536, NULL, NULL, NULL),
 	(1537, NULL, NULL, NULL),
 	(1538, NULL, NULL, NULL),
@@ -2688,7 +2687,6 @@ INSERT INTO `default_metatag` (`id`, `title`, `description`, `keywords`) VALUES
 	(1577, NULL, NULL, NULL),
 	(1578, NULL, NULL, NULL),
 	(1579, NULL, NULL, NULL),
-	(1580, NULL, NULL, NULL),
 	(1581, NULL, NULL, NULL),
 	(1588, NULL, NULL, NULL),
 	(1587, NULL, NULL, NULL),
@@ -2724,7 +2722,6 @@ INSERT INTO `default_metatag` (`id`, `title`, `description`, `keywords`) VALUES
 	(1618, NULL, NULL, NULL),
 	(1620, NULL, NULL, NULL),
 	(1621, NULL, NULL, NULL),
-	(1622, NULL, NULL, NULL),
 	(1623, NULL, NULL, NULL),
 	(1624, NULL, NULL, NULL),
 	(1625, NULL, NULL, NULL),
@@ -2758,7 +2755,14 @@ INSERT INTO `default_metatag` (`id`, `title`, `description`, `keywords`) VALUES
 	(1653, NULL, NULL, NULL),
 	(1654, NULL, NULL, NULL),
 	(1655, NULL, NULL, NULL),
-	(1657, NULL, NULL, NULL);
+	(1657, NULL, NULL, NULL),
+	(1658, NULL, NULL, NULL),
+	(1659, NULL, NULL, NULL),
+	(1660, NULL, NULL, NULL),
+	(1661, NULL, NULL, NULL),
+	(1662, NULL, NULL, NULL),
+	(1663, NULL, NULL, NULL),
+	(1664, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `default_metatag` ENABLE KEYS */;
 
 
@@ -2771,9 +2775,9 @@ CREATE TABLE IF NOT EXISTS `default_metatag_translation` (
   `description` longtext,
   `keywords` longtext,
   PRIMARY KEY (`id`,`lang`)
-) ENGINE=MyISAM AUTO_INCREMENT=1658 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1665 DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.default_metatag_translation: 337 rows
+-- Dumping data for table ap.default_metatag_translation: 344 rows
 DELETE FROM `default_metatag_translation`;
 /*!40000 ALTER TABLE `default_metatag_translation` DISABLE KEYS */;
 INSERT INTO `default_metatag_translation` (`id`, `lang`, `title`, `description`, `keywords`) VALUES
@@ -3113,7 +3117,14 @@ INSERT INTO `default_metatag_translation` (`id`, `lang`, `title`, `description`,
 	(1654, 'pl', '', '', ''),
 	(1655, 'pl', '', '', ''),
 	(1656, 'pl', 'Testowa galeria', 'To jest nasza testowa galeria', 'testowa, galeria'),
-	(1657, 'pl', 'Druga galeria', 'To jest druga galeria', 'galeria');
+	(1657, 'pl', 'Druga galeria', 'To jest druga galeria', 'galeria'),
+	(1658, 'pl', 'O nas', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'consectetur, adipiscing, eiusmod, tempor, incididunt, labore, dolore, aliqua, veniam, nostrud, exercitation, ullamco, laboris, aliquip, commodo, consequat, reprehenderit, voluptate, cillum, dolore, fugiat, pariatur, Excepteur, occaecat, cupidatat, proident, officia, deserunt, mollit, laborum'),
+	(1659, 'pl', 'Nabór', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'consectetur, adipiscing, eiusmod, tempor, incididunt, labore, dolore, aliqua, veniam, nostrud, exercitation, ullamco, laboris, aliquip, commodo, consequat, reprehenderit, voluptate, cillum, dolore, fugiat, pariatur, Excepteur, occaecat, cupidatat, proident, officia, deserunt, mollit, laborum'),
+	(1660, 'pl', '', '', ''),
+	(1661, 'pl', '', '', ''),
+	(1662, 'pl', '', '', ''),
+	(1663, 'pl', '', '', ''),
+	(1664, 'pl', '', '', '');
 /*!40000 ALTER TABLE `default_metatag_translation` ENABLE KEYS */;
 
 
@@ -3190,8 +3201,6 @@ CREATE TABLE IF NOT EXISTS `default_service` (
 -- Dumping data for table ap.default_service: ~1 rows (approximately)
 DELETE FROM `default_service`;
 /*!40000 ALTER TABLE `default_service` DISABLE KEYS */;
-INSERT INTO `default_service` (`id`, `name`, `email`, `phone`, `address`, `opening`) VALUES
-	(1, 'Lucoa', 'pomoc@lucoa.pl', '+48 33 876 49 75', 'Ul. Krótka 5 Poland 34-130 Kalwaria Zebrzydowska', 'pn - pt 8.00 - 20.00');
 /*!40000 ALTER TABLE `default_service` ENABLE KEYS */;
 
 
@@ -3208,19 +3217,15 @@ DELETE FROM `default_setting`;
 /*!40000 ALTER TABLE `default_setting` DISABLE KEYS */;
 INSERT INTO `default_setting` (`id`, `value`) VALUES
 	('contact_email', 'kardi31@o2.pl'),
-	('ga_profile_id', ''),
-	('company_name', 'Sofa linea'),
-	('company_address', 'Długa 22'),
-	('company_city', 'Kraków'),
-	('company_province', ''),
-	('company_postal_code', '55-555'),
-	('company_phone', '555 1231 32'),
-	('company_fax', ''),
+	('address', 'Pl.Kulczyckiego 2'),
+	('city', 'Krzeszowice'),
+	('province', 'Małopolskie'),
+	('postal_code', '32-067'),
+	('phone', '555 1231 32'),
 	('facebook_url', 'http://facebook.com/nazwa_konta'),
 	('youtube_url', 'http://youtube.com/nazwa.konta'),
 	('twitter_url', 'http://twitter.com/nazwa.konta'),
-	('googleplus_url', 'http://googleplus.com/nazwa.konta'),
-	('google_analytics', '<script>\r\n  (function(i,s,o,g,r,a,m){i[\'GoogleAnalyticsObject\']=r;i[r]=i[r]||function(){\r\n  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\r\n  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\r\n  })(window,document,\'script\',\'//www.google-analytics.com/analytics.js\',\'ga\');\r\n\r\n  ga(\'create\', \'UA-50640000-1\', \'nottinghamanalogue.pl\');\r\n  ga(\'send\', \'pageview\');\r\n\r\n</script>');
+	('googleplus_url', 'http://googleplus.com/nazwa.konta');
 /*!40000 ALTER TABLE `default_setting` ENABLE KEYS */;
 
 
@@ -3455,13 +3460,15 @@ CREATE TABLE IF NOT EXISTS `gallery_video` (
   `updated_at` datetime NOT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.gallery_video: 1 rows
+-- Dumping data for table ap.gallery_video: 3 rows
 DELETE FROM `gallery_video`;
 /*!40000 ALTER TABLE `gallery_video` DISABLE KEYS */;
 INSERT INTO `gallery_video` (`id`, `user_id`, `last_user_id`, `publish`, `promoted`, `publish_date`, `photo_root_id`, `metatag_id`, `video_root_id`, `views`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(6, NULL, 0, 0, 1, NULL, 11, 1655, 4, NULL, '2015-02-08 17:31:23', '2015-02-08 22:26:09', NULL);
+	(6, NULL, 0, 0, 0, '2015-02-15 18:18:02', 11, 1660, 4, NULL, '2015-02-08 17:31:23', '2015-02-15 18:19:24', NULL),
+	(7, NULL, 0, 0, 1, '2015-02-15 18:19:40', 25, 1661, 7, NULL, '2015-02-15 18:19:40', '2015-02-15 18:19:51', NULL),
+	(8, NULL, 0, 0, 0, '2015-02-15 18:19:46', 26, 1664, 8, NULL, '2015-02-15 18:19:41', '2015-02-15 18:19:46', NULL);
 /*!40000 ALTER TABLE `gallery_video` ENABLE KEYS */;
 
 
@@ -3474,13 +3481,15 @@ CREATE TABLE IF NOT EXISTS `gallery_video_translation` (
   `name` varchar(255) DEFAULT NULL,
   `description` longtext,
   PRIMARY KEY (`id`,`lang`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.gallery_video_translation: 1 rows
+-- Dumping data for table ap.gallery_video_translation: 3 rows
 DELETE FROM `gallery_video_translation`;
 /*!40000 ALTER TABLE `gallery_video_translation` DISABLE KEYS */;
 INSERT INTO `gallery_video_translation` (`id`, `lang`, `slug`, `name`, `description`) VALUES
-	(6, 'pl', 'testowy-film', 'Testowy film', '<p>Lorem ipsum&nbsp;<span>Lorem ipsum&nbsp;<span>Lorem ipsum</span></span></p>');
+	(6, 'pl', 'testowy-film', 'Testowy film', '<p>Lorem ipsum&nbsp;<span>Lorem ipsum&nbsp;<span>Lorem ipsum</span></span></p>'),
+	(7, 'pl', 'testowy-film-2', 'Testowy film 2', '<p>Opis testowego flmu 2</p>'),
+	(8, 'pl', 'testowy-film-2-1', 'Testowy film 2', '<p>Opis testowego flmu 2</p>');
 /*!40000 ALTER TABLE `gallery_video_translation` ENABLE KEYS */;
 
 
@@ -7860,9 +7869,9 @@ CREATE TABLE IF NOT EXISTS `media_photo` (
   `rgt` int(11) DEFAULT NULL,
   `level` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.media_photo: ~18 rows (approximately)
+-- Dumping data for table ap.media_photo: ~20 rows (approximately)
 DELETE FROM `media_photo`;
 /*!40000 ALTER TABLE `media_photo` DISABLE KEYS */;
 INSERT INTO `media_photo` (`id`, `offset`, `filename`, `title`, `crop_data`, `root_id`, `lft`, `rgt`, `level`) VALUES
@@ -7883,7 +7892,9 @@ INSERT INTO `media_photo` (`id`, `offset`, `filename`, `title`, `crop_data`, `ro
 	(19, NULL, NULL, NULL, NULL, 19, 1, 4, 0),
 	(22, '3496277946', 'big-lion-hd-wallpaper.jpg', 'Big-Lion-hd-wallpaper', NULL, 19, 2, 3, 1),
 	(23, '3496277946', 'dsc01735-1.jpg', 'DSC01735', NULL, 16, 4, 5, 1),
-	(24, '3496277946', 'imgp7268-1.jpg', 'imgp7268', NULL, 16, 2, 3, 1);
+	(24, '3496277946', 'imgp7268-1.jpg', 'imgp7268', NULL, 16, 2, 3, 1),
+	(25, NULL, NULL, NULL, NULL, 25, 1, 2, 0),
+	(26, NULL, NULL, NULL, NULL, 26, 1, 2, 0);
 /*!40000 ALTER TABLE `media_photo` ENABLE KEYS */;
 
 
@@ -7918,15 +7929,17 @@ CREATE TABLE IF NOT EXISTS `media_video_url` (
   `rgt` int(11) DEFAULT NULL,
   `level` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.media_video_url: ~3 rows (approximately)
+-- Dumping data for table ap.media_video_url: ~5 rows (approximately)
 DELETE FROM `media_video_url`;
 /*!40000 ALTER TABLE `media_video_url` DISABLE KEYS */;
 INSERT INTO `media_video_url` (`id`, `url`, `extension`, `ad_id`, `root_id`, `lft`, `rgt`, `level`) VALUES
 	(2, NULL, NULL, NULL, 2, 1, 2, 0),
 	(3, NULL, NULL, NULL, 3, 1, 2, 0),
-	(4, 'https://www.youtube.com/embed/nI5yE8xI8OU', NULL, NULL, 4, 1, 2, 0);
+	(4, 'https://www.youtube.com/embed/nI5yE8xI8OU', NULL, NULL, 4, 1, 2, 0),
+	(7, 'https://www.youtube.com/embed/j3BslT97fR4', NULL, NULL, 7, 1, 2, 0),
+	(8, 'https://www.youtube.com/embed/j3BslT97fR4', NULL, NULL, 8, 1, 2, 0);
 /*!40000 ALTER TABLE `media_video_url` ENABLE KEYS */;
 
 
@@ -7943,13 +7956,15 @@ CREATE TABLE IF NOT EXISTS `media_video_url_translation` (
   CONSTRAINT `media_video_url_translation_id_media_video_url_id_1` FOREIGN KEY (`id`) REFERENCES `media_video_url` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.media_video_url_translation: ~3 rows (approximately)
+-- Dumping data for table ap.media_video_url_translation: ~5 rows (approximately)
 DELETE FROM `media_video_url_translation`;
 /*!40000 ALTER TABLE `media_video_url_translation` DISABLE KEYS */;
 INSERT INTO `media_video_url_translation` (`id`, `title`, `slug`, `description`, `lang`) VALUES
 	(2, NULL, NULL, NULL, 'pl'),
 	(3, NULL, NULL, NULL, 'pl'),
-	(4, 'Testowy film', NULL, '<p>Lorem ipsum&nbsp;<span>Lorem ipsum&nbsp;<span>Lorem ipsum</span></span></p>', 'pl');
+	(4, 'Testowy film', NULL, '<p>Lorem ipsum&nbsp;<span>Lorem ipsum&nbsp;<span>Lorem ipsum</span></span></p>', 'pl'),
+	(7, 'Testowy film 2', NULL, '<p>Opis testowego flmu 2</p>', 'pl'),
+	(8, 'Testowy film 2', NULL, '<p>Opis testowego flmu 2</p>', 'pl');
 /*!40000 ALTER TABLE `media_video_url_translation` ENABLE KEYS */;
 
 
@@ -8097,17 +8112,16 @@ CREATE TABLE IF NOT EXISTS `menu_menu_item` (
   KEY `menu_id_idx` (`menu_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.menu_menu_item: 7 rows
+-- Dumping data for table ap.menu_menu_item: 6 rows
 DELETE FROM `menu_menu_item`;
 /*!40000 ALTER TABLE `menu_menu_item` DISABLE KEYS */;
 INSERT INTO `menu_menu_item` (`id`, `target_type`, `route`, `target_id`, `menu_id`, `custom_url`, `unique_id`, `css_class`, `photo_root_id`, `root_id`, `lft`, `rgt`, `level`) VALUES
-	(86, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 86, 1, 14, 0),
-	(91, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 86, 8, 9, 1),
-	(88, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 86, 2, 3, 1),
-	(89, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 86, 4, 5, 1),
-	(90, NULL, 'domain-news', NULL, 1, NULL, NULL, NULL, NULL, 86, 6, 7, 1),
-	(92, NULL, 'domain-contact', NULL, 1, NULL, NULL, NULL, NULL, 86, 12, 13, 1),
-	(93, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 86, 10, 11, 1);
+	(86, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 86, 1, 12, 0),
+	(91, NULL, 'domain-i18n:page', NULL, 1, NULL, NULL, NULL, NULL, 86, 6, 7, 1),
+	(88, NULL, 'domain-i18n:homepage', NULL, 1, NULL, NULL, NULL, NULL, 86, 2, 3, 1),
+	(89, NULL, 'domain-i18n:page', NULL, 1, NULL, NULL, NULL, NULL, 86, 4, 5, 1),
+	(92, NULL, 'domain-contact', NULL, 1, NULL, NULL, NULL, NULL, 86, 10, 11, 1),
+	(93, NULL, 'domain-gallery-list', NULL, 1, NULL, NULL, NULL, NULL, 86, 8, 9, 1);
 /*!40000 ALTER TABLE `menu_menu_item` ENABLE KEYS */;
 
 
@@ -8123,15 +8137,14 @@ CREATE TABLE IF NOT EXISTS `menu_menu_item_translation` (
   PRIMARY KEY (`id`,`lang`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.menu_menu_item_translation: 6 rows
+-- Dumping data for table ap.menu_menu_item_translation: 5 rows
 DELETE FROM `menu_menu_item_translation`;
 /*!40000 ALTER TABLE `menu_menu_item_translation` DISABLE KEYS */;
 INSERT INTO `menu_menu_item_translation` (`id`, `target_href`, `title`, `title_attr`, `slug`, `lang`) VALUES
 	(92, NULL, 'Kontakt', 'Napisz do nas', 'kontakt', 'pl'),
-	(90, NULL, 'Aktualności', 'Sprawdź co u nas', 'aktualnosci', 'pl'),
-	(89, NULL, 'O nas', NULL, 'o-nas', 'pl'),
-	(88, NULL, 'Home', NULL, 'home', 'pl'),
-	(91, NULL, 'Nabór', NULL, 'nabor', 'pl'),
+	(89, NULL, 'O nas', 'Dowiedz się więcej', 'o-nas', 'pl'),
+	(88, NULL, 'Home', 'Strona główna', 'home', 'pl'),
+	(91, NULL, 'Nabór', 'Dołącz do nas', 'nabor', 'pl'),
 	(93, NULL, 'Galeria', 'Zdjęcia, video', 'galeria', 'pl');
 /*!40000 ALTER TABLE `menu_menu_item_translation` ENABLE KEYS */;
 
@@ -8561,18 +8574,17 @@ CREATE TABLE IF NOT EXISTS `page_page` (
   PRIMARY KEY (`id`),
   KEY `user_id_idx` (`user_id`),
   KEY `metatag_id_idx` (`metatag_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.page_page: 6 rows
+-- Dumping data for table ap.page_page: 5 rows
 DELETE FROM `page_page`;
 /*!40000 ALTER TABLE `page_page` DISABLE KEYS */;
 INSERT INTO `page_page` (`id`, `user_id`, `metatag_id`, `type`, `photo_root_id`) VALUES
-	(23, 58, 1622, NULL, NULL),
 	(5, 1, 29, 'contact', NULL),
 	(15, 2, 36, NULL, NULL),
-	(17, 58, 1580, NULL, NULL),
-	(21, 1, 1530, NULL, NULL),
-	(22, 58, 1581, 'homepage', NULL);
+	(22, 58, 1581, 'homepage', NULL),
+	(24, 58, 1658, NULL, NULL),
+	(25, 58, 1659, NULL, NULL);
 /*!40000 ALTER TABLE `page_page` ENABLE KEYS */;
 
 
@@ -8587,17 +8599,15 @@ CREATE TABLE IF NOT EXISTS `page_page_translation` (
   PRIMARY KEY (`id`,`lang`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Dumping data for table ap.page_page_translation: 7 rows
+-- Dumping data for table ap.page_page_translation: 5 rows
 DELETE FROM `page_page_translation`;
 /*!40000 ALTER TABLE `page_page_translation` DISABLE KEYS */;
 INSERT INTO `page_page_translation` (`id`, `title`, `slug`, `content`, `lang`) VALUES
 	(5, 'Kontakt', 'contact', '<p>Kontakt - w budowie</p>', 'pl'),
-	(23, 'Międzynarodowy turniej futsalu dziewcząt U99', 'miedzynarodowy-turniej-futsalu-dziewczat-u99', '<p><span class="text_exposed_show">Międzynarodowy Mikołajkowy turniej halowej piłki nożnej dziewcząt o Puchar Burmistrza Gminy Krzeszowice 2014. 29/30 listopad 2014 r.<br />W turnieju udział bierze 12 drużyn podzielonych na 3 grupy.</span></p>\r\n<p><span class="text_exposed_show"><br />Grupa I <br />od 9-00 do 11.20<br />1. Bronowianka I<br />2.Orawa Team<br />3.Victoria Gaj<br />4. UKS " Jedynka" I/Świt II</span></p>\r\n<p><span class="text_exposed_show"><br />Grupa II<br />od 11.30 do 13.50<br />1.Rużemberok I<br />2.As Progres<br />3.LKS Promyk<br />4.UKS " Jedynka "/Świt I</span></p>\r\n<p><span class="text_exposed_show"><br /><span>14.30 Powitanie wszystkich uczestników turnieju i zaproszonych gości.</span><br /><span>Uroczyste otwarcie turnieju - otwarcia turnieju dokona Burmistrz Gminy Krzeszowice Czesław Bartl.</span><br /><span>Wręczenie podziękowań dla firm -sponsorów za pomoc w organizacji imprez rekreacyjno sportowych organizowanych przez UKS" Jedynka" Krzeszowice.</span></span></p>\r\n<p><span class="text_exposed_show">Grupa III<br />od 14 .40 do 17.10<br />1.Rużemberok II<br />2.Naprzód Sobolów<br />3.Bronowianka II<br />4. Prądniczanka</span></p>\r\n<p><span class="text_exposed_show"><br />W grupach mecze rozgrywamy systemem " każdy z każdym ".<br />Czas gry 2 x 12 minut.</span></p>\r\n<p><span class="text_exposed_show"> </span></p>\r\n<p><span class="text_exposed_show"><br />W niedzielę 30 grudnia również turniej rozgrywany jest systemem grupowym w/g klucza :</span></p>\r\n<p><span class="text_exposed_show"><br />Grupa I o miejsca od 9-12<br />Godz. 9.00 -- 11.20 <br />Grają drużyny , które w sobotnich grupach zajmą ostatnie miejsca + drużyna , która zajmie 3 miejsce z najmniejszym dorobkiem punktowym.</span></p>\r\n<p><span class="text_exposed_show"><br />Grupa II o miejsca od 5 do 8<br />Godz. 11.30-- 13.50<br />Grają drużyny , które w sobotnich grupach zajmą drugie i trzecie miejsca <br />( najlepszy dorobek punktowy)</span></p>\r\n<p><span class="text_exposed_show"><br />Grupa III o miejsca od 1 do 4<br />Godz.14.00 -- 16.30<br />Grają drużyny , które w sobotnich grupach zajmą pierwsze miejsca + drużyna z drugiego miejsca z najlepszym dorobkiem punktowym.</span></p>\r\n<p><span class="text_exposed_show"><br />Godzina 17.00 zakończenie turnieju , wręczenie dyplomów , pucharów dla wszystkich drużyn, medali dla 3 najlepszych drużyn oraz nagród indywidualnych- najlepszy zawodnik, najlepszy bramkarz ,najlepszy strzelec</span></p>\r\n<p><span class="text_exposed_show"><br />W turnieju obowiązują przepisy futsalowe.<br />W meczu występuje 4 zawodników w polu + bramkarz. <br />Mecze rozgrywane są piłką do futsalu.<br />Ubezpieczenie zawodników we własnym zakresie.</span></p>', 'pl'),
 	(5, 'Contact', 'contact', '<p>Contact - soon to be done</p>', 'en'),
-	(17, 'Strona główna', 'strona-glowna', '<p>UKS Jedynka Krzeszowice</p>', 'pl'),
-	(17, 'Homepage', 'homepage', '<p>Homepage</p>', 'en'),
-	(21, 'Zarząd', 'zarzad', '<p><span>Skład zarządu UKS "Jedynka" Krzeszowice</span><br /><br /><span>Prezes - Wojciech Kardas</span><br /><span>Viceprezes - Andrzej Zimoląg</span><br /><span>Sekretarz - Włodzimierz Ogórkiewicz</span><br /><span>Skarbnik - Ryszard Piotrowski</span><br /><span>Członek zarządu - Barbara Mikrut</span><br /><br /><span>Komisja rewizyjna klubu</span><br /><br /><span>Przewodniczący - Ireneusz Młynarczyk</span><br /><span>Sekretarz - Zbigniew Szydłowski</span><br /><span>Członek komisji - Wiesław Lenart</span></p>', 'pl'),
-	(22, 'WItamy na stronie AP Świt Krzeszowice', 'witamy-na-stronie-ap-swit-krzeszowice', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>', 'pl');
+	(22, 'WItamy na stronie AP Świt Krzeszowice', 'witamy-na-stronie-ap-swit-krzeszowice', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>', 'pl'),
+	(24, 'O nas', 'o-nas', '<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</span></p>', 'pl'),
+	(25, 'Nabór', 'nabor', '<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></p>', 'pl');
 /*!40000 ALTER TABLE `page_page_translation` ENABLE KEYS */;
 
 

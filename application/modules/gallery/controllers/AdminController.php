@@ -433,16 +433,13 @@ class Gallery_AdminController extends MF_Controller_Action {
                     
                     $this->_service->get('doctrine')->getCurrentConnection()->commit();
                     
-                    $this->_helper->redirector->gotoUrl($this->view->adminUrl('edit-video', 'gallery', array('id' => $video->getId())));
+                    $this->_helper->redirector->gotoUrl($this->view->adminUrl('list-video', 'gallery'));
                 } catch(Exception $e) {
                     var_dump($e->getMessage());exit;
                     $this->_service->get('doctrine')->getCurrentConnection()->rollback();
                     $this->_service->get('log')->log($e->getMessage(), 4);
                 }
             }
-	    else{
-		var_dump($form->getMessages());exit;
-	    }
         }
 
         $languages = $i18nService->getLanguageList();
@@ -468,6 +465,7 @@ class Gallery_AdminController extends MF_Controller_Action {
             throw new Zend_Controller_Action_Exception('Video not found');
         }
         
+  
         $adminLanguage = $i18nService->getAdminLanguage();
         
         $form = $videoService->getVideoForm($video);
@@ -481,11 +479,11 @@ class Gallery_AdminController extends MF_Controller_Action {
         
         $metatagsForm = $metatagService->getMetatagsSubForm($video->get('Metatags'));
         $form->addSubForm($metatagsForm, 'metatags');
-        if(!$video->photo_root_id){
-            $photoRoot = $photoService->createPhotoRoot();
-            $video->set('PhotoRoot',$photoRoot);
-            $video->save();
-        }
+//        if(!$video->photo_root_id){
+//            $photoRoot = $photoService->createPhotoRoot();
+//            $video->set('PhotoRoot',$photoRoot);
+//            $video->save();
+//        }
         
 //        if(!$video->video_root_id){
 //            $videoRoot = $videoService->createVideoRoot();
@@ -510,28 +508,29 @@ class Gallery_AdminController extends MF_Controller_Action {
                     $this->_service->get('doctrine')->getCurrentConnection()->beginTransaction();
                     
                     $values = $form->getValues();
-                    if($metatags = $metatagService->saveMetatagsFromArray(null, $values, array('title' => 'title', 'description' => 'content', 'keywords' => 'content'))) {
+                    if($metatags = $metatagService->saveMetatagsFromArray(null, $values, array('title' => 'name', 'description' => 'description', 'keywords' => 'description'))) {
                         $values['metatag_id'] = $metatags->getId();
                     }
-		    
-		    
                     $video = $videoService->saveVideoFromArray($values,0);//,$user->getId());
                     
-                    if(!$video->photo_root_id){
-                        $photoRoot = $photoService->createPhotoRoot();
-                        $video->set('PhotoRoot',$photoRoot);
-                        $video->save();
-                    }
+//                    if(!$video->photo_root_id){
+//                        $photoRoot = $photoService->createPhotoRoot();
+//                        $video->set('PhotoRoot',$photoRoot);
+//                        $video->save();
+//                    }
+//		    
+//		    if(!$video->video_root_id){
+//			$videoRoot = $videoUrlService->createVideoRoot();
+//			$video->set('VideoRoot',$videoRoot);
+//			$video->save();
+//		    }
 		    
-		    if(!$video->video_root_id){
-			$videoRoot = $videoUrlService->createVideoRoot();
-			$video->set('VideoRoot',$videoRoot);
-			$video->save();
-		    }
-		    
-                    $videoUrlService->createVideoFromUpload($values, $videoRoot);
+                    $video->get('VideoRoot')->set('url',$values['url']);
+                    $video->save();
+//                    Zend_Debug::dump($video->toArray());exit;
                     
 		    
+                $this->_service->get('doctrine')->getCurrentConnection()->commit();
                     $this->view->messages()->add($translator->translate('Item has been added'), 'success');
                     
                      if(isset($_POST['save_only'])){
@@ -540,6 +539,7 @@ class Gallery_AdminController extends MF_Controller_Action {
 
                     $this->_helper->redirector->gotoUrl($this->view->adminUrl('list-video', 'gallery'));
                 } catch(Exception $e) {
+                    var_dump($e->getMessage());exit;
                     $this->_service->get('doctrine')->getCurrentConnection()->rollback();
                     $this->_service->get('log')->log($e->getMessage(), 4);
                 }
